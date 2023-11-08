@@ -1,0 +1,9 @@
+/* ### BUTTONS ### */
+.primary-btn{
+    @apply inline-flex items-center justify-center px-5 py-2 text-base text-center 
+    text-theme-gold
+    font-theme-gilroy font-semibold bg-transparent
+    border-[1px] border-theme-gold rounded-sm
+    hover:bg-theme-gold/30
+    focus:ring-4 focus:ring-theme-gold/30
+}

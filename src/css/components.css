@@ -1,0 +1,8 @@
+/* ### GENERALS ### */
+/* ### WALLED TEXT ### */
+.walled-text{
+    @apply relative 
+}
+.walled-text::before{
+    @apply absolute [content:""] h-full w-0.5 bg-theme-gold -left-3 top-1/2 -translate-y-1/2 rounded-sm
+}

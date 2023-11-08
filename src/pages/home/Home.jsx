@@ -1,27 +1,29 @@
+import "../../css/components.css";
+import { PrimaryBtn } from "../../components/Buttons";
+import { WalledTexts } from "../../components/WalledTexts";
+
+
 export default function Home(){
     return (
-        <section className="bg-transparent">
-        <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 h-screen">
-          <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-            The highest material quality
-            </h1>
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              From checkout to global sales tax compliance, companies around the world
-              use Flowbite to simplify their payment stack.
-            </p>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+        <section className="bg-transparent bg-right bg-no-repeat bg-cover bg-[url(/tailor-image-1.jpeg)] w-screen">
+        <div 
+          className="grid max-w-screen px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 
+          lg:grid-cols-12 h-screen bg-theme-black/70"
+        >
+          <div className="ml-4 sm400:ml-5 sm:ml-24 mr-auto place-self-center lg:col-span-7">
+            <h1 
+              className="max-w-2xl mb-4 text-4xl font-extrabold md:text-5xl xl:text-6xl 
+              text-theme-white font-theme-gilroy leading-none tracking-wider"
             >
-              Speak to Sales
-            </a>
+            <WalledTexts text={"The "}/> highest <br/>material quality
+            </h1>
+            <p className="max-w-2xl mb-6 font-light text-theme-white lg:mb-8 md:text-lg lg:text-xl font-theme-cirka">
+            Custom clothing built just for you
+            </p>
+            <PrimaryBtn text={"BOOK AN APPOINTMENT"}/>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-              alt="mockup"
-            />
+          <div className="lg:col-span-5 lg:flex bg-theme-gold mt-auto ml-auto mb-0 mr-auto sm:mr-24">
+            <img src="/tests/test1.png"/>
           </div>
         </div>
       </section>
