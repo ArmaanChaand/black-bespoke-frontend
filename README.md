@@ -1,8 +1,39 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Logo](https://blackbespoke.netlify.app/black-bespoke-logo.svg) 
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# [Black Bespoke](https://blackbespoke.netlify.app/)
+
+This repo is for the front-end of the project Black Bespoke and contains two branches [```dev```](https://github.com/ArmaanChaand/black-bespoke-frontend/tree/dev) and [```prod```](https://github.com/ArmaanChaand/black-bespoke-frontend/tree/prod) .
+
+
+
+## Run Locally
+
+> Before running locally, ensure you've ```git```, ```npm``` and ```node``` installed globally on your computer.
+
+Clone the project
+
+```bash
+  git clone https://github.com/ArmaanChaand/black-bespoke-frontend.git
+```
+
+Go to the project directory
+
+```bash
+  cd black-bespoke-frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
