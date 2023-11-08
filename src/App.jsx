@@ -1,15 +1,18 @@
+import { useContext } from "react";
 import "./App.css";
+import { CommonContext } from "./contexts/CommonContexts";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home";
 function App() {
-
+  const {testData} = useContext(CommonContext)
   return (
-    <>
-      <div className="logo-name--container">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/black-bespoke-logo.svg" className="logo" alt="Vite logo" />
-        </a>
-        <h1>Black Bespoke</h1>
-      </div>
-    </>
+    <div className="bg-theme-black">
+      <main>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+        </Routes>
+      </main>
+    </div>
   )
 }
 
