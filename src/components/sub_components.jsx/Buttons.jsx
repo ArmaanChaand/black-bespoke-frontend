@@ -1,4 +1,4 @@
-import "../css/sub_components.css";
+import "../../css/sub_components.css";
 
 export function PrimaryBtn({text, extraClass=""}){
     return (

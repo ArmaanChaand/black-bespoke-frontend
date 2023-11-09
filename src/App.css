@@ -1,1 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Questrial&display=swap');
+
+body{
+    @apply overflow-x-hidden
+}
+
+
+
+
+/* FONT TEST */
+.font-theme-gilroy{
+    @apply font-theme-gilroy-temp leading-none tracking-wider
+} 

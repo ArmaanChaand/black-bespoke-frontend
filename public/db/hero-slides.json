@@ -1,0 +1,24 @@
+{
+    "slides": [
+        {
+            "serial": "01",
+            "heading": "Tailoring",
+            "para": "Lorem ipsum dolor sit amet consectetur. Nunc amet feugiat fusce sem purus. At gravida a eu libero mauris tristique."
+        },
+        {
+            "serial": "02",
+            "heading": "Tailoring",
+            "para": "Lorem ipsum dolor sit amet consectetur. Nunc amet feugiat fusce sem purus. At gravida a eu libero mauris tristique."
+        },
+        {
+            "serial": "03",
+            "heading": "Tailoring",
+            "para": "Lorem ipsum dolor sit amet consectetur. Nunc amet feugiat fusce sem purus. At gravida a eu libero mauris tristique."
+        },
+        {
+            "serial": "04",
+            "heading": "Tailoring",
+            "para": "Lorem ipsum dolor sit amet consectetur. Nunc amet feugiat fusce sem purus. At gravida a eu libero mauris tristique."
+        }
+    ]
+}

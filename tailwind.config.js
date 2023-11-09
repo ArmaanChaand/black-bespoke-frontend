@@ -15,7 +15,7 @@ export default {
         'theme-black': "#141414",
       },
       fontFamily:{
-        'theme-gilroy': ['Questrial', 'sans-serif'],
+        'theme-gilroy-temp': ['Questrial', 'sans-serif'],
         'theme-cirka': [ 'Noto Serif', 'serif'],
       }
     },

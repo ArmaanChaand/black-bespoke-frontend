@@ -1,4 +1,5 @@
 /* ### BUTTONS ### */
+/* ### PrimaryBtn ### */
 .primary-btn{
     @apply inline-flex items-center justify-center px-5 py-2 text-base text-center 
     text-theme-gold
@@ -7,3 +8,31 @@
     hover:bg-theme-gold/30
     focus:ring-4 focus:ring-theme-gold/30
 }
+
+/* ### BLURRED INFO BOX ### */
+/* ### BlurredInfoBox ### */
+
+.blurred-info-box{
+    /* @apply  */
+}
+
+/* HERO SLIDER */
+
+.heroSlider::part(pagination){
+    @apply sm:hidden bottom-2
+}
+.heroSlider::part(bullet){
+    @apply bg-theme-gold
+}
+.heroSlider::part(bullet-active){
+    @apply bg-theme-gold
+}
+
+
+
+/* FONT TEST */
+.font-theme-gilroy{
+    @apply font-theme-gilroy-temp leading-none tracking-wider
+} 
+
+
