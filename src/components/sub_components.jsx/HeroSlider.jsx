@@ -45,7 +45,7 @@ export function HeroSlider(){
                                 serial={slide?.serial}
                                 heading={slide?.heading}
                                 para={slide?.para}
-                                extraClass=" w-full flex-none py-8 sm:py-5 sm:w-80 "
+                                extraClass=" w-full flex-none pb-8 sm:pb-5 sm:w-80 "
                                 />
                             </swiper-slide>
                         ))
