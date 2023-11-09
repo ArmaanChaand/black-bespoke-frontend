@@ -6,7 +6,7 @@ import { WalledTexts } from "./sub_components.jsx/WalledTexts";
 export default function Hero(){
 
     return (
-        <section className="bg-transparent bg-right bg-no-repeat bg-cover bg-[url(/tailor-image-1.jpeg)] w-screen">
+        <section className="bg-transparent bg-right bg-no-repeat bg-cover bg-[url(/media/tailor-image-1.jpeg)] w-screen">
         <div 
           className="grid max-w-screen py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 
           lg:grid-cols-12 h-screen bg-theme-black/80"
