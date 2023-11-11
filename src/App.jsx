@@ -8,7 +8,7 @@ register();
 function App() {
   return (
     <div className="bg-theme-black">
-      <main>
+      <main className="bg-theme-black">
         <Routes>
             <Route path="/" element={<Home/>}/>
         </Routes>

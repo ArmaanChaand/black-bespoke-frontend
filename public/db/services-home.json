@@ -1,0 +1,28 @@
+{
+    "services": [
+        {
+            "serial": "01",
+            "heading": "Blazer",
+            "para": "Lorem ipsum dolor sit amet consectetur. Sagittis adgsj dkhgh pellentesque eget dhk jkbkjb orci consectetur sapien. Enim cum proin id elit phasellus aenean. In ac arcu sollicitudin mauris.",
+            "imgSrc": "https://www.figma.com/file/aWu16l1ZsFvh0yRAmGR1PA/image/cfc443f436d5bd14ca8dde735bc2095d65d9f5a9"
+        },
+        {
+            "serial": "02",
+            "heading": "Shirt",
+            "para": "Lorem ipsum dolor sit amet consectetur. Sagittis adgsj dkhgh pellentesque eget dhk jkbkjb orci consectetur sapien. Enim cum proin id elit phasellus aenean. In ac arcu sollicitudin mauris.",
+            "imgSrc": "https://www.figma.com/file/aWu16l1ZsFvh0yRAmGR1PA/image/7caa8ef60655e0581ceadf43e1dc8e6dea596f91"
+        },
+        {
+            "serial": "03",
+            "heading": "Waist Coat",
+            "para": "Lorem ipsum dolor sit amet consectetur. Sagittis adgsj dkhgh pellentesque eget dhk jkbkjb orci consectetur sapien. Enim cum proin id elit phasellus aenean. In ac arcu sollicitudin mauris.",
+            "imgSrc": "https://www.figma.com/file/aWu16l1ZsFvh0yRAmGR1PA/image/afd7db71b98a0963865fcf1f580364b5d14460e9"
+        },
+        {
+            "serial": "04",
+            "heading": "Pants",
+            "para": "Lorem ipsum dolor sit amet consectetur. Sagittis adgsj dkhgh pellentesque eget dhk jkbkjb orci consectetur sapien. Enim cum proin id elit phasellus aenean. In ac arcu sollicitudin mauris.",
+            "imgSrc": "https://www.figma.com/file/aWu16l1ZsFvh0yRAmGR1PA/image/9ecfd89553eca6716316fce066b42d4e6802b21d"
+        }
+    ]
+}

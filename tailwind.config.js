@@ -8,6 +8,7 @@ export default {
     extend: {
       screens:{
         "sm400": "400px",
+        "sm500": "500px",
       },
       colors: {
         'theme-gold': "#D9B982",
@@ -15,9 +16,9 @@ export default {
         'theme-black': "#141414",
       },
       fontFamily:{
-        'theme-gilroy-temp': ['Questrial', 'sans-serif'],
+        'theme-gilroy': ['Questrial', 'sans-serif'],
         'theme-cirka': [ 'Noto Serif', 'serif'],
-      }
+      },
     },
   },
   plugins: [],

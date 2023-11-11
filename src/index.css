@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities{
+    .bg-theme-gradient-grey{
+        @apply bg-theme-black bg-gradient-to-br from-[#e6e6e61f] to-[#e6e6e605]
+    }
+}

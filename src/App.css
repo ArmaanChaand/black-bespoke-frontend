@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Questrial&display=swap');
-
+:root{
+    @apply bg-theme-black
+}
 body{
     @apply overflow-x-hidden
 }
@@ -7,7 +9,3 @@ body{
 
 
 
-/* FONT TEST */
-.font-theme-gilroy{
-    @apply font-theme-gilroy-temp leading-none tracking-wider
-} 

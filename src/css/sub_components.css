@@ -27,12 +27,3 @@
 .heroSlider::part(bullet-active){
     @apply bg-theme-gold
 }
-
-
-
-/* FONT TEST */
-.font-theme-gilroy{
-    @apply font-theme-gilroy-temp leading-none tracking-wider
-} 
-
-

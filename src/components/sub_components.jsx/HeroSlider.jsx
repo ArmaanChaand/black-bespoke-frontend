@@ -1,7 +1,7 @@
 import "../../css/sub_components.css";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import {BlurredInfoBox} from "./BlurredInfoBox";
-import { isPureInteger, roundToNearestPositiveInteger } from "../../assets/utils";
+import { roundToNearestPositiveInteger } from "../../assets/utils";
 import { useAxios } from "../../assets/axios/useAxios";
 export function HeroSlider(){
     const [slideInfos, setSlideInfos] = useState([])
@@ -18,13 +18,9 @@ export function HeroSlider(){
         })
     })
     useEffect(() => {
-      // listen for Swiper events using addEventListener
       swiperElRef.current.addEventListener('swiperprogress', (e) => {
         const [swiper, progress] = e.detail;
         setSlideSerialFloat(progress)
-      });
-      swiperElRef.current.addEventListener('swiperslidechange', (e) => {
-        // console.log('slide changed');
       });
     }, []);
     const slideSerial = roundToNearestPositiveInteger((slideSerialFloat/1) * slideInfos?.length) 
@@ -45,7 +41,7 @@ export function HeroSlider(){
                                 serial={slide?.serial}
                                 heading={slide?.heading}
                                 para={slide?.para}
-                                extraClass=" w-full flex-none pb-8 sm:pb-5 sm:w-80 "
+                                classes=" w-full flex-none pb-8 sm:pb-5 sm:w-80 "
                                 />
                             </swiper-slide>
                         ))
