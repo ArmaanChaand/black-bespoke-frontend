@@ -1,29 +1,30 @@
 import "../../css/sub_components.css";
 import { useEffect, useRef, useState } from "react";
 import {BlurredInfoBox} from "./BlurredInfoBox";
-import { roundToNearestPositiveInteger } from "../../assets/utils";
+import { roundToNearestPositiveInteger } from "../../assets/js_utils/utils";
 import { useAxios } from "../../assets/axios/useAxios";
+import {useQuery} from "@tanstack/react-query"
+
 export function HeroSlider(){
-    const [slideInfos, setSlideInfos] = useState([])
     const swiperElRef = useRef(null);
     const [slideSerialFloat, setSlideSerialFloat] = useState(1)
     const http = useAxios()
-    useEffect(()=>{
-        http.get("/db/hero-slides.json").then(response => {
-            if(response?.data?.slides) setSlideInfos(response?.data?.slides)
-        }).catch(error => {
-            console.log(error)
-        }).finally(()=>{
-            // console.log("DONE")
-        })
+    const {data, error, isError, isLoading} = useQuery({
+        queryKey: ['hero-slides'],
+        queryFn: () => http.get("/db/hero-slides.json"),
+        staleTime: 1000 * 60 * 5
+        
     })
+    const slideInfos = data?.data?.slides || []
     useEffect(() => {
+      if (!swiperElRef?.current) return
       swiperElRef.current.addEventListener('swiperprogress', (e) => {
         const [swiper, progress] = e.detail;
         setSlideSerialFloat(progress)
       });
     }, []);
     const slideSerial = roundToNearestPositiveInteger((slideSerialFloat/1) * slideInfos?.length) 
+    if (isError || isLoading) return ""
     return (
         <div className="lg:col-span-5 overflow-hidden sm:overflow-visible w-full sm:w-fit flex flex-col justify-center items-center mt-auto ml-auto mb-0 mr-auto sm:mr-0">
             <swiper-container 

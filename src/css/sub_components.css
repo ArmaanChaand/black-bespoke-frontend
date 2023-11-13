@@ -3,10 +3,22 @@
 .primary-btn{
     @apply inline-flex items-center justify-center px-5 py-2 text-base text-center 
     text-theme-gold
-    font-theme-gilroy font-semibold bg-transparent
+    font-theme-gilroy bg-transparent
     border-[1px] border-theme-gold rounded-sm
     hover:bg-theme-gold/30
-    focus:ring-4 focus:ring-theme-gold/30
+    focus:ring-0 focus:ring-theme-gold/30
+    font-medium
+    disabled:hover:bg-transparent disabled:opacity-70
+}
+.primary-btn.secondary-btn{
+    @apply border-none border-[1px] border-theme-gold rounded-sm
+}
+.navlink-btn{
+    @apply text-sm text-theme-white font-theme-cirka
+}
+.navlink-btn.ACTIVE{
+    @apply relative after:absolute after:w-full after:h-0.5 after:bg-theme-gold after:left-0
+    after:-bottom-0.5 after:rounded-sm
 }
 
 /* ### BLURRED INFO BOX ### */

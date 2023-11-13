@@ -3,12 +3,14 @@ import { createContext, useState } from "react";
 export const CommonContext = createContext();
 
 function CommonContextProvider({children}) {
-    const [testData, setTestData] = useState("TEST CONTEXT")
+    
+    const [showSidebar, setShowSidebar] = useState(false)
+    
     
     return (
         <CommonContext.Provider 
             value={{
-                testData, setTestData
+                showSidebar, setShowSidebar
             }}
         >
             {children}

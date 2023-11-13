@@ -16,3 +16,11 @@
 .test{
     /* @apply w-72 */ 
 }
+
+/* ### SVGWrapper */
+.svg-wrapper{
+    @apply w-7 h-7 inline-block
+}
+.svg-wrapper svg{
+    @apply w-full h-full
+}

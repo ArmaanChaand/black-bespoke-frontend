@@ -3,13 +3,13 @@ import { ParaSec } from "../elements/Paras";
 import { SubHeader } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
 
-export function ShowcaseBlock({heading, para, imgSrc, imgAlt}){
+export function ShowcaseBlock({heading, para, imgSrc, imgAlt=""}){
     return (
         <div className="w-full sm400:w-80 h-fit">
             <div className=" w-full aspect-[3/4]">
                 <ImageElm
                     src={imgSrc}
-                    alt={imgAlt ? imgAlt : heading}
+                    alt={imgAlt}
                 />
             </div>
             <SubHeader classes="ml-3 mr-auto mt-5 text-base sm:text-lg ">
