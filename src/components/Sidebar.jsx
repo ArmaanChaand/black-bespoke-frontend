@@ -37,7 +37,7 @@ export default function Sidebar({setShowSidebar}){
                         left_svg_name="SUIT"
                         left_svg_classes="hidden"
                     >
-                    <ImageElm src="/media/suit.png" alt="suit" classes="w-4 h-4"/>
+                    <img src="/media/suit.png" alt="suit" className="w-4 h-4 inline-block"/>
                      Build Suit
                     </LinkIconTextArrowBtn>
                     <LinkIconTextArrowBtn 
