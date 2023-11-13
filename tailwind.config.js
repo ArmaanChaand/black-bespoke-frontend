@@ -14,6 +14,7 @@ export default {
         'theme-gold': "#D9B982",
         'theme-white': "#E6E6E6",
         'theme-black': "#141414",
+        'theme-grey': "#E5E5E514",
       },
       fontFamily:{
         'theme-gilroy': ['Questrial', 'sans-serif'],

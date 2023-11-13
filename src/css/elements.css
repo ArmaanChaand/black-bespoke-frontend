@@ -19,8 +19,8 @@
 
 /* ### SVGWrapper */
 .svg-wrapper{
-    @apply w-7 h-7 inline-block
+    @apply w-7 h-7 inline-block 
 }
 .svg-wrapper svg{
-    @apply w-full h-full
+    @apply w-full h-full 
 }

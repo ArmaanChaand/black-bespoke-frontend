@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import { useContext } from "react";
 import { CommonContext } from "./contexts/CommonContexts";
 import Sidebar from "./components/Sidebar";
+import OurProcess from "./pages/process/Process";
 register();
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <main className="bg-theme-black">
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/process" element={<OurProcess/>}/>
         </Routes>
       </main>
     </div>

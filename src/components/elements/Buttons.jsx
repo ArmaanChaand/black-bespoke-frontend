@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import "../../css/sub_components.css";
+import { SVGWrapper } from "./SVGWrapper";
 
 export function PrimaryBtn({classes="",disabled=false, handleOnClick, children}){
     const tw_classes = `primary-btn   `
@@ -70,5 +71,24 @@ export function NavLinkBtn({href="", classes="", children}){
         >
             {children}
         </NavLink>
+    )
+}
+
+export function LinkIconTextArrowBtn({
+    href="#", classes="", children, 
+    left_svg_name="", left_svg_classes="w-4 h-4",
+    right_svg_name="ANGLE_RIGHT", right_svg_classes="w-4 h-4 ml-auto",
+}){
+    const tw_classes = `w-full flex flex-row justify-between items-center text-base text-theme-white font-theme-gilroy
+    gap-3 py-3 px-3 bg-theme-grey rouded-sm`
+    return (
+        <Link 
+            to={href}
+            className={tw_classes + " " + classes}
+        >
+            <SVGWrapper classes={left_svg_classes} svgName={left_svg_name} />
+            {children}
+            <SVGWrapper classes={right_svg_classes} svgName={right_svg_name}/>
+        </Link>
     )
 }

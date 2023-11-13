@@ -26,7 +26,7 @@ export function HeroSlider(){
     const slideSerial = roundToNearestPositiveInteger((slideSerialFloat/1) * slideInfos?.length) 
     if (isError || isLoading) return ""
     return (
-        <div className="lg:col-span-5 overflow-hidden sm:overflow-visible w-full sm:w-fit flex flex-col justify-center items-center mt-auto ml-auto mb-0 mr-auto sm:mr-0">
+        <div className="z-10 absolute bottom-5 right-0 overflow-hidden sm:overflow-visible w-full sm:w-fit flex flex-col justify-center items-center mt-auto ml-auto mb-0 mr-auto sm:mr-0">
             <swiper-container 
                 ref={swiperElRef} 
                 class="heroSlider flex flex-row justify-between shadow-inner items-center overflow-hidden w-11/12 

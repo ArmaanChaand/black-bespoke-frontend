@@ -10,8 +10,8 @@ export default function Header(){
     return (
         <header className="w-full bg-theme-black/40 fixed top-0 z-40 py-3 backdrop-blur-[2px]">
             <ContainerDiv classes="flex flex-row justify-between items-center">
-                <Link to="/">
-                    <SVGWrapper classes="w-8 h-8" svgName="BRAND"/>
+                <Link to="/" className="flex justify-center items-center">
+                    <SVGWrapper classes="w-6 sm:w-8 h-6 sm:h-8" svgName="BRAND"/>
                 </Link>
                 <nav className="hidden sm:flex flex-row justify-center items-center gap-5">
                     <NavLinkBtn href="/" >
@@ -30,8 +30,8 @@ export default function Header(){
                         Contact Us
                     </NavLinkBtn>
                 </nav>
-                <SecondaryBtn handleOnClick={()=>alert("TEST")}  classes="sm:invisible focus:ring-2 hover:bg-theme-white/10 focus:ring-theme-white/10 p-1 text-theme-white">
-                    <SVGWrapper classes="w-8 h-8" svgName="MENU"/>
+                <SecondaryBtn handleOnClick={()=>setShowSidebar(true)}  classes=" focus:ring-2 hover:bg-theme-white/10 focus:ring-theme-white/10 p-1 text-theme-white">
+                    <SVGWrapper classes="w-6 sm:w-8 h-6 sm:h-8" svgName="MENU"/>
                 </SecondaryBtn>
             </ContainerDiv>
         </header>

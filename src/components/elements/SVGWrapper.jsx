@@ -16,6 +16,7 @@ import { SVG_icons } from "../../assets/js_utils/svg_icons"
  */
 export function SVGWrapper({classes="", svgName="BRAND"}){
     const tw_classes = `svg-wrapper`
+    console.error = function() {};
     return (
         <div className={tw_classes + " " + classes}>
             {SVG_icons[svgName]}

@@ -14,7 +14,7 @@
     @apply border-none border-[1px] border-theme-gold rounded-sm
 }
 .navlink-btn{
-    @apply text-sm text-theme-white font-theme-cirka
+    @apply text-sm text-theme-white font-theme-cirka font-medium
 }
 .navlink-btn.ACTIVE{
     @apply relative after:absolute after:w-full after:h-0.5 after:bg-theme-gold after:left-0
