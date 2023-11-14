@@ -1,34 +1,48 @@
 import "../../css/sub_components.css";
 import { useEffect, useRef, useState } from "react";
 import {BlurredInfoBox} from "./BlurredInfoBox";
-import { roundToNearestPositiveInteger } from "../../assets/js_utils/utils";
+import { roundToNearestPositiveInteger, roundToNextPositiveInteger } from "../../assets/js_utils/utils";
 import { useAxios } from "../../assets/axios/useAxios";
 import {useQuery} from "@tanstack/react-query"
 
 export function HeroSlider(){
     const swiperElRef = useRef(null);
-    const [slideSerialFloat, setSlideSerialFloat] = useState(1)
+    const [slideSerialFloat, setSlideSerialFloat] = useState(0)
     const http = useAxios()
     const {data, error, isError, isLoading} = useQuery({
         queryKey: ['hero-slides'],
         queryFn: () => http.get("/db/hero-slides.json"),
+        
         staleTime: 1000 * 60 * 5
         
     })
     const slideInfos = data?.data?.slides || []
     useEffect(() => {
-      if (!swiperElRef?.current) return
-      swiperElRef.current.addEventListener('swiperprogress', (e) => {
-        const [swiper, progress] = e.detail;
-        setSlideSerialFloat(progress)
-      });
-    }, []);
-    const slideSerial = roundToNearestPositiveInteger((slideSerialFloat/1) * slideInfos?.length) 
-    if (isError || isLoading) return ""
+      
+      const handleSwiperProgress = (e) => {
+            const [swiper, progress] = e.detail;
+            console.log(progress)
+            setSlideSerialFloat(progress);
+          };
+      
+      
+      if (swiperElRef?.current) {
+          swiperElRef.current.addEventListener('swiperprogress', handleSwiperProgress)
+        }
+        return ()=>{
+          if (swiperElRef.current){
+          swiperElRef.current.removeEventListener('swiperprogress', handleSwiperProgress)
+        }
+      }
+    }, [swiperElRef.current]);
+    
+    const slideSerial = roundToNextPositiveInteger(slideSerialFloat * slideInfos?.length)
+    
     return (
         <div className="z-10 absolute bottom-5 right-0 overflow-hidden sm:overflow-visible w-full sm:w-fit flex flex-col justify-center items-center mt-auto ml-auto mb-0 mr-auto sm:mr-0">
             <swiper-container 
                 ref={swiperElRef} 
+                id="HERO_SLIDER"
                 class="heroSlider flex flex-row justify-between shadow-inner items-center overflow-hidden w-11/12 
                 mx-auto sm:mx-[unset] sm400:w-10/12 sm:w-[500px] md:w-[400px] xl:w-[500px]" 
 

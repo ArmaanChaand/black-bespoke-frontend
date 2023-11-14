@@ -11,3 +11,7 @@ export function isPureInteger(num) {
 export function roundToNearestPositiveInteger(number) {
     return Math.round(Math.abs(number));
 }
+export function roundToNextPositiveInteger(num) {
+    return Math.ceil(num);
+  }
+  
