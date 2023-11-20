@@ -21,6 +21,7 @@
 .svg-wrapper{
     @apply w-7 h-7 inline-block 
 }
-.svg-wrapper svg{
-    @apply w-full h-full 
+.svg-wrapper svg,
+.svg-wrapper svg path{
+    @apply w-full h-full text-inherit fill-inherit stroke-inherit
 }

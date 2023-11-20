@@ -2,10 +2,13 @@ import { ParaPrm } from "./elements/Paras";
 import { PrimaryBtn } from "./elements/Buttons";
 import { WalledTexts } from "./elements/WalledTexts";
 import { ContainerDiv } from "./elements/Container";
+import { useContext } from "react";
+import { CommonContext } from "../contexts/CommonContexts";
 
 
 
 export default function Hero({backgroundImage="", slider=""}){
+  const {setWalkthroughStage} = useContext(CommonContext)
 
     return (
         <section className="bg-transparent w-screen h-screen relative">
@@ -26,7 +29,7 @@ export default function Hero({backgroundImage="", slider=""}){
             >
               Custom clothing built just for you
             </ParaPrm>
-            <PrimaryBtn>BOOK AN APPOINTMENT</PrimaryBtn>
+            <PrimaryBtn handleOnClick={()=>setWalkthroughStage("CUSTOMER_INFO")}>BOOK AN APPOINTMENT</PrimaryBtn>
           </div>
         </ContainerDiv>
          {slider}

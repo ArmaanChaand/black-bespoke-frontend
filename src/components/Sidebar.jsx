@@ -17,7 +17,7 @@ export default function Sidebar({setShowSidebar}){
                     handleOnClick={()=>setShowSidebar(false)}  
                     classes="focus:ring-2 hover:bg-theme-white/10 focus:ring-theme-white/10 p-1 text-theme-white ml-auto"
                 >
-                        <SVGWrapper classes="w-6 h-6" svgName="CLOSE"/>
+                        <SVGWrapper classes="w-6 h-6 fill-theme-white stroke-theme-white" svgName="CLOSE"/>
                 </SecondaryBtn>
                 <nav className="w-full h-fit flex flex-col justify-center items-center gap-5">
                     <LinkIconTextArrowBtn

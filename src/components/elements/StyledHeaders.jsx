@@ -11,6 +11,19 @@ export function LinedHeader({classes="", leftLineClasses="", rightLineClasses=""
         </div>
     )
 }
+
+/**
+ * SubHeader Component
+ *
+ * SubHeader with font CIRKA ...
+ *
+ * @param {Object} props - The properties for the component.
+ * @param {string} props.classes - Additional CSS classes to apply. [text-xl sm:text-2xl]
+ * @param {React.ReactNode} props.children - The content to be displayed within the paragraph.
+ *
+ * @returns {React.ReactNode} - Rendered ParaSec component.
+ */
+
 export function SubHeader({classes="text-xl sm:text-2xl", children}){
     const tw_classes = `text-theme-white font-medium font-theme-cirka` 
     return (

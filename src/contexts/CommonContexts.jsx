@@ -11,11 +11,14 @@ function CommonContextProvider({children}) {
     useEffect(()=>{
         setShowSidebar(false)
     }, [LOCATION.pathname])
+
+    const [walkthroughStage, setWalkthroughStage] = useState(null)
     
     return (
         <CommonContext.Provider 
             value={{
-                showSidebar, setShowSidebar
+                showSidebar, setShowSidebar, 
+                walkthroughStage, setWalkthroughStage,
             }}
         >
             {children}

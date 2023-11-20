@@ -2,31 +2,36 @@ import { Link, NavLink } from "react-router-dom";
 import "../../css/sub_components.css";
 import { SVGWrapper } from "./SVGWrapper";
 
-export function PrimaryBtn({classes="",disabled=false, handleOnClick, children}){
+export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, children}){
     const tw_classes = `primary-btn   `
     return (
         <button
             className={tw_classes + " " + classes}
             disabled={disabled}
             onClick={handleOnClick}
+            title={title}
+            
         >
+            <span className="sr-only">{title}</span>
             {children}
         </button>
     )
 }
-export function SecondaryBtn({classes="",disabled=false, handleOnClick, children}){
+export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, children}){
     const tw_classes = `primary-btn secondary-btn   `
     return (
         <button
         className={tw_classes + " " + classes}
         disabled={disabled}
         onClick={handleOnClick}
+        title={title}
         >
+            <span className="sr-only">{title}</span>
             {children}
         </button>
     )
 }
-export function PrimaryAnchorBtn({href="", target="_self", classes="",disabled=false, children}){
+export function PrimaryAnchorBtn({href="", target="_self",title, classes="",disabled=false, children}){
     const tw_classes = `primary-btn   `
     return (
         <a  
@@ -34,7 +39,9 @@ export function PrimaryAnchorBtn({href="", target="_self", classes="",disabled=f
             target={target}
             className={tw_classes + " " + classes}
             disabled={disabled}
+            title={title}
         >
+                <span className="sr-only">{title}</span>
             {children}
         </a>
     )
@@ -80,7 +87,7 @@ export function LinkIconTextArrowBtn({
     right_svg_name="ANGLE_RIGHT", right_svg_classes="w-4 h-4 ml-auto",
 }){
     const tw_classes = `w-full flex flex-row justify-between items-center text-base text-theme-white font-theme-gilroy
-    gap-3 py-3 px-3 bg-theme-grey rouded-sm`
+    gap-3 py-3 px-3 bg-theme-grey rouded-sm fill-theme-white`
     return (
         <Link 
             to={href}

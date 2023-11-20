@@ -9,6 +9,8 @@ export default {
       screens:{
         "sm400": "400px",
         "sm500": "500px",
+        "md850": "850px",
+        "md950": "950px",
       },
       colors: {
         'theme-gold': "#D9B982",
