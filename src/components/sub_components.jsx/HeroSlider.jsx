@@ -21,7 +21,6 @@ export function HeroSlider(){
       
       const handleSwiperProgress = (e) => {
             const [swiper, progress] = e.detail;
-            console.log(progress)
             setSlideSerialFloat(progress);
           };
       

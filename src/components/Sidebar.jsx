@@ -28,7 +28,7 @@ export default function Sidebar({setShowSidebar}){
                      Home
                     </LinkIconTextArrowBtn>
                     <LinkIconTextArrowBtn 
-                        href="/process"
+                        href="/process/"
                         left_svg_name="PROCESS"
                     >
                      Our Process

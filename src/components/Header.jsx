@@ -17,16 +17,16 @@ export default function Header(){
                     <NavLinkBtn href="/" >
                         Home
                     </NavLinkBtn>
-                    <NavLinkBtn href="/process" >
+                    <NavLinkBtn href="/process/" >
                         Our Process
                     </NavLinkBtn>
-                    <NavLinkBtn href="/build" >
+                    <NavLinkBtn href="/build/" >
                         Build Suit
                     </NavLinkBtn>
-                    <NavLinkBtn href="/track" >
+                    <NavLinkBtn href="/track/" >
                         Track Order
                     </NavLinkBtn>
-                    <NavLinkBtn href="/contact" >
+                    <NavLinkBtn href="/contact/" >
                         Contact Us
                     </NavLinkBtn>
                 </nav>

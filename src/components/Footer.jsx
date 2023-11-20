@@ -30,7 +30,7 @@ export default function Footer(){
                                     <PrimaryBtn classes="w-full sm400:w-fit">CREATE SUIT</PrimaryBtn>
                                     <SecondaryBtn classes="w-full sm400:w-fit">BOOK APPOINTMENT</SecondaryBtn>
                                 </div>
-                                <div className="flex flex-row gap-5 flex-wrap">
+                                <div className="flex flex-row gap-5 flex-wrap fill-theme-gold">
                                     <PrimaryAnchorBtn href="#" classes="p-2 rounded-full">
                                        <SVGWrapper classes="w-5 h-5" svgName="IG"/>
                                     </PrimaryAnchorBtn>

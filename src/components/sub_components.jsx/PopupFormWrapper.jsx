@@ -5,19 +5,21 @@ import { SVGWrapper } from "../elements/SVGWrapper"
 import { PrimaryBtn } from "../elements/Buttons"
 
 export function PopupFormWrapper({
-    header_text="Black Bespoke", children, back_fn, back_classes="", back_text="BACK", next_fn, next_text="NEXT", next_classes=""
+    header_text="Black Bespoke", children, 
+    back_fn, back_classes="w-full sm400:w-fit", back_text="BACK", 
+    next_fn, next_text="NEXT", next_classes="w-full sm400:w-fit", next_disabled=false,
 }){
     return (
-        <div className="w-full px-10 flex flex-col justify-between items-start  h-full py-10 gap-6">
+        <div className="w-full px-5 sm:px-10 flex flex-col justify-between items-start  h-full py-10 gap-6">
             <SubHeader>
                 <WalledTexts>
                 {header_text}
                 </WalledTexts>
             </SubHeader>
-            <div className="w-full h-full">
+            <div className="w-full h-full flex flex-col justify-center items-center">
                 {children}
             </div>
-            <div className="w-full mt-0 flex flex-row justify-between items-center">
+            <div className="w-full mt-0 flex flex-col sm400:flex-row justify-between items-center">
                 <SecondaryBtn
                     handleOnClick={back_fn}
                     classes={back_classes}
@@ -31,6 +33,7 @@ export function PopupFormWrapper({
                 <PrimaryBtn
                     handleOnClick={next_fn}
                     classes={next_classes}
+                    disabled={next_disabled}
                 >
                     <span>{next_text}</span>
                     <SVGWrapper 

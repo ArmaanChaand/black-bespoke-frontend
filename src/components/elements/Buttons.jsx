@@ -87,7 +87,7 @@ export function LinkIconTextArrowBtn({
     right_svg_name="ANGLE_RIGHT", right_svg_classes="w-4 h-4 ml-auto",
 }){
     const tw_classes = `w-full flex flex-row justify-between items-center text-base text-theme-white font-theme-gilroy
-    gap-3 py-3 px-3 bg-theme-grey rouded-sm fill-theme-white`
+    gap-3 py-3 px-3 bg-theme-grey rouded-sm fill-transparent stroke-theme-white`
     return (
         <Link 
             to={href}
