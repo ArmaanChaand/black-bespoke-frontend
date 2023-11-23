@@ -11,6 +11,9 @@ export function AppointmentSelect({}){
     const handleCallback = () => {
         navigate('?consult_stage=callback')
     }
+    const handleConsultation = () => {
+        navigate('?consult_stage=date_time')
+    }
     return (
         <PopupFormWrapper
         header_text="Select Your Desired Service for Appointment Booking"
@@ -32,6 +35,7 @@ export function AppointmentSelect({}){
             descr="Lorem ipsum dolor sit amet consectetur tortor ."
             svg_url="/media/calender.svg"
             classes="w-full"
+            handleOnClick={handleConsultation}
          />
 
         <div className="w-full flex flex-col gap-6 sm:flex-row justify-between items-center mt-10 sm:mt-auto">

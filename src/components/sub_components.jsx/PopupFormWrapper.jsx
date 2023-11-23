@@ -17,7 +17,7 @@ export function PopupFormWrapper({
                 {header_text}
                 </WalledTexts>
             </SubHeader>
-            <div className="w-full h-full flex flex-col justify-center items-center">
+            <div className="w-full h-full flex flex-col justify-center items-center overflow-hidden">
                 {children}
             </div>
             <div className="w-full mt-0 flex flex-col sm400:flex-row justify-between items-center">

@@ -11,7 +11,7 @@ function CommonContextProvider({children}) {
     useEffect(()=>{
         setShowSidebar(false)
     }, [LOCATION.pathname])
-    const allowedStages = ['info', 'loc', 'appt_select', 'callback','appt_time', 'address', 'consultation', 'measurement']
+    const allowedStages = ['info', 'loc', 'appt_select', 'callback','date_time', 'address', 'consultation', 'measurement']
     const [walkthroughStage, setWalkthroughStage] = useState(null)
     const [consult_stage] = useSearchParams()
     useEffect(()=>{

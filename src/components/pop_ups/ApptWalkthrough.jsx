@@ -7,6 +7,7 @@ import { CustomerForm } from "../sub_components.jsx/CustForm"
 import { LocationSelect } from "../sub_components.jsx/LocationSelect"
 import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
 import { ExpertCallback } from "../sub_components.jsx/ExpertCallback"
+import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
@@ -50,6 +51,9 @@ function ApptWalkthrough({walkthroughStage}){
                     }
                     {walkthroughStage == "callback" && 
                         <ExpertCallback />
+                    }
+                    {walkthroughStage == "date_time" && 
+                        <DateTimeSelect />
                     }
                     
                 </div>

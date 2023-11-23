@@ -13,5 +13,27 @@ export function roundToNearestPositiveInteger(number) {
 }
 export function roundToNextPositiveInteger(num) {
     return Math.ceil(num);
-  }
+}
+
+export function formatDate(inputDate) {
+    // Array of weekday names
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
+    // Array of month names
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+    // Get the day of the week, month, and year from the Date object
+    const dayOfWeek = weekdays[inputDate.getDay()];
+    const dayOfMonth = inputDate.getDate();
+    const month = months[inputDate.getMonth()];
+    const year = inputDate.getFullYear();
+  
+    // Construct the formatted date string
+    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
+  
+    return formattedDate;
+}
+
+
+
   

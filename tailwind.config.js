@@ -3,11 +3,13 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/tailwind-datepicker-react/dist/**/*.js",
   ],
   theme: {
     extend: {
       screens:{
         "sm400": "400px",
+        "sm450": "450px",
         "sm500": "500px",
         "md850": "850px",
         "md950": "950px",
@@ -25,6 +27,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 
