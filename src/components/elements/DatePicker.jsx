@@ -25,8 +25,8 @@ export function DatePickerCustom({date, setDate, show, setShow}){
             selected: "rounded-full dark:rounded-full  hover:bg-theme-gold/5 dark:hover:bg-theme-gold/5 bg-theme-gold dark:bg-theme-gold text-theme-black dark:text-theme-black",
         },
         icons: {
-            prev: () => <span><SVGWrapper svgName="ANGLE_LEFT" classes="fill-transparent stroke-theme-white"  /></span>,
-            next: () => <span className=""><SVGWrapper svgName="ANGLE_RIGHT" classes="fill-transparent stroke-theme-white"  /></span>,
+            prev: () => <span><SVGWrapper svgName="ANGLE_LEFT" classes="fill-transparent stroke-theme-white w-5"  /></span>,
+            next: () => <span className=""><SVGWrapper svgName="ANGLE_RIGHT" classes="fill-transparent stroke-theme-white w-5"  /></span>,
         },
         datepickerClassNames: "sm450:static top-0 bg-theme-grey backdrop-blur sm:backdrop-blur-none sm450:bg-transparent p-3 sm450:p-0 pt-0  shadow-none dark:shadow-none",
         defaultDate: date,
