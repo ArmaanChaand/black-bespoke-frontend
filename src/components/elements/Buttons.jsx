@@ -99,3 +99,25 @@ export function LinkIconTextArrowBtn({
         </Link>
     )
 }
+
+
+export function TabBtn({classes="",disabled=false, handleOnClick, title, descr, svg_url="/media/mannequin.svg"}){
+    const tw_classes = `flex flex-row justify-start items-center  p-3 border gap-3 
+    hover:border-theme-gold hover:bg-theme-gold/5`
+    return (
+        <button
+            className={tw_classes + " " + classes}
+            disabled={disabled}
+            onClick={handleOnClick}
+            title={title}
+            
+        >
+            <span className="sr-only">{title}</span>
+            <img src={svg_url} alt={title} className="inline-block"/>
+            <div className="flex flex-col justify-center items-start text-theme-white">
+                <strong className="font-medium text-start">{title}</strong>
+                <small className="text-theme-grey-beta text-start">{descr}</small>
+            </div>
+        </button>
+    )
+}

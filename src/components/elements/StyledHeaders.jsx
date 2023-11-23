@@ -15,7 +15,7 @@ export function LinedHeader({classes="", leftLineClasses="", rightLineClasses=""
 /**
  * SubHeader Component
  *
- * SubHeader with font CIRKA ...
+ * SubHeader (h3) with font CIRKA ...
  *
  * @param {Object} props - The properties for the component.
  * @param {string} props.classes - Additional CSS classes to apply. [text-xl sm:text-2xl]

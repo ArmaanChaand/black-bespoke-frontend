@@ -19,7 +19,7 @@
 
 /* ### SVGWrapper */
 .svg-wrapper{
-    @apply w-7 h-7 inline-block 
+    @apply  inline-block 
 }
 .svg-wrapper svg,
 .svg-wrapper svg path{
