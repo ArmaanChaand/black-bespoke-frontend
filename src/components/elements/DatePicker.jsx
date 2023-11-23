@@ -28,7 +28,7 @@ export function DatePickerCustom({date, setDate, show, setShow}){
             prev: () => <span><SVGWrapper svgName="ANGLE_LEFT" classes="fill-transparent stroke-theme-white w-5"  /></span>,
             next: () => <span className=""><SVGWrapper svgName="ANGLE_RIGHT" classes="fill-transparent stroke-theme-white w-5"  /></span>,
         },
-        datepickerClassNames: "sm450:static top-0 bg-theme-grey backdrop-blur sm:backdrop-blur-none sm450:bg-transparent p-3 sm450:p-0 pt-0  shadow-none dark:shadow-none",
+        datepickerClassNames: "sm450:static top-5 bg-theme-grey backdrop-blur sm:backdrop-blur-none sm450:bg-transparent p-3 sm450:p-0 pt-0  shadow-none dark:shadow-none",
         defaultDate: date,
         language: "en",
         disabledDates: [],
