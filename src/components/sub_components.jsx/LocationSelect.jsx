@@ -21,7 +21,7 @@ export function LocationSelect({}){
     >
         <div
             
-            className="w-full h-full grid grid-rows-2 grid-cols-2 mt-5 mb-5 gap-3 overflow-hidden"
+            className="w-full aspect-square sm:aspect-auto sm:h-full grid grid-rows-2 grid-cols-2 mt-5 mb-5 gap-3 overflow-hidden"
         >
           <StyledRadioLoc
             name="location-1"
