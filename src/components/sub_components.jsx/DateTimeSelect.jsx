@@ -10,7 +10,7 @@ import { formatDate } from "../../assets/js_utils/utils";
 export function DateTimeSelect({}){
     const navigate = useNavigate()
     const [date, setDate] = useState(new Date)
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
     
     const handleSaveNext = () => {
       
