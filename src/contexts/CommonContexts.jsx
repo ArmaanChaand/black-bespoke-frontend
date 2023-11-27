@@ -11,7 +11,7 @@ function CommonContextProvider({children}) {
     useEffect(()=>{
         setShowSidebar(false)
     }, [LOCATION.pathname])
-    const allowedStages = ['info', 'loc', 'appt_select', 'callback','date_time', 'address', 'consultation', 'measurement']
+    const allowedStages = ['info', 'loc', 'appt_select', 'callback','date_time', 'address', 'consultation', 'measurement',]
     const [walkthroughStage, setWalkthroughStage] = useState(null)
     const [consult_stage] = useSearchParams()
     useEffect(()=>{
@@ -22,12 +22,17 @@ function CommonContextProvider({children}) {
             setWalkthroughStage(null)
         }
     }, [consult_stage])
+
+    const [customer_id, set_customer_id] = useState(2)
+
+
     
     return (
         <CommonContext.Provider 
             value={{
                 showSidebar, setShowSidebar, 
                 walkthroughStage, setWalkthroughStage,
+                customer_id, set_customer_id,
             }}
         >
             {children}

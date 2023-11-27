@@ -3,14 +3,23 @@ import { PopupFormWrapper } from "./PopupFormWrapper";
 import { CommonContext } from "../../contexts/CommonContexts";
 import { TextInput } from "../elements/Inputs";
 import { useNavigate } from "react-router-dom";
+import { useGetCustomerQuery } from "../../queries/CustomerQuery";
 
 export function CustomerForm({}){
-    const {setWalkthroughStage} = useContext(CommonContext)
+    const {setWalkthroughStage, customer_id} = useContext(CommonContext)
+    const {data} = useGetCustomerQuery(customer_id && customer_id )
+    console.log(data)
+    const customerInfo = data?.data || {}
     const navigate = useNavigate()
     const the_form = useRef()
     function handleSubmission(){
       const formData = Object.fromEntries(new FormData(the_form.current))
       console.log(formData)
+      setWalkthroughStage("loading")
+      setTimeout(()=>{
+        setWalkthroughStage("info")
+      }, 2000)
+      return
       navigate('?consult_stage=loc')
     }
     return (
@@ -32,6 +41,7 @@ export function CustomerForm({}){
             placeholder="Your Name"
             id="id_full_name"
             name="full_name"
+            defaultValue={customerInfo?.full_name || ""}
           />
           <TextInput
             label="Mobile Number"
@@ -39,6 +49,7 @@ export function CustomerForm({}){
             type="tel"
             id="id_phone"
             name="phone"
+            defaultValue={customerInfo?.phone && customerInfo?.phone.replace("+91", "")}
             input_left_elm={
                 <span className="pl-3 py-2 text-theme-gold text-base bg-theme-grey">+91</span>                
             }
@@ -49,6 +60,7 @@ export function CustomerForm({}){
             placeholder="example@email.com"
             id="id_email"
             name="email"
+            defaultValue={customerInfo?.email || ""}
           />
 
         </form>

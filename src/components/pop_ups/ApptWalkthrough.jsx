@@ -8,6 +8,7 @@ import { LocationSelect } from "../sub_components.jsx/LocationSelect"
 import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
 import { ExpertCallback } from "../sub_components.jsx/ExpertCallback"
 import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
+import { Spinner } from "../elements/Loaders"
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
@@ -29,6 +30,7 @@ function ApptWalkthrough({walkthroughStage}){
                 <div className="bg-theme-black w-full sm:w-fit h-fit py-10 sm:h-full sm:px-5 
                 md:px-10 md950:px-14 lg:px-20 flex-none flex justify-center items-center relative">
                     <FullLogoSlogan
+                        
                         textSvgClasses="sm:w-40 md:w-52 h-16 md950:w-72 md950:h-24"
                     />
                     <PrimaryBtn 
@@ -40,6 +42,11 @@ function ApptWalkthrough({walkthroughStage}){
                     </PrimaryBtn>
                 </div>
                 <div className="bg-theme-gradient-grey w-full h-fit sm:h-full">
+                    {walkthroughStage == "loading" && 
+                        <div className="w-full h-full flex justify-center items-center cursor-wait">
+                            <Spinner/>
+                        </div>
+                    }
                     {walkthroughStage == "info" && 
                         <CustomerForm />
                     }
