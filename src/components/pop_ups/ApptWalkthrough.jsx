@@ -9,10 +9,12 @@ import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
 import { ExpertCallback } from "../sub_components.jsx/ExpertCallback"
 import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
 import { Spinner } from "../elements/Loaders"
+import { useState } from "react"
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
     const navigate = useNavigate()
+    const [loading, set_loading] = useState(false)
 
     function handleClose(){
         navigate(locaton.pathname)
@@ -41,14 +43,17 @@ function ApptWalkthrough({walkthroughStage}){
                         <SVGWrapper classes="w-5 h-5 stroke-theme-gold" svgName="CLOSE"/>                   
                     </PrimaryBtn>
                 </div>
-                <div className="bg-theme-gradient-grey w-full h-fit sm:h-full">
-                    {walkthroughStage == "loading" && 
-                        <div className="w-full h-full flex justify-center items-center cursor-wait">
-                            <Spinner/>
-                        </div>
-                    }
+                <div className="bg-theme-gradient-grey w-full h-fit sm:h-full relative">
+                {loading &&
+                    <div className="w-full h-full flex justify-center items-center 
+                    cursor-wait absolute inset-0 bg-black/50 z-10">
+                    <Spinner/>
+                    </div>
+                }
                     {walkthroughStage == "info" && 
-                        <CustomerForm />
+                        <CustomerForm
+                        set_loading={set_loading}
+                        />
                     }
                     {walkthroughStage == "loc" && 
                         <LocationSelect />

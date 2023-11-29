@@ -34,6 +34,28 @@ export function formatDate(inputDate) {
     return formattedDate;
 }
 
+export function encodeString(inputString) {
+    return btoa(inputString); // Using Base64 encoding for simplicity
+}
+  
+export function decodeString(encodedString) {
+    return atob(encodedString); // Decode Base64
+}
 
+export function getCustomerId(){
+    const encoded = sessionStorage.getItem('blackbespokecustomer')
+    if(encoded){
+        return decodeString(encoded)
+    }
+    return encoded
+}
+export function setCustomerId(id){
+    if(id){
+        sessionStorage.setItem('blackbespokecustomer', encodeString(id))
+        return true
+    }
+    
+    return false
+}
 
   

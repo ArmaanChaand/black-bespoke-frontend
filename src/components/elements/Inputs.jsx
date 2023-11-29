@@ -25,7 +25,7 @@ export function TextInput({
         <div 
             className="flex flex-row justify-center items-center w-full h-fit rounded overflow-hidden 
             border-[1px] border-transparent"
-            style={input_focus ? is_error ? {borderColor: "rgb(220 38 38)"} : {borderColor: "#D9B982"} : {}}
+            style={input_focus ? is_error ? {borderColor: "#ff3333"} : {borderColor: "#D9B982"} : {}}
         >
             {input_left_elm}
             <input
@@ -40,7 +40,7 @@ export function TextInput({
             />
             {input_right_elm}
         </div>
-        <p className="mt-1 text-xs" style={ is_error ?  {color: "rgb(220 38 38)"} : {}}>
+        <p className="mt-1 text-xs" style={ is_error ?  {color: "#ff3333"} : {}}>
             {bottom_msg}
         </p>
         </div>
