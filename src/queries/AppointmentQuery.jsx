@@ -2,17 +2,17 @@ import {useQuery} from "@tanstack/react-query"
 import { useApi } from "../assets/axios/useApi"
 import { getCustomerId } from "../assets/js_utils/utils"
 
-export function useGetCustomerQuery(){
+export function useCustAppntQuery(){
     const http = useApi()
     const QUERY = useQuery({
-        queryKey: ['customer', 'info'],
+        queryKey: ['customer', 'appointment'],
         queryFn: ()=> {
             const customer_id = getCustomerId()
             if(!customer_id) return Promise.reject("Some error ocurred!")
-            return http.get("/api/user/customer/read/" + customer_id + "/")
-        },
-        staleTime: 5*60*1000,
-        enabled: getCustomerId() != null
+            return http.get("/api/consult/read/?customer_id=" + customer_id)
+    },
+    staleTime: 5*60*1000,
+    enabled: getCustomerId() != null,
     })
 
     return QUERY

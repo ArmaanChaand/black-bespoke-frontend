@@ -49,20 +49,21 @@ export function TextInput({
 }
 
 export function StyledRadioLoc({
-    src="/tests/test-location.svg", name="Location", citySelected, setCitySelected
+    src="/tests/test-location.svg", name="Location", citySelected, setCitySelected,
+    id
 }){
     
    
 
     return (
         <div 
-            onClick={()=>setCitySelected(name)}
+            onClick={()=>setCitySelected(id)}
             className="flex flex-col justify-center items-center overflow-hidden text-theme-white font-theme-gilroy
             border-2 border-theme-white bg-theme-grey cursor-pointer py-5 sm:py-0
             "
-            style={citySelected == name ? {borderColor: "#D9B982", backgroundColor: "rgb(217 185 130 / 0.1)"} : {}}
+            style={citySelected == id ? {borderColor: "#D9B982", backgroundColor: "rgb(217 185 130 / 0.1)"} : {}}
         >
-            <ImageElm classes="w-12 sm:w-20 h-auto" src={src} alt={name}/>
+            <img className="inline-block w-12 sm:w-20 h-auto object-contain" src={src} alt={name}/>
             <span>{name}</span>
         </div>
     )

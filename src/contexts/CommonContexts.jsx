@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
+
 export const CommonContext = createContext();
 
 function CommonContextProvider({children}) {
@@ -23,7 +24,8 @@ function CommonContextProvider({children}) {
         }
     }, [consult_stage])
 
-    const [customer_id, set_customer_id] = useState(2)
+    const [address, set_address] = useState(null)
+    const [appointment, set_appointment] = useState(null)
 
 
     
@@ -32,7 +34,8 @@ function CommonContextProvider({children}) {
             value={{
                 showSidebar, setShowSidebar, 
                 walkthroughStage, setWalkthroughStage,
-                customer_id, set_customer_id,
+                address, set_address,
+                appointment, set_appointment,
             }}
         >
             {children}

@@ -56,13 +56,19 @@ function ApptWalkthrough({walkthroughStage}){
                         />
                     }
                     {walkthroughStage == "loc" && 
-                        <LocationSelect />
+                        <LocationSelect 
+                        set_loading={set_loading}
+                        />
                     }
                     {walkthroughStage == "appt_select" && 
-                        <AppointmentSelect />
+                        <AppointmentSelect
+                        set_loading={set_loading}
+                        />
                     }
                     {walkthroughStage == "callback" && 
-                        <ExpertCallback />
+                        <ExpertCallback 
+                        set_loading={set_loading}
+                        />
                     }
                     {walkthroughStage == "date_time" && 
                         <DateTimeSelect />
