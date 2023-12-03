@@ -4,7 +4,7 @@ import { ImageElm } from "./Images"
 export function TextInput({
     type="text",
     classes="", id="", label="", placeholder="", name="" ,is_error=false, bottom_msg="",
-    input_left_elm="", input_right_elm="", defaultValue=""
+    input_left_elm="", input_right_elm="", defaultValue="", readOnly=false
 }){
     const tw_classes = `w-full text-sm font-theme-gilroy text-theme-white font-medium h-fit`
     const [input_focus, set_input_focus] = useState(false)
@@ -37,6 +37,7 @@ export function TextInput({
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
                 defaultValue={defaultValue}
+                readOnly={readOnly}
             />
             {input_right_elm}
         </div>

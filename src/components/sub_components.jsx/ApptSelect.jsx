@@ -5,7 +5,7 @@ import { SVGWrapper } from "../elements/SVGWrapper";
 import { SubHeader } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
 import { PopupFormWrapper } from "./PopupFormWrapper";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 import { useContext, useEffect } from "react";
 import { CommonContext } from "../../contexts/CommonContexts";
@@ -28,7 +28,7 @@ export function AppointmentSelect({set_loading}){
         set_loading(appointment_query?.isLoading)
     }, [appointment_query?.isLoading])
 
-    // CREATE AN APPOINTMENT
+    // CREATE/UPDATE AN APPOINTMENT
     const book_appointment = useMutation({
         mutationFn: (load_data) => {
             set_loading(true)
@@ -45,7 +45,10 @@ export function AppointmentSelect({set_loading}){
             if(data?.data){
                 queryClient.invalidateQueries({queryKey: ["customer", "appointment"]})
                 if(res_data?.appnt_type == "CALLBACK"){
-                    navigate('?consult_stage=callback')
+                    navigate('?consult_stage=over')
+                }
+                if(res_data?.appnt_type == "CONSULTATION"){
+                    navigate('?consult_stage=date_time')
                 }
             }
         },
@@ -68,7 +71,15 @@ export function AppointmentSelect({set_loading}){
         }
     }
     const handleConsultation = () => {
-        navigate('?consult_stage=date_time')
+        const customer_id = getCustomerId()
+        const load_data = {
+            appnt_type: "CONSULTATION",
+            customer: customer_id
+        }
+        if(customer_id){
+            book_appointment.mutate(load_data)
+        }
+        
     }
     return (
         <PopupFormWrapper

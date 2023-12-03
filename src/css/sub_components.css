@@ -9,9 +9,10 @@
     focus:ring-0 focus:ring-theme-gold/30
     font-medium
     disabled:hover:bg-transparent disabled:opacity-70
+    transition-all
 }
 .primary-btn.secondary-btn{
-    @apply border-none border-[1px] border-theme-gold rounded-sm
+    @apply border-none border-[1px] border-theme-gold rounded-sm 
 }
 .navlink-btn{
     @apply text-sm text-theme-white font-theme-cirka font-medium

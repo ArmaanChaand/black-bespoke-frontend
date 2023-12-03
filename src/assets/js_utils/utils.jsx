@@ -34,6 +34,20 @@ export function formatDate(inputDate) {
     return formattedDate;
 }
 
+export function formatTime(inputTime) {
+    const [hours, minutes, seconds] = inputTime.split(":");
+    let period = "AM";
+  
+    let formattedHours = parseInt(hours, 10);
+  
+    if (formattedHours > 12) {
+      formattedHours -= 12;
+      period = "PM";
+    }
+  
+    return `${formattedHours}:${minutes} ${period}`;
+  }
+
 export function encodeString(inputString) {
     return btoa(inputString); // Using Base64 encoding for simplicity
 }

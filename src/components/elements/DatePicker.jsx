@@ -44,10 +44,15 @@ export function DatePickerCustom({date, setDate, show, setShow}){
     }
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     
-    const handleChange = (date) => {
-        setDate(date)
-        if(windowWidth < 450){
-            // setShow(false)
+    const handleChange = (new_date) => {
+        
+        setDate(new_date)
+        
+    if(windowWidth < 450){
+            if(formatDate(date) != formatDate(new_date)){
+                setShow(false)
+            }
+            
             // console.log(date)
         }
     }

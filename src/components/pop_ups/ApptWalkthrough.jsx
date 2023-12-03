@@ -6,10 +6,11 @@ import { SVGWrapper } from "../elements/SVGWrapper"
 import { CustomerForm } from "../sub_components.jsx/CustForm"
 import { LocationSelect } from "../sub_components.jsx/LocationSelect"
 import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
-import { ExpertCallback } from "../sub_components.jsx/ExpertCallback"
+import { AppointmentConfirmed } from "../sub_components.jsx/AppointmentConfirmed"
 import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
 import { Spinner } from "../elements/Loaders"
 import { useState } from "react"
+import { AddressForm } from "../sub_components.jsx/AddrsForm"
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
@@ -65,15 +66,17 @@ function ApptWalkthrough({walkthroughStage}){
                         set_loading={set_loading}
                         />
                     }
-                    {walkthroughStage == "callback" && 
-                        <ExpertCallback 
+                    {walkthroughStage == "date_time" && 
+                        <DateTimeSelect set_loading={set_loading} />
+                    }
+                    {walkthroughStage == "address" && 
+                        <AddressForm set_loading={set_loading} />
+                    }
+                    {walkthroughStage == "over" && 
+                        <AppointmentConfirmed 
                         set_loading={set_loading}
                         />
                     }
-                    {walkthroughStage == "date_time" && 
-                        <DateTimeSelect />
-                    }
-                    
                 </div>
             </div>
         </section>

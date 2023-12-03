@@ -20,6 +20,7 @@ export default {
         'theme-black': "#141414",
         'theme-grey': "#E5E5E514",
         'theme-grey-beta': "#939393",
+        'theme-error-red': "#FF3333",
       },
       fontFamily:{
         'theme-gilroy': ['Questrial', 'sans-serif'],

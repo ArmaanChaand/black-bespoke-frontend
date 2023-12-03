@@ -1,5 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
 import "../../css/sub_components.css";
+import { Link, NavLink } from "react-router-dom";
 import { SVGWrapper } from "./SVGWrapper";
 
 export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, children}){
@@ -17,7 +17,7 @@ export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, chi
         </button>
     )
 }
-export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, children}){
+export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, children, style={}}){
     const tw_classes = `primary-btn secondary-btn   `
     return (
         <button
@@ -25,13 +25,14 @@ export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, c
         disabled={disabled}
         onClick={handleOnClick}
         title={title}
+        style={style}
         >
             <span className="sr-only">{title}</span>
             {children}
         </button>
     )
 }
-export function PrimaryAnchorBtn({href="", target="_self",title, classes="",disabled=false, children}){
+export function PrimaryAnchorBtn({href="", target="_self",title, classes="",disabled=false, children, style={}}){
     const tw_classes = `primary-btn   `
     return (
         <a  
@@ -40,6 +41,7 @@ export function PrimaryAnchorBtn({href="", target="_self",title, classes="",disa
             className={tw_classes + " " + classes}
             disabled={disabled}
             title={title}
+            style={style}
         >
                 <span className="sr-only">{title}</span>
             {children}
