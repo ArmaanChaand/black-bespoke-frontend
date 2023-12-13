@@ -19,6 +19,7 @@ export default {
         'theme-white': "#E6E6E6",
         'theme-black': "#141414",
         'theme-grey': "#E5E5E514",
+        'theme-grey-alpha': "#CCCCCC",
         'theme-grey-beta': "#939393",
         'theme-error-red': "#FF3333",
       },

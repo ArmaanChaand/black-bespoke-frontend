@@ -9,7 +9,7 @@ export default function Header(){
     const {setShowSidebar} = useContext(CommonContext)
     return (
         <header className="w-full bg-theme-black/40 fixed top-0 z-40 py-3 backdrop-blur-[2px]">
-            <ContainerDiv classes="flex flex-row justify-between items-center">
+            <ContainerDiv classes="flex flex-row justify-between items-center ">
                 <Link to="/" className="flex justify-center items-center">
                     <SVGWrapper classes="w-6 sm:w-8 h-6 sm:h-8 fill-theme-gold" svgName="BRAND"/>
                 </Link>
@@ -20,7 +20,7 @@ export default function Header(){
                     <NavLinkBtn href="/process/" >
                         Our Process
                     </NavLinkBtn>
-                    <NavLinkBtn href="/build/" >
+                    <NavLinkBtn href="/suit-build/" >
                         Build Suit
                     </NavLinkBtn>
                     <NavLinkBtn href="/track/" >

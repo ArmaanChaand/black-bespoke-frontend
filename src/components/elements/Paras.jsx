@@ -1,3 +1,4 @@
+import {twMerge} from 'tailwind-merge'
 // Primary = Cirka
 // Secondary = Gilory
 /**
@@ -13,11 +14,12 @@
  * @returns {React.ReactNode} - Rendered ParaSec component.
  */
 export function ParaSec({classes="",children}){
+    
     const tw_classes = `text-sm font-theme-gilroy font-thin text-theme-white/90 text-justify w-fit inline-block `
 
     return (
         <p 
-            className={tw_classes + " " + classes}
+            className={ twMerge(tw_classes, classes)}
         >
             {children}
         </p>    

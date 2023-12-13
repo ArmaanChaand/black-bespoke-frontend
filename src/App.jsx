@@ -9,22 +9,24 @@ import { CommonContext } from "./contexts/CommonContexts";
 import Sidebar from "./components/Sidebar";
 import OurProcess from "./pages/process/Process";
 import ApptWalkthrough from "./components/pop_ups/ApptWalkthrough";
+import SuitBuild from "./pages/suit_build/SuitBuild";
 register();
 
 function App() {
   const {showSidebar, setShowSidebar, walkthroughStage, setWalkthroughStage} = useContext(CommonContext)
   return (
-    <div className="bg-theme-black">
+    <>
       {showSidebar && <Sidebar setShowSidebar={setShowSidebar}/>}
       {walkthroughStage && <ApptWalkthrough walkthroughStage={walkthroughStage}  setWalkthroughStage={setWalkthroughStage}/>}
       <Header/>
-      <main className="bg-theme-black">
+      <main className="bg-theme-black min-h-fit">
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/process" element={<OurProcess/>}/>
+            <Route path="/suit-build" element={<SuitBuild/>}/>
         </Routes>
       </main>
-    </div>
+    </>
   )
 }
 
