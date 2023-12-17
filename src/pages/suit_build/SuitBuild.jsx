@@ -9,7 +9,9 @@ export default function SuitBuild({}){
         <SuitBuildWrapper
         pictures={pictures}
         >
-            <SelectFabric/>
+            <SelectFabric
+                set_pictures={set_pictures}
+            />
         </SuitBuildWrapper>
     )
 }

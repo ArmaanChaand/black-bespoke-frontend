@@ -1,10 +1,15 @@
+import { useEffect } from "react"
 import { useGetPictureQuery } from "../queries/getPictureQuery"
 import { ImageElm } from "./elements/Images"
 
 const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SuitPartGallery({pictures}){
-    const {data, isLoading, isError, isSuccess, refetch} = useGetPictureQuery(pictures[0])
+    const {data, isLoading, isError, isSuccess, refetch, status} = useGetPictureQuery(pictures[0])
+    useEffect(()=>{
+        refetch()
+        console.log(pictures)
+    }, [pictures, status])
     
     const picture_data =  isSuccess ? data?.data : {}
 
@@ -28,18 +33,8 @@ export function SuitPartGallery({pictures}){
                 isSuccess &&
                 <ImageElm
                     src={BASE_URL + picture_data?.picture}
+                    classes="object-contain"
                 />
-                // <swiper-container 
-
-                //     // ref={swiperElRef} 
-                //     id="SUITPART_PICTURE_SLIDER"
-                //     class="w-full h-full" 
-                //     space-between="40" slides-per-view="auto" navigation="true"
-                // >
-                //     <swiper-slide class="w-full h-full">
-                //         <div className="w-full h-full bg-red-500"></div>
-                //     </swiper-slide>
-                // </swiper-container>
             }
             {
                 isError &&

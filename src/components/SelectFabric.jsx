@@ -9,13 +9,20 @@ import { WalledTexts } from "./elements/WalledTexts";
 
 const BASE_URL = import.meta.env.VITE_API_HOST
 
-export function SelectFabric({}){
-    const [selectedFabric, set_selectedFabric] = useState({})
-    const {data, isLoading, isSuccess, isError} =  useGetFabricsQuery()
+export function SelectFabric({
+    set_pictures,
+}){
+    const [selectedFabric, set_selectedFabric] = useState(null)
+    const {data, isLoading, isSuccess, isError, refetch, status} =  useGetFabricsQuery()
     const fabrics = isSuccess ?  data?.data : []
     useEffect(()=>{
-        set_selectedFabric(fabrics[0] || {})
-    }, [fabrics])
+        if(!selectedFabric && status =="success"){
+            set_selectedFabric(fabrics[0] || {})
+        } 
+        
+        set_pictures(selectedFabric?.pictures || [])
+        console.log(status)
+    }, [fabrics, selectedFabric, status])
     return(
             <div className="">
                 <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
@@ -38,11 +45,8 @@ export function SelectFabric({}){
                             <div className="w-full grid grid-cols-2 gap-5">
                                 {
                                     fabrics.map(fabric => {
-                                        const handleSelectFabric = () => {
-                                            set_selectedFabric(fabric)
-                                        }
                                     return  <SelectBtn
-                                            handleSelectFabric={handleSelectFabric}
+                                            handleSelectFabric={ () => set_selectedFabric(fabric)}
                                             key={fabric.id}
                                             src={BASE_URL + fabric.icon}
                                             text={fabric.name}
@@ -52,6 +56,18 @@ export function SelectFabric({}){
                                 }
 
                             </div>
+                        }
+                        {
+                            isError &&
+                            <p className="text-red-600 font-mono text-center text-sm px-5">
+                                Oops! We couldn't fetch <br/> the fabrics right now. 
+                                <br/>
+                                Please{" "}
+                                <button 
+                                    onClick={()=>refetch()}
+                                    className="underline"
+                                    >try again</button>.
+                            </p>
                         }
                     </div>
 
