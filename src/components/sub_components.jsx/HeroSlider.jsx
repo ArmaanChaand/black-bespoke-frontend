@@ -1,7 +1,7 @@
 import "../../css/sub_components.css";
 import { useEffect, useRef, useState } from "react";
 import {BlurredInfoBox} from "./BlurredInfoBox";
-import { roundToNearestPositiveInteger, roundToNextPositiveInteger } from "../../assets/js_utils/utils";
+import { roundToNextPositiveInteger } from "../../assets/js_utils/utils";
 import { useAxios } from "../../assets/axios/useAxios";
 import {useQuery} from "@tanstack/react-query"
 

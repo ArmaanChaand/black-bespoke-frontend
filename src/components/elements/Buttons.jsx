@@ -1,6 +1,8 @@
 import "../../css/sub_components.css";
 import { Link, NavLink } from "react-router-dom";
 import { SVGWrapper } from "./SVGWrapper";
+import { twMerge } from "tailwind-merge";
+import { ImageElm } from "./Images";
 
 export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, children}){
     const tw_classes = `primary-btn   `
@@ -21,7 +23,7 @@ export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, c
     const tw_classes = `primary-btn secondary-btn   `
     return (
         <button
-        className={tw_classes + " " + classes}
+        className={twMerge(tw_classes, classes)}
         disabled={disabled}
         onClick={handleOnClick}
         title={title}
@@ -120,6 +122,26 @@ export function TabBtn({classes="",disabled=false, handleOnClick, title, descr, 
                 <strong className="font-medium text-start">{title}</strong>
                 <small className="text-theme-grey-beta text-start">{descr}</small>
             </div>
+        </button>
+    )
+}
+
+export function SelectBtn({
+    src, alt, className="", text, handleSelectFabric, isSelected
+}){
+    const selected_class = isSelected ? "border-theme-gold bg-theme-gold/10" : "bg-theme-grey"
+    const tw_classes = `w-full border flex flex-col justify-center items-center py-3 2xl:py-10
+     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm ` + selected_class 
+    return(
+        <button 
+            onClick={handleSelectFabric}
+            className={twMerge(tw_classes, className)}
+        >
+            <ImageElm src={src}
+                alt={alt}
+                classes="w-12 h-12"
+            />
+            <span>{text}</span>
         </button>
     )
 }

@@ -57,7 +57,7 @@ export function StyledRadioLoc({
    
 
     return (
-        <div 
+        <button
             onClick={()=>setCitySelected(id)}
             className="flex flex-col justify-center items-center overflow-hidden text-theme-white font-theme-gilroy
             border-2 border-theme-white bg-theme-grey cursor-pointer py-5 sm:py-0
@@ -66,6 +66,6 @@ export function StyledRadioLoc({
         >
             <img className="inline-block w-12 sm:w-20 h-auto object-contain" src={src} alt={name}/>
             <span>{name}</span>
-        </div>
+        </button>
     )
 }

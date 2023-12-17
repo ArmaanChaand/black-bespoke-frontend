@@ -1,14 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Questrial&display=swap');
 :root{
-    @apply bg-theme-black overflow-hidden 
+    @apply bg-theme-black selection:bg-theme-gold/30
 }
 body{
     @apply overflow-x-hidden overflow-y-auto 
 }
 #root{
-    @apply min-h-fit
+    @apply min-h-fit 
 }
-
-
-
-

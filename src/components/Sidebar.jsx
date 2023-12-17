@@ -36,6 +36,7 @@ export default function Sidebar({setShowSidebar}){
                     <LinkIconTextArrowBtn 
                         left_svg_name="SUIT"
                         left_svg_classes="hidden"
+                        href="/suit-build/"
                     >
                     <img src="/media/suit.png" alt="suit" className="w-4 h-4 inline-block"/>
                      Build Suit
