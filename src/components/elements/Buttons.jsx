@@ -105,22 +105,22 @@ export function LinkIconTextArrowBtn({
 }
 
 
-export function TabBtn({classes="",disabled=false, handleOnClick, title, descr, svg_url="/media/mannequin.svg"}){
+export function TabBtn({classes="", img_class, text_class, disabled=false, handleOnClick, title, descr, svg_url="/media/mannequin.svg"}){
     const tw_classes = `flex flex-row justify-start items-center  p-3 border gap-3 
     hover:border-theme-gold hover:bg-theme-gold/5`
     return (
         <button
-            className={tw_classes + " " + classes}
+            className={twMerge(tw_classes, classes)}
             disabled={disabled}
             onClick={handleOnClick}
             title={title}
             
         >
             <span className="sr-only">{title}</span>
-            <img src={svg_url} alt={title} className="inline-block"/>
-            <div className="flex flex-col justify-center items-start text-theme-white">
-                <strong className="font-medium text-start">{title}</strong>
-                <small className="text-theme-grey-beta text-start">{descr}</small>
+            <img src={svg_url} alt={title} className={twMerge("inline-block", img_class)}/>
+            <div className={twMerge("flex flex-col justify-center items-start text-start text-theme-white", text_class)}>
+                <strong className="font-medium ">{title}</strong>
+                <small className="text-theme-grey-beta ">{descr}</small>
             </div>
         </button>
     )
@@ -142,6 +142,29 @@ export function SelectBtn({
                 classes="w-12 h-12"
             />
             <span>{text}</span>
+        </button>
+    )
+}
+
+export function SelectColorBtn({
+    color, className="", text, handleSelectFabric, isSelected, span_class, para
+}){
+    const selected_class = isSelected ? "border-theme-gold bg-theme-gold/10" : "bg-theme-grey"
+    const tw_classes = `w-full border flex flex-col justify-center items-center py-3 2xl:py-10
+     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm ` + selected_class 
+    return(
+        <button 
+            onClick={handleSelectFabric}
+            className={twMerge(tw_classes, className)}
+        >
+            <span 
+                className={twMerge("w-10 aspect-square rounded-full", span_class)}
+                style={{backgroundColor: color}}
+            >
+
+            </span>
+            <span>{text}</span>
+            {para && <p className="text-xs text-theme-grey-beta">{para}</p>}
         </button>
     )
 }

@@ -8,7 +8,6 @@ export function SuitPartGallery({pictures}){
     const {data, isLoading, isError, isSuccess, refetch, status} = useGetPictureQuery(pictures[0])
     useEffect(()=>{
         refetch()
-        console.log(pictures)
     }, [pictures, status])
     
     const picture_data =  isSuccess ? data?.data : {}
@@ -35,18 +34,6 @@ export function SuitPartGallery({pictures}){
                     src={BASE_URL + picture_data?.picture}
                     classes="object-contain"
                 />
-            }
-            {
-                isError &&
-                <p className="text-red-600 font-mono text-center text-sm px-5">
-                    Oops! We couldn't fetch <br/> the image right now. 
-                    <br/>
-                    Please{" "}
-                    <button 
-                        onClick={()=>refetch()}
-                        className="underline"
-                        >try again</button>.
-                </p>
             }
         </div>
     )
