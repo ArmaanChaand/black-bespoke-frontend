@@ -20,7 +20,7 @@ export default function Header(){
                     <NavLinkBtn href="/process/" >
                         Our Process
                     </NavLinkBtn>
-                    <NavLinkBtn href="/suit-build/" >
+                    <NavLinkBtn href="/suit-build/?select=fabric" >
                         Build Suit
                     </NavLinkBtn>
                     <NavLinkBtn href="/track/" >
