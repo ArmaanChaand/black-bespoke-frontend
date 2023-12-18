@@ -14,7 +14,7 @@ export default function SuitBuildWrapper({
 
     return(
         <section className="w-screen min-h-screen pt-20 md:pt-24 overflow-x-hidden">
-            <ContainerDiv classes="h-full flex flex-col md:flex-row justify-start sm:justify-center items-stretch gap-10  pb-32 pr-16 relative ">
+            <ContainerDiv classes="h-full flex flex-col md:flex-row justify-start sm:justify-center items-stretch gap-10  pb-32 md:pr-16 relative ">
                <div className="w-full h-fit sm:h-full">
                     <SubHeader classes="text-xl sm:text-2xl ml-3">
                         <WalledTexts/>
