@@ -2,16 +2,17 @@ import { useEffect } from "react"
 import { useGetPictureQuery } from "../queries/getPictureQuery"
 import { ImageElm } from "./elements/Images"
 
-const BASE_URL = import.meta.env.VITE_API_HOST
+const BASE_URL = import.meta.env.VITE_CDN_HOST
 
-export function SuitPartGallery({pictures}){
+export function SuitPartGallery({pictures, select_stage}){
     const {data, isLoading, isError, isSuccess, refetch, status} = useGetPictureQuery(pictures[0])
     useEffect(()=>{
-        refetch()
+        if(pictures[0]){
+            refetch()
+        }
     }, [pictures, status])
     
     const picture_data =  isSuccess ? data?.data : {}
-
     return(
         <div className={"w-full h-full flex justify-center items-center bg-theme-grey"}>
             {
@@ -29,10 +30,30 @@ export function SuitPartGallery({pictures}){
                 </div>
             }
             {
-                isSuccess &&
+                isError && select_stage != "monogram" &&
+                <p className="text-red-600 font-mono text-center text-sm px-5">
+                    Oops! We couldn't fetch <br/> the images right now. 
+                    <br/>
+                    Please{" "}
+                    <button 
+                        onClick={()=>refetch()}
+                        className="underline"
+                        >try again</button>.
+                </p>
+            }
+            {
+                isSuccess && select_stage != "monogram" &&
                 <ImageElm
                     src={BASE_URL + picture_data?.picture}
+                    alt={picture_data?.description}
                     classes="object-contain"
+                    />
+                }
+            {
+                select_stage == "monogram" &&
+                <ImageElm
+                    src="/media/monogram.png"
+                    classes="object-cover"
                 />
             }
         </div>

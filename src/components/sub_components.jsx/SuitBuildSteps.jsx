@@ -15,6 +15,7 @@ export function SuitBuildSteps(){
             <SuitBuildStep
                 handleOnClick={()=>set_suit_build_stage({"select": "fabric"})}
                 step="Select Fabric"
+                // step={suitBuildSteps[0]?.value}
                 src="/media/fabric.svg"
                 status={
                     select_stage == "fabric" ? "ACTIVE" :
@@ -24,6 +25,7 @@ export function SuitBuildSteps(){
             <SuitBuildStep
                 handleOnClick={()=>set_suit_build_stage({"select": "blazer"})}
                 step="Select Blazer Pattern"
+                // step={suitBuildSteps[1]?.value}
                 src="/media/blazer.svg"
                 status={
                     select_stage == "blazer" ? "ACTIVE" :
@@ -33,6 +35,7 @@ export function SuitBuildSteps(){
             <SuitBuildStep
                 handleOnClick={()=>set_suit_build_stage({"select": "waistcoat_pattern"})}
                 step="Select Waistcoat"
+                // step={suitBuildSteps[2]?.value}
                 src="/media/waistcoat.svg"
                 status={
                     select_stage == "waistcoat_pattern" || select_stage == "waistcoat_lapel" ? "ACTIVE" :
@@ -42,19 +45,21 @@ export function SuitBuildSteps(){
             <SuitBuildStep
                 handleOnClick={()=>set_suit_build_stage({"select": "pant_style"})}
                 step="Select Pant Style"
+                // step={suitBuildSteps[4]?.value}
                 src="/media/pant.svg"
                 status={
                     select_stage == "pant_style" ? "ACTIVE" :
-                    suitBuildSteps[3].value ? "COMPLETED" : "INCOMPLETE"
+                    suitBuildSteps[4].value ? "COMPLETED" : "INCOMPLETE"
                 }
                 />
             <SuitBuildStep
                 handleOnClick={()=>set_suit_build_stage({"select": "shirt_color"})}
                 step="Select Shirt Color"
+                // step={suitBuildSteps[5]?.value}
                 src="/media/shirt.svg"
                 status={
                     select_stage == "shirt_color" ? "ACTIVE" :
-                    suitBuildSteps[4].value ? "COMPLETED" : "INCOMPLETE"
+                    suitBuildSteps[5].value ? "COMPLETED" : "INCOMPLETE"
                 }
             />
 

@@ -7,7 +7,7 @@ import DetailsSection from "./sub_components.jsx/DetailsSection";
 import { SuitBuildSteps } from "./sub_components.jsx/SuitBuildSteps";
 
 export default function SuitBuildWrapper({
-   children, detail_id, pictures, next_fn,back_fn
+   children, detail_id, pictures, next_fn,back_fn,select_stage
 }){
 
     const suit_build_steps = (<SuitBuildSteps/>)
@@ -29,6 +29,7 @@ export default function SuitBuildWrapper({
                     <div className="w-full h-auto aspect-video rounded-sm overflow-hidden mt-7">
                         <SuitPartGallery
                             pictures={pictures}
+                            select_stage={select_stage}
                         />
                     </div>
                 </div>
@@ -45,6 +46,7 @@ export default function SuitBuildWrapper({
             detail_id={detail_id}
             next_fn={next_fn}
             back_fn={back_fn}
+            select_stage={select_stage}
            />
         </section>
     )

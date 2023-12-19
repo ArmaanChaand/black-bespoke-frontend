@@ -48,9 +48,10 @@ export function LocationSelect({set_loading}){
         if(address){
           if (!address?.id) return Promise.reject("Some error ocurred")
           const url = "/api/address/update/" + address?.id + "/"
+          console.log("UPDATE LOCATION")
           return http.put(url, load_data)
-
         } else {
+          console.log("CREATE LOCATION")
           return http.post("/api/address/create/", load_data)
         }
       },

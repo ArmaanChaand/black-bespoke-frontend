@@ -11,7 +11,7 @@ export function useGetPictureQuery(picture_id){
             return http.get("/api/pictures/read/" + picture_id + "/")
         },
         staleTime: 5*60*1000,
-        enabled: picture_id != null,
+        enabled: picture_id ? true : true,
         retry: 2
     })
 

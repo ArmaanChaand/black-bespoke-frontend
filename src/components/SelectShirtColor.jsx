@@ -7,7 +7,6 @@ import { WalledTexts } from "./elements/WalledTexts";
 import { useGetSuitPartQuery } from "../queries/getSuitPartQuery";
 import { CommonContext } from "../contexts/CommonContexts";
 
-const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SelectShirtColor({
     set_pictures,set_detail_id,
@@ -47,7 +46,6 @@ export function SelectShirtColor({
                             <div className="w-full grid grid-cols-2 gap-5">
                                 {
                                     shirt_colors.map(shirt => {
-                                        console.log(shirt)
                                     return  <SelectColorBtn
                                             handleSelectFabric={ () => set_selectedShirtColor(shirt)}
                                             key={shirt.id}

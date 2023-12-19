@@ -19,11 +19,10 @@ export function AppointmentSelect({set_loading}){
     const appointment_query =  useCustAppntQuery()
     const {appointment, set_appointment} = useContext(CommonContext)
     useEffect(()=>{
-        const appointment_res_data = appointment_query?.data?.data
-        if(appointment_res_data?.length){
-            set_appointment(appointment_res_data[appointment_res_data.length - 1])
-        }
-    }, [appointment_query?.data])
+        
+        set_appointment(appointment_query?.data?.data)
+        
+    }, [appointment_query.status])
     useEffect(()=>{
         set_loading(appointment_query?.isLoading)
     }, [appointment_query?.isLoading])
@@ -33,10 +32,11 @@ export function AppointmentSelect({set_loading}){
         mutationFn: (load_data) => {
             set_loading(true)
             if(appointment){
-                console.log(appointment?.id)
+                console.log("UPDATE APPOINTMENT")
                 const url = "/api/consult/update/" + appointment?.id + "/"
                 return http.put(url, load_data)
             } else {
+                console.log("CREATE APPOINTMENT")
                 return http.post("/api/consult/create/", load_data)
             }
         },
@@ -79,8 +79,12 @@ export function AppointmentSelect({set_loading}){
         if(customer_id){
             book_appointment.mutate(load_data)
         }
-        
     }
+
+    const handleSuitConsultation = () =>{
+        console.log("CREATE SUIT")
+    }
+
     return (
         <PopupFormWrapper
         header_text="Select Your Desired Service for Appointment Booking"
@@ -96,6 +100,7 @@ export function AppointmentSelect({set_loading}){
             descr="Lorem ipsum dolor sit amet consectetur tortor ."
             svg_url="/media/mannequin.svg"
             classes="w-full my-8"
+            handleOnClick={handleSuitConsultation}
          />
          <TabBtn
             title="Garment Tailoring Consultation"

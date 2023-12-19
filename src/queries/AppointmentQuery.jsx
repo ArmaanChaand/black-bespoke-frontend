@@ -9,10 +9,11 @@ export function useCustAppntQuery(){
         queryFn: ()=> {
             const customer_id = getCustomerId()
             if(!customer_id) return Promise.reject("Some error ocurred!")
-            return http.get("/api/consult/read/?customer_id=" + customer_id)
+            return http.get("/api/consult/read/" + customer_id + "/")
     },
     staleTime: 5*60*1000,
     enabled: getCustomerId() != null,
+    retry: 1,
     })
 
     return QUERY

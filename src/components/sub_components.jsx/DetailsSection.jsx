@@ -10,10 +10,26 @@ const currencies = {
     "INR": "₹",
     "USD": "$",
 }
-
+const next_texts = {
+    fabric:"NEXT", 
+    blazer: "NEXT",
+    waistcoat_pattern:"NEXT",
+    waistcoat_lapel:"NEXT",
+    pant_style:"NEXT",
+    shirt_color:"NEXT",
+    monogram:"BOOK NOW"
+}
+const back_texts = {
+    fabric:"GET EXPERT HELP", 
+    blazer: "PREVIOUS",
+    waistcoat_pattern:"PREVIOUS",
+    waistcoat_lapel:"PREVIOUS",
+    pant_style:"PREVIOUS",
+    shirt_color:"PREVIOUS",
+    monogram:"PREVIOUS"
+}
 export default function DetailsSection({
-    next_text="NEXT", back_text="PREVIOUS",next_fn,back_fn,
-    detail_id
+    next_fn, back_fn, detail_id, select_stage
 }){
     const [show_detail, set_show_detail] = useState(false)
     
@@ -86,14 +102,14 @@ export default function DetailsSection({
                             handleOnClick={back_fn}
                             classes={"py-[0.57rem] text-xs md:text-sm"}
                         >
-                            <span>{back_text}</span>
+                            <span>{back_texts[select_stage] || "PREVIOUS"}</span>
                         </SecondaryBtn>
                         <PrimaryBtn
                             handleOnClick={next_fn}
                             classes={"text-xs md:text-sm"}
                             // disabled={next_disabled}
                         >
-                            <span>{next_text}</span>
+                            <span>{next_texts[select_stage] || "NEXT"}</span>
                             <SVGWrapper 
                                 classes="stroke-theme-gold fill-transparent w-4 h-5 ml-2 "
                                 svgName="ANGLE_RIGHT"

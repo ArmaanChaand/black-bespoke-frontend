@@ -17,7 +17,7 @@ export function AppointmentConfirmed({set_loading}){
     const navigate = useNavigate()
     const location = useLocation()
     const appointment_query =  useCustAppntQuery()
-    const appointment = appointment_query?.data?.data[appointment_query?.data?.data?.length - 1] || {}
+    const appointment = appointment_query?.data?.data || {}
     
     // QUERY CUSTOMER
     const customer_query = useGetCustomerQuery()

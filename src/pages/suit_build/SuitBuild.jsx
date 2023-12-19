@@ -53,6 +53,7 @@ export default function SuitBuild({}){
             detail_id={detail_id}
             next_fn={handleNext}
             back_fn={handlePrev}
+            select_stage={select_stage}
             
         >
             {

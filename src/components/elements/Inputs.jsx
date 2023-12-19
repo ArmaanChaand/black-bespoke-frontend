@@ -1,12 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ImageElm } from "./Images"
+import { twMerge } from "tailwind-merge"
 
 export function TextInput({
     type="text",
     classes="", id="", label="", placeholder="", name="" ,is_error=false, bottom_msg="",
-    input_left_elm="", input_right_elm="", defaultValue="", readOnly=false
+    input_left_elm="", input_right_elm="", defaultValue="", readOnly=false,
+    value: controlledValue, // Rename to avoid conflicts with value prop
+    onChange: controlledOnChange, // Rename to avoid conflicts with onChange prop
 }){
     const tw_classes = `w-full text-sm font-theme-gilroy text-theme-white font-medium h-fit`
+    
+    const [inputValue, setInputValue] = useState(defaultValue || ''); // Use defaultValue if provided
+    useEffect(()=>{
+        if(defaultValue){
+            setInputValue(defaultValue)
+        }
+    }, [defaultValue])
     const [input_focus, set_input_focus] = useState(false)
     const onInputFocus = (e) => {
         set_input_focus(true)
@@ -14,8 +24,26 @@ export function TextInput({
     const onInputBlur = (e) => {
         set_input_focus(false)
     }
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+        if (controlledOnChange) {
+            controlledOnChange(e);
+        }
+    };
+    const inputProps = {
+        type,
+        id,
+        className: 'text-base block w-full px-3 py-2 bg-theme-grey outline-none placeholder:text-theme-white/40 caret-theme-gold',
+        placeholder,
+        name,
+        onFocus: onInputFocus,
+        onBlur: onInputBlur,
+        value: controlledValue !== undefined ? controlledValue : inputValue,
+        onChange: controlledOnChange !== undefined ? controlledOnChange : handleChange,
+        readOnly,
+    };
     return(
-        <div className={tw_classes + " " + classes}>
+        <div className={twMerge(tw_classes, classes)}>
         <label
             htmlFor={id}
             className="block mb-1 text-sm text-theme-white/60"
@@ -29,15 +57,7 @@ export function TextInput({
         >
             {input_left_elm}
             <input
-                type={type}
-                id={id}
-                className="text-base block w-full px-3 py-2 bg-theme-grey outline-none  placeholder:text-theme-white/40 caret-theme-gold"
-                placeholder={placeholder}
-                name={name}
-                onFocus={onInputFocus}
-                onBlur={onInputBlur}
-                defaultValue={defaultValue}
-                readOnly={readOnly}
+                {...inputProps}
             />
             {input_right_elm}
         </div>

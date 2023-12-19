@@ -19,11 +19,12 @@ export function CustomerForm({set_loading}){
         set_loading(true)
         set_errors(null)
         const customer_id = getCustomerId()
-        console.log(customer_id)
         if(customer_id){
           const url = "/api/user/customer/update/" + customer_id + "/"
+          console.log("UPDATE CUSTOMER")
           return http.post(url, data)
         } else{
+          console.log("CREATE CUSTOMER")
           return http.post("/api/user/customer/create/", data)
         }
       },

@@ -131,7 +131,7 @@ export function SelectBtn({
 }){
     const selected_class = isSelected ? "border-theme-gold bg-theme-gold/10" : "bg-theme-grey"
     const tw_classes = `w-full border flex flex-col justify-center items-center py-3 2xl:py-10
-     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm ` + selected_class 
+     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm hover:border-theme-gold hover:bg-theme-gold/10 ` + selected_class 
     return(
         <button 
             onClick={handleSelectFabric}
@@ -151,7 +151,7 @@ export function SelectColorBtn({
 }){
     const selected_class = isSelected ? "border-theme-gold bg-theme-gold/10" : "bg-theme-grey"
     const tw_classes = `w-full border flex flex-col justify-center items-center py-3 2xl:py-10
-     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm ` + selected_class 
+     px-2 text-theme-white gap-3 2xl:gap-5 text-base rounded-sm hover:bg-theme-gold/10 ` + selected_class 
     return(
         <button 
             onClick={handleSelectFabric}
