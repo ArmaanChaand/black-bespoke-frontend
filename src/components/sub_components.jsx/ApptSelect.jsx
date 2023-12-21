@@ -26,7 +26,7 @@ export function AppointmentSelect({set_loading}){
     const book_appointment = useMutation({
         mutationFn: (load_data) => {
             set_loading(true)
-            if(appointment){
+            if(appointment?.id){
                 console.log("UPDATE APPOINTMENT")
                 const url = "/api/consult/update/" + appointment?.id + "/"
                 return http.put(url, load_data)
