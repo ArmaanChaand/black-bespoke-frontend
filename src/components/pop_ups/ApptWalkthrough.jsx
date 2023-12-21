@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useNavigationType } from "react-router-dom"
 import { FullLogoSlogan } from "../../assets/Logos"
 import {withHiddenVertScrollbar} from "../HOCs/SwitchOffScrolling"
 import { PrimaryBtn } from "../elements/Buttons"
@@ -9,15 +9,22 @@ import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
 import { AppointmentConfirmed } from "../sub_components.jsx/AppointmentConfirmed"
 import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
 import { Spinner } from "../elements/Loaders"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AddressForm } from "../sub_components.jsx/AddrsForm"
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
     const navigate = useNavigate()
     const [loading, set_loading] = useState(false)
-
+    const navigation_type = useNavigationType()
+    useEffect(()=>{
+        console.log(navigation_type)
+        if(navigation_type=='POP'){
+            navigate("?consult=info")
+        }
+    }, [navigation_type])
     function handleClose(){
+        
         navigate(locaton.pathname)
     }
     

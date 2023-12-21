@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useGetCustomerQuery } from "../../queries/CustomerQuery";
 import { useGetCity } from "../../queries/CityQuery";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 const appointment_type_texts = {
     "DEFAULT" : ["We've got you covered.", "---"],
@@ -15,6 +16,7 @@ const appointment_type_texts = {
 }
 
 export function AppointmentConfirmed({set_loading}){
+    const queryClient = useQueryClient()
     const navigate = useNavigate()
     const location = useLocation()
     const appointment_query =  useCustAppntQuery()
@@ -37,6 +39,9 @@ export function AppointmentConfirmed({set_loading}){
         console.log(location.pathname != '/suit-build/' ? location.pathname : "/")
       navigate(location.pathname != '/suit-build/' ? location.pathname : "/")
     }
+    useEffect(()=>{
+        queryClient.invalidateQueries('customer')
+    }, [])
     return (
         <PopupFormWrapper
         header_text={appointment_type_texts[appointment?.appnt_type][0] || appointment_type_texts["DEFAULT"][0]}

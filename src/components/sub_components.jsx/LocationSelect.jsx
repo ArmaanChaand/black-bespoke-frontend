@@ -29,6 +29,7 @@ export function LocationSelect({set_loading}){
     const {data, isLoading, isSuccess, isError, status} = useGetCustAddrsQuery()
     const address_data = data?.data
     useEffect(()=>{
+      console.log(address_data)
       if(status == 'success'){
          set_address(address_data)
          setCitySelected(address_data?.city)
@@ -40,17 +41,18 @@ export function LocationSelect({set_loading}){
 
 
     // UPDATE LOCATION
-    const updataLocation = useMutation({
-      mutationFn: (load_data) => {
+    const updateLocation = useMutation({
+      mutationKey:['customer', 'address'],
+      mutationFn: (context) => {
+        console.log(context)
         set_loading(true)
-        if(address){
-          if (!address?.id) return Promise.reject("Some error ocurred")
-          const url = "/api/address/update/" + address?.id + "/"
-          console.log("UPDATE LOCATION")
-          return http.put(url, load_data)
+        if(context[0]){
+          const url = "/api/address/update/" + context[0] + "/"
+          console.log("UPDATE LOCATION")  
+          return http.put(url, context[1])
         } else {
           console.log("CREATE LOCATION")
-          return http.post("/api/address/create/", load_data)
+          return http.post("/api/address/create/", context[1])
         }
       },
       onError: (error) => {
@@ -72,7 +74,8 @@ export function LocationSelect({set_loading}){
         city: citySelected,
         customer: getCustomerId() || null
       }
-      updataLocation.mutate(formData)
+      console.log(formData)
+      updateLocation.mutate([address?.id, formData])
     }
     return (
         <PopupFormWrapper

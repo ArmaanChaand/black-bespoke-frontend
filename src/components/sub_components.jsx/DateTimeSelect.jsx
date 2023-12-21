@@ -36,13 +36,8 @@ export function DateTimeSelect({set_loading}){
 
     // LIST APPOINTMENTS
     const appointment_query =  useCustAppntQuery()
-    const {appointment, set_appointment} = useContext(CommonContext)
-    useEffect(()=>{
-        const appointment_res_data = appointment_query?.data?.data
-        if(appointment_res_data?.length){
-            set_appointment(appointment_res_data[appointment_res_data.length - 1])
-        }
-    }, [appointment_query?.data])
+    const appointment = appointment_query?.data?.data
+    
     useEffect(()=>{
         set_loading(appointment_query?.isLoading)
     }, [appointment_query?.isLoading])
@@ -62,10 +57,6 @@ export function DateTimeSelect({set_loading}){
                 // console.log(appointment?.id)
                 const url = "/api/consult/update/" + appointment?.id + "/"
                 return http.put(url, load_data)
-            } else {
-                load_data['appnt_type'] = "DEFAULT"
-                if(getCustomerId()) load_data['customer'] = getCustomerId()
-                return http.post("/api/consult/create/", load_data)
             }
         },
         onSuccess: (data) => {

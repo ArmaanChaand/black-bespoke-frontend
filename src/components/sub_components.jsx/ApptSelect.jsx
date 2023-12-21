@@ -17,12 +17,7 @@ export function AppointmentSelect({set_loading}){
     const http = useApi()
     // LIST APPOINTMENTS
     const appointment_query =  useCustAppntQuery()
-    const {appointment, set_appointment} = useContext(CommonContext)
-    useEffect(()=>{
-        
-        set_appointment(appointment_query?.data?.data)
-        
-    }, [appointment_query.status])
+    const appointment = appointment_query?.data?.data || {}
     useEffect(()=>{
         set_loading(appointment_query?.isLoading)
     }, [appointment_query?.isLoading])

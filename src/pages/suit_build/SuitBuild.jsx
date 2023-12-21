@@ -13,21 +13,24 @@ import { Spinner } from "../../components/elements/Loaders";
 import { useGetSuitBuildQuery } from "../../queries/getSuitBuildQuery";
 import { useMutation } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
+import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 
 
 
 export default function SuitBuild({}){
     const navigate = useNavigate()
     const http = useApi()
-    const {steps,suitBuildSteps, appointment, findFirstNullSuitBuildStep, transformSuitBuildStepToObject} = useContext(CommonContext)
+    const {steps,suitBuildSteps, findFirstNullSuitBuildStep, transformSuitBuildStepToObject} = useContext(CommonContext)
     const [pictures, set_pictures] = useState([])
     const [detail_id, set_detail_id] = useState(null)
     const [suit_build_params, set_suit_build_params] = useSearchParams()
     const select_stage = suit_build_params.get("select")
     const [is_loading, set_is_loading] = useState(false)
     const [monogram_text, set_monogram_text] = useState('')
+    const appointment_query =  useCustAppntQuery()
+    const appointment = appointment_query?.data?.data || {}
     useEffect(()=>{
-        if(!appointment || !appointment["suit"] || !steps.includes(select_stage)){
+        if(!appointment || !appointment["suit"] || !appointment['appnt_type'] == 'MEASUREMENT' || !steps.includes(select_stage)){
             set_is_loading(false)   
             navigate('?consult=info')
         } 
@@ -46,6 +49,7 @@ export default function SuitBuild({}){
         }
     })
     const goToNext = () => {
+        console.log(appointment?.appnt_type)
         const current_index = steps.indexOf(select_stage)
         if(current_index !== -1){
             if(current_index != (steps.length -1) ){
