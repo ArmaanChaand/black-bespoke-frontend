@@ -30,7 +30,7 @@ export default function SuitBuild({}){
     const appointment_query =  useCustAppntQuery()
     const appointment = appointment_query?.data?.data || {}
     useEffect(()=>{
-        if(!appointment || !appointment["suit"] || !appointment['appnt_type'] == 'MEASUREMENT' || !steps.includes(select_stage)){
+        if(!steps.includes(select_stage)){
             set_is_loading(false)   
             navigate('?consult=info')
         } 
@@ -63,6 +63,9 @@ export default function SuitBuild({}){
     }
 
     const handleNext = () => {
+        if(!appointment || !appointment["suit"] || !appointment['appnt_type'] == 'MEASUREMENT'){
+            navigate('?consult=info')
+        }
         const update_suit_data = transformSuitBuildStepToObject()
         if(select_stage == "shirt_color"){
             const left_stage = findFirstNullSuitBuildStep()
