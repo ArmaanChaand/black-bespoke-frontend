@@ -10,21 +10,29 @@ import { CommonContext } from "../contexts/CommonContexts";
 const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SelectFabric({
-    set_pictures,set_detail_id,
+    set_pictures,set_detail_id,suit
 }){
-    const [selectedFabric, set_selectedFabric] = useState(null)
-    const {updateSuitBuildStep} = useContext(CommonContext)
+    const [selectedFabric, set_selectedFabric] = useState(suit?.fabric)
+    const {updateSuitBuildStep, appointment} = useContext(CommonContext)
     const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/fabric/all/", "fabric")
     const fabrics = isSuccess ?  data?.data : []
     useEffect(()=>{
         if(!selectedFabric && status =="success"){
-            set_selectedFabric(fabrics[0] || {})
+            set_selectedFabric(fabrics[0]?.id || {})
         } 
+        const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
+            const selected_part = parts_list.find(part => part?.id == selectedPart_id)
+            if(selected_part){
+                set_pictures(selected_part?.pictures || [])
+                set_detail_id(selected_part?.detail || null)
+                updateSuitBuildStep(step_id, selected_part?.id)
+            }
+        }
         
-        set_pictures(selectedFabric?.pictures || [])
-        set_detail_id(selectedFabric?.detail || null)
-        updateSuitBuildStep("fabric", selectedFabric?.id)
+        update_build_stages("fabric", fabrics ,selectedFabric)
     }, [fabrics, selectedFabric, status])
+
+
     return(
             <div className="">
                 <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
@@ -48,11 +56,11 @@ export function SelectFabric({
                                 {
                                     fabrics.map(fabric => {
                                     return  <SelectBtn
-                                            handleSelectFabric={ () => set_selectedFabric(fabric)}
+                                            handleSelectFabric={ () => set_selectedFabric(fabric?.id)}
                                             key={fabric.id}
                                             src={BASE_URL + fabric.icon}
                                             text={fabric.name}
-                                            isSelected={selectedFabric?.id == fabric?.id}
+                                            isSelected={selectedFabric == fabric?.id}
                                         />
                                     })
                                 }

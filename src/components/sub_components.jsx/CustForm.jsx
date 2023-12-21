@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PopupFormWrapper } from "./PopupFormWrapper";
 import { TextInput } from "../elements/Inputs";
 import { useNavigate } from "react-router-dom";
@@ -34,13 +34,15 @@ export function CustomerForm({set_loading}){
       onSuccess: (data) => {
         if(data?.data?.id) setCustomerId(data?.data?.id)
         queryClient.invalidateQueries({ queryKey: ["customer"] })
-        navigate('?consult_stage=loc')
+        navigate('?consult=loc')
       },
       onSettled:() =>{
         set_loading(false)
       }
     })
-    
+    useEffect(()=>{
+      set_loading(false)
+    }, [])
     const the_form = useRef()
     function handleSubmission(){
       const formData = Object.fromEntries(new FormData(the_form.current))

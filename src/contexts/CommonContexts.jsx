@@ -12,17 +12,18 @@ function CommonContextProvider({children}) {
     useEffect(()=>{
         setShowSidebar(false)
     }, [LOCATION.pathname])
-    const allowedStages = ['info', 'loc', 'appt_select',,'date_time', 'address', 'consultation', 'measurement','over']
+    
+    const allowedStages = ['info', 'loc', 'appt_select',,'date_time', 'address', 'consultation', 'measurement','booked']
     const [walkthroughStage, setWalkthroughStage] = useState(null)
-    const [consult_stage] = useSearchParams()
+    const [consult] = useSearchParams()
     useEffect(()=>{
-        const url_param = consult_stage.get('consult_stage')
+        const url_param = consult.get('consult')
         if (url_param && allowedStages.includes(url_param)){
             setWalkthroughStage(url_param)
         } else{
             setWalkthroughStage(null)
         }
-    }, [consult_stage])
+    }, [consult])
 
     const [address, set_address] = useState(null)
     const [appointment, set_appointment] = useState(null)
@@ -34,7 +35,7 @@ function CommonContextProvider({children}) {
             value:null,
         },
         {
-            id: "blazer",
+            id: "blazer_pattern",
             value:null,
         },
         {
@@ -53,11 +54,8 @@ function CommonContextProvider({children}) {
             id: "shirt_color",
             value:null,
         },
-        {
-            id: "monogram",
-            value:null,
-        },
     ])
+    
 
     const updateSuitBuildStep = (id, updatedValue) => {
         const updatedSteps = suitBuildSteps.map(step => {
@@ -76,8 +74,19 @@ function CommonContextProvider({children}) {
                 return step.id;
             }
         }
-        return null;
+        return false;
     };
+
+    function transformSuitBuildStepToObject() {
+        const resultObject = {};
+    
+        suitBuildSteps.forEach(item => {
+            resultObject[item.id] = item.value || null;
+        });
+    
+        return resultObject;
+    };
+    
 
     
     return (
@@ -89,7 +98,8 @@ function CommonContextProvider({children}) {
                 appointment, set_appointment,
                 steps,
                 suitBuildSteps, set_suitBuildSteps,
-                updateSuitBuildStep, findFirstNullSuitBuildStep
+                updateSuitBuildStep, findFirstNullSuitBuildStep,
+                transformSuitBuildStepToObject
             }}
         >
             {children}

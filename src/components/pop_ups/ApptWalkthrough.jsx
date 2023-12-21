@@ -72,7 +72,7 @@ function ApptWalkthrough({walkthroughStage}){
                     {walkthroughStage == "address" && 
                         <AddressForm set_loading={set_loading} />
                     }
-                    {walkthroughStage == "over" && 
+                    {walkthroughStage == "booked" && 
                         <AppointmentConfirmed 
                         set_loading={set_loading}
                         />

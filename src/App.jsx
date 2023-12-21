@@ -17,7 +17,13 @@ function App() {
   return (
     <>
       {showSidebar && <Sidebar setShowSidebar={setShowSidebar}/>}
-      {walkthroughStage && <ApptWalkthrough walkthroughStage={walkthroughStage}  setWalkthroughStage={setWalkthroughStage}/>}
+      {
+        walkthroughStage && 
+          <ApptWalkthrough 
+          walkthroughStage={walkthroughStage}  
+          setWalkthroughStage={setWalkthroughStage}
+          />
+      }
       <Header/>
       <main className="bg-theme-black min-h-fit">
         <Routes>

@@ -4,14 +4,15 @@ import { DatePickerCustom } from "../elements/DatePicker";
 import { PopupFormWrapper } from "./PopupFormWrapper";
 import { useNavigate } from "react-router-dom";
 import "../../css/sub_components.css";
-import { formatDate, formatTime, getCustomerId } from "../../assets/js_utils/utils";
+import { formatDate, formatDatetoYYMMYY, formatTime, getCustomerId } from "../../assets/js_utils/utils";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 import { CommonContext } from "../../contexts/CommonContexts";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 
 
 export function DateTimeSelect({set_loading}){
+    const queryClient = useQueryClient()
     const navigate = useNavigate()
     const http = useApi()
     const [error, set_error] = useState(null)
@@ -49,8 +50,8 @@ export function DateTimeSelect({set_loading}){
     // CREATE/UPDATE AN APPOINTMENT
     const book_appointment = useMutation({
         mutationFn: (load_data) => {
-            set_loading(true)
             set_error(null)
+            set_loading(true)
             if(!load_data['date']){
                 throw new Error("Please select date of the appointment.")
             }
@@ -59,13 +60,11 @@ export function DateTimeSelect({set_loading}){
             }
             if(appointment){
                 // console.log(appointment?.id)
-                console.log('CREATE')
                 const url = "/api/consult/update/" + appointment?.id + "/"
                 return http.put(url, load_data)
             } else {
                 load_data['appnt_type'] = "DEFAULT"
                 if(getCustomerId()) load_data['customer'] = getCustomerId()
-                console.log('CREATE')
                 return http.post("/api/consult/create/", load_data)
             }
         },
@@ -74,16 +73,20 @@ export function DateTimeSelect({set_loading}){
             if(data?.data){
                 queryClient.invalidateQueries({queryKey: ["customer", "appointment"]})
                 if(res_data?.appnt_type == "CALLBACK"){
-                    navigate('?consult_stage=over')
+                    navigate('?consult=booked')
                 }
-                if(res_data?.appnt_type == "CONSULTATION"){
-                    navigate('?consult_stage=date_time')
+                if(res_data?.appnt_type == "CONSULTATION" || res_data?.appnt_type == "MEASUREMENT"){
+                    navigate('?consult=address')
                 }
             }
         },
         onError: (error) => {
-            if(error.message) set_error(error.message)
-            console.log(error?.response?.data)
+            console.log(error)
+            if(error.message) {
+                set_error(error.message)
+            } else {
+                set_error("some error ocurred!")
+            }
         },
         onSettled: (data) => {
             set_loading(false)
@@ -92,18 +95,18 @@ export function DateTimeSelect({set_loading}){
 
     const handleSaveNext = () => {
         const load_data = {
-          date: formatDate(date),
+          date: formatDatetoYYMMYY(date),
           time: time_selected
         }
         // console.log(load_data)
         book_appointment.mutate(load_data)
-    //   navigate("?consult_stage=address")
+    //   navigate("?consult=address")
     }
     return (
         <PopupFormWrapper
         header_text="Select Date & time"
         back_text="BACK"
-        back_fn={()=>navigate("?consult_stage=appt_select")}
+        back_fn={()=>navigate("?consult=appt_select")}
         next_text="SAVE & NEXT"
         next_fn={handleSaveNext}  
         

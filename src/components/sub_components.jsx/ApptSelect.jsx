@@ -45,10 +45,14 @@ export function AppointmentSelect({set_loading}){
             if(data?.data){
                 queryClient.invalidateQueries({queryKey: ["customer", "appointment"]})
                 if(res_data?.appnt_type == "CALLBACK"){
-                    navigate('?consult_stage=over')
+                    navigate('?consult=booked')
                 }
                 if(res_data?.appnt_type == "CONSULTATION"){
-                    navigate('?consult_stage=date_time')
+                    navigate('?consult=date_time')
+                }
+                if(res_data?.appnt_type == "MEASUREMENT"){
+                    navigate('/suit-build/?select=fabric')
+                    
                 }
             }
         },
@@ -81,14 +85,30 @@ export function AppointmentSelect({set_loading}){
         }
     }
 
-    const handleSuitConsultation = () =>{
-        console.log("CREATE SUIT")
+    const handleSuitConsultation = async () => {
+        let suit_id = appointment?.suit
+        if(!suit_id){
+            const create_suit = await http.post("api/suit/create/")
+            if(create_suit.status == 201 && create_suit?.data?.id){
+                suit_id = create_suit?.data?.id
+
+            }
+        }
+        const customer_id = getCustomerId()
+        const load_data = {
+            appnt_type: "MEASUREMENT",
+            customer: customer_id,
+            suit: suit_id
+        }
+        if(customer_id && suit_id){
+            book_appointment.mutate(load_data)
+        }
     }
 
     return (
         <PopupFormWrapper
         header_text="Select Your Desired Service for Appointment Booking"
-        back_fn={()=>navigate("?consult_stage=loc")}
+        back_fn={()=>navigate("?consult=loc")}
         next_classes="hidden"                          
     >
         <div

@@ -34,6 +34,14 @@ export function formatDate(inputDate) {
     return formattedDate;
 }
 
+export function formatDatetoYYMMYY(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
+    const day = date.getDate().toString().padStart(2, '0');
+  
+    return `${year}-${month}-${day}`;
+  }
+
 export function formatTime(inputTime) {
     const [hours, minutes, seconds] = inputTime.split(":");
     let period = "AM";

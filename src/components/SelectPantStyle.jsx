@@ -10,21 +10,28 @@ import { CommonContext } from "../contexts/CommonContexts";
 const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SelectPantStyle({
-    set_pictures,set_detail_id
+    set_pictures,set_detail_id, suit
 }){
     const {updateSuitBuildStep} = useContext(CommonContext)
-    const [pantStyle, set_pantStyle] = useState(null)
+    const [pantStyle, set_pantStyle] = useState(suit?.pant_style)
     const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/pant-style/all/", "pant-style")
     const pant_styles = isSuccess ?  data?.data : []
     
     useEffect(()=>{
         if(!pantStyle && status =="success"){
-            set_pantStyle(pant_styles[0] || {})
+            set_pantStyle(pant_styles[0]?.id || {})
         } 
         
-        set_pictures(pantStyle?.pictures || [])
-        set_detail_id(pantStyle?.detail || null)
-        updateSuitBuildStep("pant_style", pantStyle?.id)
+        const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
+            const selected_part = parts_list.find(part => part?.id == selectedPart_id)
+            if(selected_part){
+                set_pictures(selected_part?.pictures || [])
+                set_detail_id(selected_part?.detail || null)
+                updateSuitBuildStep(step_id, selected_part?.id)
+            }
+        }
+        
+        update_build_stages("pant_style", pant_styles ,pantStyle)
     }, [pant_styles, pantStyle, status])
     return(
             <div className="">
@@ -50,13 +57,13 @@ export function SelectPantStyle({
                                     pant_styles.map(style => {
                                         
                                     return   <TabBtn
-                                    handleOnClick={ () => set_pantStyle(style)}
+                                    handleOnClick={ () => set_pantStyle(style?.id)}
                                     title={style?.name}
                                     descr={style?.description}
                                     svg_url={BASE_URL + style?.icon}
                                     img_class="w-10 h-auto flex-none"
                                     classes={"w-full " +  
-                                    ( pantStyle?.id == style?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                    ( pantStyle == style?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
                                  />
                                     })
                                 }

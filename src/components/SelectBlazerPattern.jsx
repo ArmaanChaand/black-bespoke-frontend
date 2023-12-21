@@ -10,21 +10,26 @@ import { CommonContext } from "../contexts/CommonContexts";
 const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SelectBlazerPattern({
-    set_pictures,set_detail_id
+    set_pictures,set_detail_id, suit
 }){
     const {updateSuitBuildStep} = useContext(CommonContext)
-    const [selectedBlazer, set_selectedBlazer] = useState(null)
+    const [selectedBlazer, set_selectedBlazer] = useState(suit?.blazer_pattern)
     const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/blazer-pattern/all/", "blazer")
     const blazers = isSuccess ?  data?.data : []
     
     useEffect(()=>{
         if(!selectedBlazer && status =="success"){
-            set_selectedBlazer(blazers[0] || {})
+            set_selectedBlazer(blazers[0]?.id || {})
         } 
-        
-        set_pictures(selectedBlazer?.pictures || [])
-        set_detail_id(selectedBlazer?.detail || null)
-        updateSuitBuildStep("blazer", selectedBlazer?.id)
+        const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
+            const selected_part = parts_list.find(part => part?.id == selectedPart_id)
+            if(selected_part){
+                set_pictures(selected_part?.pictures || [])
+                set_detail_id(selected_part?.detail || null)
+            }
+            updateSuitBuildStep(step_id, selected_part?.id)
+        }
+        update_build_stages("blazer_pattern",blazers, selectedBlazer)
     }, [blazers, selectedBlazer, status])
     return(
             <div className="">
@@ -50,13 +55,13 @@ export function SelectBlazerPattern({
                                     blazers.map(blazer => {
                                         
                                     return   <TabBtn
-                                    handleOnClick={ () => set_selectedBlazer(blazer)}
+                                    handleOnClick={ () => set_selectedBlazer(blazer?.id)}
                                     title={blazer?.name}
                                     descr={blazer?.description}
                                     svg_url={BASE_URL + blazer?.icon}
                                     img_class="w-10 h-auto flex-none"
                                     classes={"w-full " +  
-                                    ( selectedBlazer?.id == blazer?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                    ( selectedBlazer == blazer?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
                                  />
                                     })
                                 }

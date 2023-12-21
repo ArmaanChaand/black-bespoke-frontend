@@ -27,7 +27,7 @@ export default function Hero({backgroundImage="", slider=""}){
             >
               Custom clothing built just for you
             </ParaPrm>
-            <PrimaryBtn handleOnClick={()=>navigate("?consult_stage=info")}>BOOK AN APPOINTMENT</PrimaryBtn>
+            <PrimaryBtn handleOnClick={()=>navigate("?consult=info")}>BOOK AN APPOINTMENT</PrimaryBtn>
           </div>
         </ContainerDiv>
          {slider}

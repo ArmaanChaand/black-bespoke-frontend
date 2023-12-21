@@ -26,16 +26,14 @@ export function LocationSelect({set_loading}){
     const locations = cities?.data?.data || []
 
     // GET USER ADDRESSES
-    const {data, isLoading} = useGetCustAddrsQuery()
+    const {data, isLoading, isSuccess, isError, status} = useGetCustAddrsQuery()
+    const address_data = data?.data
     useEffect(()=>{
-      const address = data?.data
-      if(address){
-        if(address?.length){
-         set_address(address[0])
-         setCitySelected(address[0]?.city)
-        }
+      if(status == 'success'){
+         set_address(address_data)
+         setCitySelected(address_data?.city)
       }
-    }, [data])
+    }, [status])
     useEffect(()=>{
       set_loading(isLoading)
     }, [isLoading])
@@ -61,7 +59,7 @@ export function LocationSelect({set_loading}){
       onSuccess: (data) => {
         if(data?.data?.customer){
           queryClient.invalidateQueries({queryKey: ["customer"]})
-          navigate('?consult_stage=appt_select')
+          navigate('?consult=appt_select')
         }
       },
       onSettled: (data) => {
@@ -79,7 +77,7 @@ export function LocationSelect({set_loading}){
     return (
         <PopupFormWrapper
         header_text="Choose Your Preferred Location"
-        back_fn={()=>navigate("?consult_stage=info")}
+        back_fn={()=>navigate("?consult=info")}
         next_text="SAVE & NEXT"
         next_fn={handleSubmission}                            
         next_disabled={citySelected == null}

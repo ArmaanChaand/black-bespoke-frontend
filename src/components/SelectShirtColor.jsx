@@ -9,20 +9,26 @@ import { CommonContext } from "../contexts/CommonContexts";
 
 
 export function SelectShirtColor({
-    set_pictures,set_detail_id,
+    set_pictures,set_detail_id,suit
 }){
-    const [selectedShirtColor, set_selectedShirtColor] = useState(null)
+    const [selectedShirtColor, set_selectedShirtColor] = useState(suit?.shirt_color)
     const {updateSuitBuildStep} = useContext(CommonContext)
     const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/shirt-color/all/", "shirt-color")
     const shirt_colors = isSuccess ?  data?.data : []
     useEffect(()=>{
         if(!selectedShirtColor && status =="success"){
-            set_selectedShirtColor(shirt_colors[0] || {})
+            set_selectedShirtColor(shirt_colors[0]?.id || {})
         } 
+        const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
+            const selected_part = parts_list.find(part => part?.id == selectedPart_id)
+            if(selected_part){
+                set_pictures(selected_part?.pictures || [])
+                set_detail_id(selected_part?.detail || null)
+            }
+            updateSuitBuildStep(step_id, selected_part?.id)
+        }
         
-        set_pictures(selectedShirtColor?.pictures || [])
-        set_detail_id(selectedShirtColor?.detail || null)
-        updateSuitBuildStep("shirt_color", selectedShirtColor?.id)
+        update_build_stages("shirt_color", shirt_colors ,selectedShirtColor)
     }, [shirt_colors, selectedShirtColor, status])
     return(
             <div className="">
@@ -47,11 +53,11 @@ export function SelectShirtColor({
                                 {
                                     shirt_colors.map(shirt => {
                                     return  <SelectColorBtn
-                                            handleSelectFabric={ () => set_selectedShirtColor(shirt)}
+                                            handleSelectFabric={ () => set_selectedShirtColor(shirt?.id)}
                                             key={shirt.id}
                                             color={shirt.color}
                                             text={shirt.name}
-                                            isSelected={selectedShirtColor?.id == shirt?.id}
+                                            isSelected={selectedShirtColor == shirt?.id}
                                         />
                                     })
                                 }

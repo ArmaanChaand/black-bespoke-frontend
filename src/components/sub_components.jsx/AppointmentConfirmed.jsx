@@ -11,6 +11,7 @@ const appointment_type_texts = {
     "DEFAULT" : ["We've got you covered.", "---"],
     "CALLBACK" : ["We've got you covered over expert will callback to you.", "Expert Callback"],
     "CONSULTATION" : ["We've got you confirmed for your appointment.", "Garment Tailoring Consultation"],
+    "MEASUREMENT" : ["We've got your design, expert will callback to you. ", "Measurement Consultation "],
 }
 
 export function AppointmentConfirmed({set_loading}){
@@ -33,11 +34,12 @@ export function AppointmentConfirmed({set_loading}){
     }, [city_query?.isLoading])
 
     const handleGotIt = () => {
-      navigate(location.pathname)
+        console.log(location.pathname != '/suit-build/' ? location.pathname : "/")
+      navigate(location.pathname != '/suit-build/' ? location.pathname : "/")
     }
     return (
         <PopupFormWrapper
-        header_text={appointment_type_texts[appointment?.appnt_type || "DEFAULT"][0]}
+        header_text={appointment_type_texts[appointment?.appnt_type][0] || appointment_type_texts["DEFAULT"][0]}
         back_classes="hidden"
         next_text="OKAY, GOT IT"
         next_fn={handleGotIt}  

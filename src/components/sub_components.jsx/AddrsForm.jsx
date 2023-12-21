@@ -7,34 +7,39 @@ import { getCustomerId, setCustomerId } from "../../assets/js_utils/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { SecondaryBtn } from "../elements/Buttons";
+import { useGetCustAddrsQuery } from "../../queries/AddressQuery";
+import { useGetCities, useGetCity } from "../../queries/CityQuery";
+import axios from "axios";
 
 export function AddressForm({set_loading}){
     const navigate = useNavigate()
     const queryClient = useQueryClient()
     const [errors, set_errors] = useState({})
     const http = useApi()
-    const {data} = useGetCustomerQuery()
-    const customerInfo = data?.data || {}
+    const {data, isSuccess, isError, status} = useGetCustAddrsQuery()
+    
+    const address_data = isSuccess ? data?.data : {}
+    const selected_city_query = useGetCity(address_data?.city)
+    const selected_city = selected_city_query?.data?.data || {}
     const post_req = useMutation({
-      mutationFn: (data) => {
+      mutationFn: (context) => {
         set_loading(true)
         set_errors(null)
-        const customer_id = getCustomerId()
-        console.log(customer_id)
-        if(customer_id){
-          const url = "/api/user/customer/update/" + customer_id + "/"
-          return http.post(url, data)
+        if(context[0]){
+          const url = "/api/address/update/" + context[0] + "/"
+          return http.put(url, context[1])
         } else{
-          return http.post("/api/user/customer/create/", data)
+          throw new Error("some error ocurred!")
         }
       },
       onError: (error) => {
+        console.log(error?.response?.data)
         set_errors(error?.response?.data)
       },
       onSuccess: (data) => {
         if(data?.data?.id) setCustomerId(data?.data?.id)
         queryClient.invalidateQueries({ queryKey: ["customer"] })
-        navigate('?consult_stage=loc')
+        navigate('?consult=booked')
       },
       onSettled:() =>{
         set_loading(false)
@@ -44,13 +49,14 @@ export function AddressForm({set_loading}){
     const the_form = useRef()
     function handleSubmission(){
       const formData = Object.fromEntries(new FormData(the_form.current))
+      delete formData['city']
       console.log(formData)
-      // post_req.mutate(formData)
+      post_req.mutate([address_data?.id,formData])
     }
     return (
         <PopupFormWrapper
         header_text="Enter Your Address Detail"
-        back_fn={()=>navigate("?consult_stage=date_time")}
+        back_fn={()=>navigate("?consult=date_time")}
         back_text="BACK"
         next_fn={handleSubmission}                            
         next_text="BOOK CONSULTATION"
@@ -63,7 +69,7 @@ export function AddressForm({set_loading}){
         </p>
         <SecondaryBtn 
           classes="text-sm" 
-          handleOnClick={()=>navigate("?consult_stage=date_time")}
+          handleOnClick={()=>navigate("?consult=date_time")}
         >
           EDIT
         </SecondaryBtn>
@@ -79,9 +85,9 @@ export function AddressForm({set_loading}){
             placeholder="Enter your address."
             id="id_address"
             name="address"
-            // defaultValue={customerInfo?.full_name || ""}
-            // is_error={errors?.full_name}
-            // bottom_msg={errors?.full_name || ""}
+            defaultValue={address_data?.address || ""}
+            is_error={errors?.address}
+            bottom_msg={errors?.address || ""}
           />
           <TextInput
             label="Landmark"
@@ -89,9 +95,9 @@ export function AddressForm({set_loading}){
             type="text"
             name="landmark"
             id="id_landmark"
-            // defaultValue={customerInfo?.phone && customerInfo?.phone.replace("+91", "")}
-            // is_error={errors?.phone}
-            // bottom_msg={errors?.phone || ""}
+            defaultValue={address_data?.landmark || ""}
+            is_error={errors?.landmark}
+            bottom_msg={errors?.landmark || ""}
           />
           <div className="w-full grid grid-cols-2 gap-5">
             <TextInput
@@ -100,9 +106,9 @@ export function AddressForm({set_loading}){
               placeholder="56XXXX"
               id="id_pin_code"
               name="pin_code"
-              // defaultValue={customerInfo?.email || ""}
-              // is_error={errors?.email}
-              // bottom_msg={errors?.email || ""}
+              defaultValue={address_data?.pin_code || ""}
+              is_error={errors?.pin_code}
+              bottom_msg={errors?.pin_code || ""}
             />
             <TextInput
               type="text"
@@ -111,9 +117,9 @@ export function AddressForm({set_loading}){
               id="id_city"
               name="city"
               readOnly={true}
-              defaultValue={customerInfo?.email || ""}
-              // is_error={errors?.email}
-              // bottom_msg={errors?.email || ""}
+              defaultValue={selected_city.name || ""}
+              is_error={errors?.city}
+              bottom_msg={errors?.city || ""}
             />
           </div>
 

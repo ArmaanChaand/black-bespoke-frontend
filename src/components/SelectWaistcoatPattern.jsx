@@ -10,21 +10,27 @@ import { CommonContext } from "../contexts/CommonContexts";
 const BASE_URL = import.meta.env.VITE_API_HOST
 
 export function SelectWaistcoatPattern({
-    set_pictures,set_detail_id
+    set_pictures,set_detail_id, suit
 }){
     const {updateSuitBuildStep} = useContext(CommonContext)
-    const [selectedWaistcoat, set_selectedWaistcoat] = useState(null)
+    const [selectedWaistcoat, set_selectedWaistcoat] = useState(suit?.waistcoat_pattern)
     const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/waistcoat-pattern/all/", "waistcoat-pattern")
     const waistcoats = isSuccess ?  data?.data : []
     
     useEffect(()=>{
         if(!selectedWaistcoat && status =="success"){
-            set_selectedWaistcoat(waistcoats[0] || {})
+            set_selectedWaistcoat(waistcoats[0]?.id || {})
         } 
         
-        set_pictures(selectedWaistcoat?.pictures || [])
-        set_detail_id(selectedWaistcoat?.detail || null)
-        updateSuitBuildStep("waistcoat_pattern", selectedWaistcoat?.id)
+        const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
+            const selected_part = parts_list.find(part => part?.id == selectedPart_id)
+            if(selected_part){
+                set_pictures(selected_part?.pictures || [])
+                set_detail_id(selected_part?.detail || null)
+                updateSuitBuildStep(step_id, selected_part?.id)
+            }
+        }
+        update_build_stages("waistcoat_pattern", waistcoats ,selectedWaistcoat)
     }, [waistcoats, selectedWaistcoat, status])
     return(
             <div className="">
@@ -50,13 +56,13 @@ export function SelectWaistcoatPattern({
                                     waistcoats.map(waistcoat => {
                                         
                                     return   <TabBtn
-                                    handleOnClick={ () => set_selectedWaistcoat(waistcoat)}
+                                    handleOnClick={ () => set_selectedWaistcoat(waistcoat?.id)}
                                     title={waistcoat?.name}
                                     descr={waistcoat?.description}
                                     svg_url={BASE_URL + waistcoat?.icon}
                                     img_class="w-10 h-auto flex-none"
                                     classes={"w-full " +  
-                                    ( selectedWaistcoat?.id == waistcoat?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                    ( selectedWaistcoat == waistcoat?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
                                  />
                                     })
                                 }
