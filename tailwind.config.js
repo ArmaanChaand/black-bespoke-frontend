@@ -26,6 +26,8 @@ export default {
       fontFamily:{
         'theme-gilroy': ['Questrial', 'sans-serif'],
         'theme-cirka': [ 'Noto Serif', 'serif'],
+        'theme-petrona': [  'Petrona', 'serif'],
+        'theme-mulish': [  'Mulish', 'sans-serif'],
       },
     },
   },

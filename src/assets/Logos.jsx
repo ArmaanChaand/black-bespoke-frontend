@@ -5,7 +5,7 @@ export function FullSVGLogo({classes="", textSvgClasses=""}){
     const tw_classes = `flex flex-row justify-center items-center`
     return (
         <div className={tw_classes + " " + classes}>
-            <SVGWrapper classes="w-7 h-7 mr-3 fill-theme-gold" svgName="BRAND" />
+            <SVGWrapper classes="w-7 h-7 mr-3 fill-theme-gold  stroke-none" svgName="BRAND" />
             <svg xmlns="http://www.w3.org/2000/svg" className={"w-48 h-7  " + textSvgClasses} viewBox="0 0 192 16" fill="none">
                 <path d="M11.307 7.70982C12.5331 7.10287 13.4033 5.92067 13.4033 4.22414C13.4033 1.69641 11.3948 0.18026 7.79453 0.18026H0.779297V15.8219H8.24304C12.1992 15.8219 14.2345 14.279 14.2345 11.5977C14.2345 9.52091 13.0694 8.2022 11.307 7.70982ZM3.01695 1.98648H7.59709C9.87375 1.98648 11.1705 2.83961 11.1705 4.49226C11.1705 6.14492 9.87375 6.99318 7.59709 6.99318H3.01695V1.98648ZM8.15528 14.0084H3.01695V8.80427H8.15528C10.6343 8.80427 11.9749 9.60867 11.9749 11.4198C11.9749 13.226 10.6343 14.0084 8.15528 14.0084Z" fill="#D9B982"/>
                 <path d="M18.5736 13.8771V0.178116H16.3359V15.8198H27.0392V13.8771H18.5736Z" fill="#D9B982"/>

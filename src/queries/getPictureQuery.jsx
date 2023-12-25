@@ -10,7 +10,6 @@ export function useGetPictureQuery(picture_id){
             if(!picture_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/pictures/read/" + picture_id + "/")
         },
-        staleTime: 5*60*1000,
         enabled: picture_id ? true : true,
         retry: 2
     })

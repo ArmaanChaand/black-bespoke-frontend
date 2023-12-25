@@ -33,14 +33,22 @@ export function DateTimeSelect({set_loading}){
         "17:00:00", 
         "18:00:00", 
     ])
-
     // LIST APPOINTMENTS
     const appointment_query =  useCustAppntQuery()
     const appointment = appointment_query?.data?.data
     
+    
     useEffect(()=>{
         set_loading(appointment_query?.isLoading)
     }, [appointment_query?.isLoading])
+    
+    useEffect(()=>{
+        if(appointment_query?.status == 'success'){
+            // if(appointment?.date) setDate(new Date(appointment?.date))
+            if(appointment?.time) set_time_selected(appointment?.time)
+        }
+    }, [appointment_query?.status])
+
 
     // CREATE/UPDATE AN APPOINTMENT
     const book_appointment = useMutation({

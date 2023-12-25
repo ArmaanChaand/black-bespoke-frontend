@@ -12,7 +12,7 @@ export function CustomerForm({set_loading}){
     const queryClient = useQueryClient()
     const [errors, set_errors] = useState({})
     const http = useApi()
-    const {data} = useGetCustomerQuery()
+    const {data, isLoading} = useGetCustomerQuery()
     const customerInfo = data?.data || {}
     const post_req = useMutation({
       mutationFn: (data) => {
@@ -41,8 +41,8 @@ export function CustomerForm({set_loading}){
       }
     })
     useEffect(()=>{
-      set_loading(false)
-    }, [])
+      set_loading(isLoading)
+    }, [isLoading])
     const the_form = useRef()
     function handleSubmission(){
       const formData = Object.fromEntries(new FormData(the_form.current))

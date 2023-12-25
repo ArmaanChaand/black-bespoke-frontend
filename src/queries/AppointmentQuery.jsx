@@ -11,7 +11,6 @@ export function useCustAppntQuery(){
             if(!customer_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/consult/read/" + customer_id + "/")
     },
-    staleTime: 10*1000,
     enabled: getCustomerId() != null,
     retry: 1,
     })

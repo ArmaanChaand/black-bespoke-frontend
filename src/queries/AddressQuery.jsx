@@ -11,7 +11,6 @@ export function useGetCustAddrsQuery(){
             if(!customer_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/address/read/" + customer_id + '/')
     },
-    staleTime: 5*60*1000,
     enabled: getCustomerId() != null,
     })
 

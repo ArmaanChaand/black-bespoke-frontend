@@ -19,9 +19,9 @@
 
 /* ### SVGWrapper */
 .svg-wrapper{
-    @apply  inline-block 
+    @apply  inline-block w-full h-full fill-theme-white stroke-theme-white text-inherit
 }
 .svg-wrapper svg,
 .svg-wrapper svg path{
-    @apply w-full h-full text-inherit fill-inherit stroke-inherit
+    @apply w-full h-full text-inherit fill-inherit stroke-inherit 
 }

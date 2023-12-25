@@ -9,7 +9,6 @@ export function useGetSuitPartDetailQuery(detail_id){
             if(!detail_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/suit/suit-part/" + detail_id + "/")
         },
-        staleTime: 5*60*1000,
         enabled: detail_id != null,
         retry: 2
     })

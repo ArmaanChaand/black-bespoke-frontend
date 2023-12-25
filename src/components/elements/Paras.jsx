@@ -46,3 +46,24 @@ export function ParaPrm({classes="",children}){
         </p>    
     )
 }
+/**
+ * ParaSec Component
+ *
+ * This component is used to display paragraphs with specific styling and font MULISH.
+ * It utilizes the tailwind CSS classes for text styling.
+ *
+ * @param {Object} props - The properties for the component.
+ * @param {string} props.classes - Additional CSS classes to apply.
+ * @param {React.ReactNode} props.children - The content to be displayed within the paragraph.
+ *
+ * @returns {React.ReactNode} - Rendered ParaSec component.
+ */
+export function ParaPrmBeta({classes="",children}){
+    const tw_classes = `font-light text-theme-white text-base font-theme-mulish  w-fit inline-block`
+
+    return (
+        <p className={twMerge( tw_classes, classes)}>
+            {children}
+        </p>    
+    )
+}

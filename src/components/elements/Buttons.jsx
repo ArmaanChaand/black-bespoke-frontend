@@ -8,7 +8,22 @@ export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, chi
     const tw_classes = `primary-btn   `
     return (
         <button
-            className={tw_classes + " " + classes}
+            className={twMerge(tw_classes,classes)}
+            disabled={disabled}
+            onClick={handleOnClick}
+            title={title}
+            
+        >
+            <span className="sr-only">{title}</span>
+            {children}
+        </button>
+    )
+}
+export function PrimaryBtnTwo({className="",disabled=false, handleOnClick, title, children}){
+    const tw_classes = `second-primary-btn   `
+    return (
+        <button
+            className={twMerge(tw_classes,className)}
             disabled={disabled}
             onClick={handleOnClick}
             title={title}

@@ -9,7 +9,6 @@ export function useGetSuitBuildQuery(suit_id){
             if(!suit_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/suit/one/" + suit_id + "/")
     },
-    staleTime: 5*60*1000,
     enabled: suit_id != null,
     retry: 1,
     })

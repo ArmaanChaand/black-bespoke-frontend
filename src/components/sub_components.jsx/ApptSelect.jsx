@@ -63,7 +63,8 @@ export function AppointmentSelect({set_loading}){
         const customer_id = getCustomerId()
         const load_data = {
             appnt_type: "CALLBACK",
-            customer: customer_id
+            customer: customer_id,
+            suit: null,
         }
         if(customer_id){
             book_appointment.mutate(load_data)
@@ -73,7 +74,8 @@ export function AppointmentSelect({set_loading}){
         const customer_id = getCustomerId()
         const load_data = {
             appnt_type: "CONSULTATION",
-            customer: customer_id
+            customer: customer_id,
+            suit: null,
         }
         if(customer_id){
             book_appointment.mutate(load_data)
