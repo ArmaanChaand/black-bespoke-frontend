@@ -1,45 +1,53 @@
-import { ParaPrm } from "./elements/Paras";
+import { ParaPrmBeta } from "./elements/Paras";
 import { PrimaryBtnTwo } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
 import { Link, useNavigate } from "react-router-dom";
 import { FullSVGLogo } from "../assets/Logos";
+import { VideoElm } from "./elements/Videos";
 
 
 
-export default function HeroWithVideo({backgroundImage="", slider=""}){
+export default function HeroWithVideo(){
   const navigate = useNavigate()
     return (
-        <section className="bg-transparent w-screen h-screen relative">
-           <video className="absolute w-full h-full inset-0 z-0 object-cover  brightness-50 scale-x-[-1]" loop autoPlay={true} muted={true} src="/media/hero_video.mp4">
-            <source src="/media/hero_video.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-            </video>
-           {/* <img src="/media/sewing-needle.jpeg" className="absolute w-full h-full inset-0" /> */}
-        <ContainerDiv
-          classes="flex justify-center items-center h-full"
-        >
-          <div className="z-20 mb-40 sm:mb-0 mr-auto place-self-center lg:col-span-7 flex flex-col justify-start items-start">
-          <Link href="https://blackbespoke.netlify.app/" className="flex items-center">
-            <FullSVGLogo/>
-          </Link>
-            <h1 
-              className="max-w-2xl text-4xl font-medium md:text-5xl xl:text-6xl 
-              text-theme-white font-theme-petrona leading-none mb-16 mt-5"
-            >
-            The Art of <br/>Personalization
-            </h1>
-            <ParaPrm
-              classes="max-w-2xl md:text-lg lg:text-xl font-theme-mulish mb-5"
-            >
-              Bespoke suits built just for you
-            </ParaPrm>
-            <PrimaryBtnTwo 
-              // handleOnClick={()=>navigate("?consult=info")}
-            >
-            Reserve Your Slot
-            </PrimaryBtnTwo>
+        <section className="bg-transparent w-screen h-[500px] sm:h-fit relative">
+          <div className="relative after:sm:hidden after:absolute after:w-full after:h-1/2 after:bg-transparent 
+          after:-bottom-1/4 after: after:bg-gradient-to-t after:from-theme-black/10 after:via-theme-black after:to-theme-black/10 ">
+            
+            <VideoElm
+              src="/media/hero_video.mp4"
+              type="video/mp4"
+              className="static h-96 sm:h-auto sm:aspect-[1920/1080] z-0
+              "
+            />
           </div>
-        </ContainerDiv>
+          <div className="absolute z-20 w-full h-full inset-0">
+            <ContainerDiv
+              classes="flex justify-center items-center h-full  inset-0 "
+            >
+              <div className="mt-auto sm:mt-0 sm:mr-auto place-self-center lg:col-span-7 flex flex-col justify-end sm:justify-start  items-center sm:items-start">
+              <Link href="https://blackbespoke.netlify.app/" className="fixed top-0 left-1/2 py-5 sm:py-0 -translate-x-1/2 sm:translate-x-0 sm:static flex items-center">
+                <FullSVGLogo/>
+              </Link>
+                <h1 
+                  className="max-w-2xl text-4xl font-medium md:text-5xl xl:text-6xl 
+                  text-theme-white font-theme-petrona leading-none mb-8 sm:mb-16 mt-5 text-center sm:text-left"
+                >
+                The Art of <br/>Personalization
+                </h1>
+                <ParaPrmBeta
+                  className="max-w-2xl text-lg lg:text-xl mb-5"
+                >
+                  Bespoke suits built just for you
+                </ParaPrmBeta>
+                <PrimaryBtnTwo 
+                  // handleOnClick={()=>navigate("?consult=info")}
+                >
+                Reserve Your Slot
+                </PrimaryBtnTwo>
+              </div>
+            </ContainerDiv>
+          </div>
       </section>
       
     )

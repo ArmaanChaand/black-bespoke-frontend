@@ -34,6 +34,21 @@ export function PrimaryBtnTwo({className="",disabled=false, handleOnClick, title
         </button>
     )
 }
+export function PrimaryLinkBtn({className="",disabled=false, to, title, children}){
+    const tw_classes = `second-primary-btn   `
+    return (
+        <Link
+            className={twMerge(tw_classes,className)}
+            disabled={disabled}
+            to={to}
+            title={title}
+            
+        >
+            <span className="sr-only">{title}</span>
+            {children}
+        </Link>
+    )
+}
 export function SecondaryBtn({classes="",disabled=false, title, handleOnClick, children, style={}}){
     const tw_classes = `primary-btn secondary-btn   `
     return (
@@ -65,24 +80,24 @@ export function PrimaryAnchorBtn({href="", target="_self",title, classes="",disa
         </a>
     )
 }
-export function LinkAnchor({href="", target="_self", classes="", children}){
-    const tw_classes = `hover:underline text-sm   `
+export function LinkAnchor({href="", target="_self", className="", children}){
+    const tw_classes = `hover:underline text-base   `
     return (
         <a 
             href={href}
             target={target}
-            className={tw_classes + " " + classes}
+            className={twMerge(tw_classes , className)}
         >
             {children}
         </a>
     )
 }
-export function LinkBtn({href="", classes="", children}){
-    const tw_classes = `hover:underline text-sm   `
+export function LinkBtn({href="", className="", children}){
+    const tw_classes = `hover:underline text-base  font-theme-mulish `
     return (
         <Link 
             to={href}
-            className={tw_classes + " " + classes}
+            className={twMerge(tw_classes, className)}
         >
             {children}
         </Link>

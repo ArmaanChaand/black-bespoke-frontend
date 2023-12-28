@@ -4,7 +4,8 @@
     @apply bg-theme-black selection:bg-theme-gold/30 
 }
 body{
-    @apply overflow-x-hidden overflow-y-auto bg-[url(/media/bgTexture.png)] bg-contain bg-center
+    @apply overflow-x-hidden overflow-y-auto bg-[url(/media/bgTexture.png)] bg-cover bg-center
+    scroll-smooth bg-no-repeat
 }
 #root{
     @apply min-h-fit 
@@ -12,10 +13,28 @@ body{
 
 .glass_bg{
     background: linear-gradient(104deg, rgba(255, 255, 255, 0.05) 0%, rgba(223, 223, 223, 0.02) 97.8%);
+    background: -moz-linear-gradient(104deg, rgba(255, 255, 255, 0.05) 0%, rgba(223, 223, 223, 0.02) 97.8%);
+    background: -webkit-linear-gradient(104deg, rgba(255, 255, 255, 0.05) 0%, rgba(223, 223, 223, 0.02) 97.8%);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
 }
 .glass_bg_two{
     background: linear-gradient(104deg, rgba(20, 20, 20, 0.51) 0%, rgba(20, 20, 20, 0.31) 97.8%);
+    background: -moz-linear-gradient(104deg, rgba(20, 20, 20, 0.51) 0%, rgba(20, 20, 20, 0.31) 97.8%);
+    background: -webkit-linear-gradient(104deg, rgba(20, 20, 20, 0.51) 0%, rgba(20, 20, 20, 0.31) 97.8%);
     backdrop-filter: blur(10px);
+}
+
+
+.testimonialsSlider::part(container){
+    @apply overflow-visible
+}
+.testimonialsSlider::part(pagination){
+    @apply  -bottom-10 sm:hidden
+}
+.testimonialsSlider::part(bullet){
+    @apply bg-theme-gold
+}
+.testimonialsSlider::part(bullet-active){
+    @apply bg-theme-gold 
 }

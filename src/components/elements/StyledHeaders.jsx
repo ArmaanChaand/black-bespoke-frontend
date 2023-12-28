@@ -13,14 +13,29 @@ export function LinedHeader({classes="", leftLineClasses="", rightLineClasses=""
     )
 }
 export function LinedHeaderBeta({className="", leftLineClasses="", rightLineClasses="", children}){
-    const tw_classes_main = `text-theme-white font-theme-petrona font-bold text-2xl sm:text-4xl relative flex flex-row justify-center items-center gap-3 sm400:gap-4 w-full`
+    const tw_classes_main = `text-theme-white font-theme-petrona font-bold text-2xl sm:text-4xl 2xl:text-5xl relative flex flex-row justify-center items-center gap-3 sm400:gap-4 w-full`
     let gold_line = `inline-block h-0.5 w-full bg-theme-gold `
     const tw_classes_left_line = gold_line + ``
     const tw_classes_right_line = gold_line + ``
+    
     return (
         <div className={twMerge(tw_classes_main, className)}>
             <span className={twMerge(tw_classes_left_line,  leftLineClasses)}></span>
             <h2 className="flex-none">{children}</h2>
+            <span className={twMerge(tw_classes_right_line, rightLineClasses)}></span>
+        </div>
+    )
+}
+export function LinedHeaderH4({className="", leftLineClasses="", rightLineClasses="", children}){
+    const tw_classes_main = `text-theme-white font-theme-petrona font-bold text-xl sm:text-3xl 2xl:text-4xl relative flex flex-row justify-center items-center gap-3 sm400:gap-4 w-full`
+    let gold_line = `inline-block h-0.5 w-full bg-theme-gold `
+    const tw_classes_left_line = gold_line + ``
+    const tw_classes_right_line = gold_line + ``
+    
+    return (
+        <div className={twMerge(tw_classes_main, className)}>
+            <span className={twMerge(tw_classes_left_line,  leftLineClasses)}></span>
+            <h4 className="flex-none">{children}</h4>
             <span className={twMerge(tw_classes_right_line, rightLineClasses)}></span>
         </div>
     )

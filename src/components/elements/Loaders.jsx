@@ -1,3 +1,6 @@
+import { BrandTextLogo, FullSVGLogo } from "../../assets/Logos"
+import { SVGWrapper } from "./SVGWrapper"
+
 export function Spinner({className}){
     const tw_classes = `text-theme-black fill-theme-gold`
     return (
@@ -21,5 +24,17 @@ export function Spinner({className}){
             <span className="sr-only">Loading...</span>
         </div>
 
+    )
+}
+
+export function BrandLoader(){
+    return (
+        <div className="w-screen h-screen bg-theme-black/80 flex flex-col justify-center items-center gap-5">
+            <SVGWrapper classes="w-16 h-16 mr-3 fill-theme-gold  stroke-none" svgName="BRAND" />
+            <BrandTextLogo
+                classes=""
+            />
+            <span className="sr-only">Loading...</span>
+        </div>
     )
 }

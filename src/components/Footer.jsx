@@ -1,121 +1,93 @@
-import { LinkAnchor, PrimaryAnchorBtn, PrimaryBtn, SecondaryBtn } from "./elements/Buttons";
+import { LinkAnchor, LinkBtn, PrimaryAnchorBtn, PrimaryBtn, PrimaryBtnTwo, SecondaryBtn } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
-import { FullSVGLogo } from "../assets/Logos";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
+import { BrandTextLogo } from "../assets/Logos";
 import { SVGWrapper } from "./elements/SVGWrapper";
+import { Link } from "react-router-dom";
+import { ParaPrmBeta } from "./elements/Paras";
 
 export default function Footer(){
     return (
-        <footer className="w-screen py-10 sm:pb-0 bg-theme-gradient-grey text-theme-white">
-            <ContainerDiv>
-                <div className="w-full flex flex-col gap-6 sm:flex-row justify-between items-center">
-                    <SubHeader classes="w-full sm:w-fit pl-3 text-base sm:text-2xl">
-                    <WalledTexts> <span className="sm:block">Feeling Overwhelmed?</span> Get Started with Expert Help for Your Needs</WalledTexts>
-                    </SubHeader>
-                    <PrimaryBtn classes="w-full sm:w-fit">
-                    REQUEST EXPERT CALLBACK
-                    </PrimaryBtn>
-                </div>
+        <footer className="mb-0 w-screen mt-32 py-0 pb-5 bg-theme-gradient-grey text-theme-white relative">
+            <div className="absolute left-1/2 -translate-x-1/2  aspect-square rounded-full bg-black/20 flex justify-center items-center -top-8 sm:-top-12 w-16 sm:w-24">
+            <SVGWrapper classes="w-7/12 h-auto aspect-square fill-theme-gold  stroke-none" svgName="BRAND" />
+            </div>
 
-                <hr className="border-theme-gold mt-10"/>
+            <ContainerDiv>
                 <div className="bg-transparent">
-                    <div className="w-full py-12">
+                    <div className="w-full py-16">
                         <div className="md:flex md:justify-between">
-                            <div className="mb-6 md:mb-0 flex flex-col gap-10 justify-start items-start">
-                                <a href="https://blackbespoke.netlify.app/" className="flex items-center">
-                                <FullSVGLogo/>
-                                </a>
-                                <div className="flex flex-col sm400:flex-row justify-center items-center gap-4">
-                                    <PrimaryBtn classes="w-full sm400:w-fit">CREATE SUIT</PrimaryBtn>
-                                    <SecondaryBtn classes="w-full sm400:w-fit">BOOK APPOINTMENT</SecondaryBtn>
-                                </div>
-                                <div className="flex flex-row gap-5 flex-wrap fill-theme-gold">
-                                    <PrimaryAnchorBtn href="#" classes="p-2 rounded-full">
-                                       <SVGWrapper classes="w-5 h-5" svgName="IG"/>
-                                    </PrimaryAnchorBtn>
-                                    <PrimaryAnchorBtn href="#" classes="p-2 rounded-full">
-                                       <SVGWrapper classes="w-5 h-5" svgName="FB"/>
-                                    </PrimaryAnchorBtn>
-                                    <PrimaryAnchorBtn href="#" classes="p-2 rounded-full">
-                                       <SVGWrapper classes="w-5 h-5" svgName="TWITTER"/>
-                                    </PrimaryAnchorBtn>
-                                    <PrimaryAnchorBtn href="#" classes="p-2 rounded-full">
-                                       <SVGWrapper classes="w-5 h-5" svgName="GITHUB"/>
-                                    </PrimaryAnchorBtn>
+                            <div className="mb-6 md:mb-0 flex flex-col gap-8 justify-start items-start">
+                                <Link to="/" className="mx-auto my-5 sm:my-0 sm:mx-0 flex items-center">
+                                <BrandTextLogo/>
+                                </Link>
+                                <div className="hidden sm:flex flex-col gap-8 ">
+                                    <PrimaryBtnTwo>
+                                    Reserve your slot
+                                    </PrimaryBtnTwo>
+                                    <ParaPrmBeta className="flex justify-center items-center gap-2">
+                                        Made with <SVGWrapper svgName="HEART" classes="w-3 stroke-none fill-theme-gold"/> in India.
+                                    </ParaPrmBeta>
                                 </div>
                             </div>
-                            <div className="hidden sm:grid grid-cols-2 gap-8 sm:gap-6 text-sm">
-                                <div>
-                                    <ul className="flex flex-col gap-2">
-                                        <li>
-                                            <LinkAnchor>
-                                                Home
-                                            </LinkAnchor>
-                                        </li>
-                                        <li>
-                                            <LinkAnchor>
-                                                Our Story
-                                            </LinkAnchor>
-                                        </li>
-                                        <li>
-                                            <LinkAnchor>
-                                                Track Order
-                                            </LinkAnchor>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <ul className="flex flex-col gap-2">
-                                        <li>
-                                            <LinkAnchor>
-                                                Policy
-                                            </LinkAnchor>
-                                        </li>
-                                        <li>
-                                            <LinkAnchor>
-                                            Alteration Policy
-                                            </LinkAnchor>
-                                        </li>
-                                        <li>
-                                            <LinkAnchor>
-                                            Exchange & Return
-                                            </LinkAnchor>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <ul className="grid  sm:grid-cols-2 gap-5 h-fit text-sm">
+                                <li>
+                                    <LinkBtn>
+                                    Refund Policy
+                                    </LinkBtn>
+                                </li>
+                                <li>
+                                    <LinkBtn>
+                                    Alteration Policy
+                                    </LinkBtn>
+                                </li>
+                                <li>
+                                    <LinkBtn>
+                                    Shipping Policy
+                                    </LinkBtn>
+                                </li>
+                                <li>
+                                    <LinkBtn>
+                                    Exchange & Return
+                                    </LinkBtn>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <hr className="border-theme-gold"/>
-                <div className="bg-transparent text-theme-white font-theme-gilroy py-5">
-                    <div className="w-full md:flex md:items-center md:justify-between">
-                        <span className="text-sm sm:text-centers">
+                <div className="bg-transparent text-theme-white font-theme-mulish py-5">
+                    <div className="w-full flex flex-col-reverse sm:flex-row items-center justify-between gap-5">
+                        <span className="text-base sm:text-centers">
                         &copy; 2023{" "}
-                        <LinkAnchor href="https://blackbespoke.netlify.app/">
-                            Maxwell Inc
-                        </LinkAnchor>
+                        <LinkBtn href="/">
+                        Black Bespoke
+                        </LinkBtn>
                         . All Rights Reserved.
                         </span>
-                        <ul className="flex flex-wrap justify-between sm:justify-center items-center text-sm font-medium gap-3 sm:gap-5 mt-3 sm:mt-0">
-                        <li>
-                            <LinkAnchor href="#">
-                            Terms of Service
+                        <div className="w-full sm:w-fit flex flex-row-reverse sm:flex-row justify-between items-start sm:items-center gap-5">
+                            <LinkAnchor href="https://www.instagram.com" target="_blank" className="flex justify-center items-center ">
+                                <SVGWrapper svgName="IG" classes="w-5 stroke-none fill-theme-gold"/> 
                             </LinkAnchor>
-                        </li>
-                        <li>
-                            <LinkAnchor href="#">
-                            Privacy Policy
-                            </LinkAnchor>
-                        </li>
-                        <li>
-                            <LinkAnchor href="#">
-                                Cookies
-                            </LinkAnchor>
-                        </li>
-                        </ul>
+
+                            <ul className="w-fit gap-5 flex flex-col sm:flex-row flex-wrap justify-between sm:justify-center items-start sm:items-center text-sm font-medium ">
+                            <li>
+                                <LinkBtn className="mr-auto" href="#">
+                                Terms of Service
+                                </LinkBtn>
+                            </li>
+                            <li>
+                                <LinkBtn href="#">
+                                Privacy Policy
+                                </LinkBtn>
+                            </li>
+                            <li>
+                                <LinkBtn href="#">
+                                    Cookies
+                                </LinkBtn>
+                            </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
