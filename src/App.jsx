@@ -10,6 +10,7 @@ import ApptWalkthrough from "./components/pop_ups/ApptWalkthrough";
 import { PrimaryAnchorBtn, PrimaryBtnTwo } from "./components/elements/Buttons";
 import { SVGWrapper } from "./components/elements/SVGWrapper";
 import { ContainerDiv } from "./components/elements/Container";
+import Contact from "./pages/contact/Contact";
 
 const OurProcess = React.lazy(()=> import("./pages/process/Process"))
 const SuitBuild = React.lazy(()=> import("./pages/suit_build/SuitBuild"))
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/process" element={<OurProcess/>}/>
             <Route path="/suit-build" element={<SuitBuild/>}/>
+            <Route path="/contact-us" element={<Contact/>}/>
         </Routes>
       </main>
     </>

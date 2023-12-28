@@ -6,6 +6,7 @@ import { LinedHeaderBeta } from "../../components/elements/StyledHeaders";
 import { ParaPrmBeta } from "../../components/elements/Paras";
 import { ContainerDiv } from "../../components/elements/Container";
 import { FullSVGLogo } from "../../assets/Logos";
+import { Link } from "react-router-dom";
 const ProcessVideoSection = lazy(()=>import("../../components/ProcessVideoSection"))
 
 
@@ -14,7 +15,9 @@ export default function OurProcess(){
     return (
         <>
         <Header>
-        <FullSVGLogo/>
+            <Link to="/">
+                <FullSVGLogo/>
+            </Link>
         </Header>
         <div className="min-h-screen flex flex-col justify-start text-center items-center gap-16">
             <ContainerDiv className="w-fit">

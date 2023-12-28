@@ -5,9 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FullSVGLogo } from "../assets/Logos";
 import { VideoElm } from "./elements/Videos";
 
-
-
-export default function HeroWithVideo(){
+export default function HeroBeta({heading, description, cta_text, cta_fun, video_src}){
   const navigate = useNavigate()
     return (
         <section className="bg-transparent w-screen h-[500px] sm:h-fit relative">
@@ -15,8 +13,7 @@ export default function HeroWithVideo(){
           after:-bottom-1/4 after: after:bg-gradient-to-t after:from-theme-black/10 after:via-theme-black after:to-theme-black/10 ">
             
             <VideoElm
-              src="/media/hero_video.mp4"
-              type="video/mp4"
+              src={video_src}
               className="static h-96 sm:h-auto sm:aspect-[1920/1080] z-0
               "
             />
@@ -33,17 +30,17 @@ export default function HeroWithVideo(){
                   className="max-w-2xl text-4xl font-medium md:text-5xl xl:text-6xl 
                   text-theme-white font-theme-petrona leading-none mb-8 sm:mb-16 mt-5 text-center sm:text-left"
                 >
-                The Art of <br/>Personalization
+                  {heading}
                 </h1>
                 <ParaPrmBeta
-                  className="max-w-2xl text-lg lg:text-xl mb-5"
+                  className="max-w-2xl text-lg lg:text-xl mb-5 text-center sm:text-left"
                 >
-                  Bespoke suits built just for you
+                  {description}
                 </ParaPrmBeta>
                 <PrimaryBtnTwo 
-                  // handleOnClick={()=>navigate("?consult=info")}
+                  // handleOnClick={cta_fun}
                 >
-                Reserve Your Slot
+                {cta_text}
                 </PrimaryBtnTwo>
               </div>
             </ContainerDiv>

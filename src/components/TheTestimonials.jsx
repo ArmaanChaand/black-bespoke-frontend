@@ -1,4 +1,4 @@
-import { PrimaryBtnTwo } from "./elements/Buttons";
+import { PrimaryLinkBtn } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
 import { ParaPrmBeta } from "./elements/Paras";
 import { LinedHeaderBeta, SubHeaderBeta } from "./elements/StyledHeaders";
@@ -47,11 +47,11 @@ export function TheTestimonials(){
                     Still not convinced we're a good fit for one another?
                     <span className="lg:block"> Let us prove it. </span>
                     </SubHeaderBeta>
-                    <PrimaryBtnTwo
-                    
+                    <PrimaryLinkBtn
+                        to="/contact-us"
                     >
                     Let's Talk
-                    </PrimaryBtnTwo>
+                    </PrimaryLinkBtn>
                 </div>
             </ContainerDiv>
         </section>
