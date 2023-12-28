@@ -25,6 +25,11 @@ body{
     backdrop-filter: blur(10px);
 }
 
+.header_gradient{
+    @apply bg-gradient-to-b from-theme-black via-theme-black to-theme-black/10
+
+}
+
 
 .testimonialsSlider::part(container){
     @apply overflow-visible

@@ -12,6 +12,7 @@ export default {
         "sm450": "450px",
         "sm500": "500px",
         "md850": "850px",
+        "md900": "900px",
         "md950": "950px",
       },
       colors: {
