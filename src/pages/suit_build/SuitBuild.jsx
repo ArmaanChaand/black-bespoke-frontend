@@ -1,11 +1,13 @@
 import { lazy, useContext, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CommonContext } from "../../contexts/CommonContexts";
 import { Spinner } from "../../components/elements/Loaders";
 import { useGetSuitBuildQuery } from "../../queries/getSuitBuildQuery";
 import { useMutation } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
+import Header from "../../components/Header";
+import { FullSVGLogo } from "../../assets/Logos";
 
 const SuitBuildWrapper = lazy(()=>import("../../components/suit_build/SuitBuildWrapper"));
 const  SelectFabric = lazy(()=>import("../../components/suit_build/SelectFabric"));
@@ -105,6 +107,14 @@ export default function SuitBuild({}){
     
    
     return(
+        <>
+         <Header
+            btn_class="sm:hidden"
+         >
+            <Link to="/">
+                <FullSVGLogo/>
+            </Link>
+        </Header>
         <SuitBuildWrapper
             pictures={pictures}
             detail_id={detail_id}
@@ -179,5 +189,6 @@ export default function SuitBuild({}){
                 />
             }
         </SuitBuildWrapper>
+        </>
     )
 }

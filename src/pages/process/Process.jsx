@@ -6,15 +6,17 @@ import { LinedHeaderBeta } from "../../components/elements/StyledHeaders";
 import { ParaPrmBeta } from "../../components/elements/Paras";
 import { ContainerDiv } from "../../components/elements/Container";
 import { FullSVGLogo } from "../../assets/Logos";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const ProcessVideoSection = lazy(()=>import("../../components/ProcessVideoSection"))
 
 
 export default function OurProcess(){
-   
+   const navigate = useNavigate();
     return (
         <>
-        <Header>
+        <Header
+            btn_fun={()=>navigate("/suit-build/?select=fabric")}
+        >
             <Link to="/">
                 <FullSVGLogo/>
             </Link>

@@ -2,13 +2,14 @@ import { lazy, useRef, useState } from "react";
 import { TextInput } from "../elements/Inputs";
 import { useNavigate } from "react-router-dom";
 import { useGetCustomerQuery } from "../../queries/CustomerQuery";
-import { getCustomerId, setCustomerId } from "../../assets/js_utils/utils";
+import { formatDate, formatTime, getCustomerId, setCustomerId } from "../../assets/js_utils/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { SecondaryBtn } from "../elements/Buttons";
 import { useGetCustAddrsQuery } from "../../queries/AddressQuery";
 import { useGetCities, useGetCity } from "../../queries/CityQuery";
 import axios from "axios";
+import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 export default function AddressForm({set_loading}){
@@ -17,6 +18,9 @@ export default function AddressForm({set_loading}){
     const [errors, set_errors] = useState({})
     const http = useApi()
     const {data, isSuccess, isError, status} = useGetCustAddrsQuery()
+    const appointment_query = useCustAppntQuery()
+    const appointment = appointment_query.isSuccess ? appointment_query?.data?.data : {}
+    console.log(appointment)
     
     const address_data = isSuccess ? data?.data : {}
     const selected_city_query = useGetCity(address_data?.city)
@@ -64,8 +68,11 @@ export default function AddressForm({set_loading}){
     >
       <div className="w-full text-sm flex flex-row justify-between items-center gap-10 text-theme-grey-beta">
         <p>
-        Thursday, Jan 1, 2023 7:30 AM <br/>
-        Bangalore, Karnataka 
+        {/* Thursday, Jan 1, 2023 7:30 AM <br/> */}
+        {formatDate(new Date(appointment?.date || ""))} {formatTime(appointment?.time)} <br/>
+        {selected_city.name  || ""} 
+        {" "}
+        {selected_city.state  || ""} 
         </p>
         <SecondaryBtn 
           classes="text-sm" 

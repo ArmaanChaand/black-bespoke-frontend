@@ -54,9 +54,9 @@ export function LinedHeaderH4({className="", leftLineClasses="", rightLineClasse
  */
 
 export function SubHeader({classes="text-xl sm:text-2xl", children}){
-    const tw_classes = `text-theme-white font-medium font-theme-cirka` 
+    const tw_classes = `text-theme-white font-medium font-theme-cirka tracking-wider` 
     return (
-        <h3 className={tw_classes + " " + classes}>
+        <h3 className={twMerge(tw_classes, classes)}>
             {children}
         </h3>
     )

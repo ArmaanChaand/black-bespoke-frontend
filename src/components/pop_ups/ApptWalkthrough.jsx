@@ -33,8 +33,8 @@ function ApptWalkthrough({walkthroughStage}){
         }
     }, [navigation_type])
     function handleClose(){
-        
-        navigate(locaton.pathname)
+        const pathname = locaton.pathname
+        navigate(pathname.replace("suit-build/", ""))
     }
     
     return (

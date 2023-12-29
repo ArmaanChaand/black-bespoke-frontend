@@ -16,22 +16,27 @@ export function roundToNextPositiveInteger(num) {
 }
 
 export function formatDate(inputDate) {
-    // Array of weekday names
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  
-    // Array of month names
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
-    // Get the day of the week, month, and year from the Date object
-    const dayOfWeek = weekdays[inputDate.getDay()];
-    const dayOfMonth = inputDate.getDate();
-    const month = months[inputDate.getMonth()];
-    const year = inputDate.getFullYear();
-  
-    // Construct the formatted date string
-    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
-  
-    return formattedDate;
+    try{
+
+        // Array of weekday names
+        const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      
+        // Array of month names
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      
+        // Get the day of the week, month, and year from the Date object
+        const dayOfWeek = weekdays[inputDate.getDay()];
+        const dayOfMonth = inputDate.getDate();
+        const month = months[inputDate.getMonth()];
+        const year = inputDate.getFullYear();
+      
+        // Construct the formatted date string
+        const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
+      
+        return formattedDate;
+    } catch {
+        return ""
+    }
 }
 
 export function formatDatetoYYMMYY(date) {
@@ -43,17 +48,21 @@ export function formatDatetoYYMMYY(date) {
   }
 
 export function formatTime(inputTime) {
-    const [hours, minutes, seconds] = inputTime.split(":");
-    let period = "AM";
-  
-    let formattedHours = parseInt(hours, 10);
-  
-    if (formattedHours > 12) {
-      formattedHours -= 12;
-      period = "PM";
+    try{
+        const [hours, minutes, seconds] = inputTime.split(":");
+        let period = "AM";
+      
+        let formattedHours = parseInt(hours, 10);
+      
+        if (formattedHours > 12) {
+          formattedHours -= 12;
+          period = "PM";
+        }
+      
+        return `${formattedHours}:${minutes} ${period}`;
+    } catch {
+        return ""
     }
-  
-    return `${formattedHours}:${minutes} ${period}`;
   }
 
 export function encodeString(inputString) {

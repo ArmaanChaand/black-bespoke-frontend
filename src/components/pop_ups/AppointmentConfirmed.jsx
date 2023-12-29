@@ -1,18 +1,35 @@
 import { lazy, useEffect } from "react";
 import { SVGWrapper } from "../elements/SVGWrapper";
-import { SubHeader } from "../elements/StyledHeaders";
+import { SubHeader, SubHeaderBeta } from "../elements/StyledHeaders";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetCustomerQuery } from "../../queries/CustomerQuery";
 import { useGetCity } from "../../queries/CityQuery";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 import { useQueryClient } from "@tanstack/react-query";
+import ImageElm from "../elements/Images";
 const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 const appointment_type_texts = {
-    "DEFAULT" : ["We've got you covered.", "---"],
-    "CALLBACK" : ["We've got you covered over expert will callback to you.", "Expert Callback"],
-    "CONSULTATION" : ["We've got you confirmed for your appointment.", "Garment Tailoring Consultation"],
-    "MEASUREMENT" : ["We've got your design, expert will callback to you. ", "Measurement Consultation "],
+    DEFAULT:{
+        heading:"We've got you covered.",
+        consult_type: "Consultation",
+        icon: "",
+    },
+    CALLBACK:{
+        heading:"We've got you covered over expert will callback to you.",
+        consult_type: "Expert Callback",
+        icon: "/media/phone.svg",
+    },
+    CONSULTATION:{
+        heading:"We've got you confirmed for your appointment.",
+        consult_type: "Garment Tailoring Consultation",
+        icon: "/media/calender.svg",
+    },
+    MEASUREMENT:{
+        heading:"We've got your design, expert will callback to you.",
+        consult_type: "Measurement Consultation ",
+        icon: "/media/mannequin.svg",
+    },
 }
 
 export default function AppointmentConfirmed({set_loading}){
@@ -44,7 +61,7 @@ export default function AppointmentConfirmed({set_loading}){
     }, [])
     return (
         <PopupFormWrapper
-        header_text={appointment_type_texts[appointment?.appnt_type][0] || appointment_type_texts["DEFAULT"][0]}
+        header_text={appointment_type_texts[appointment?.appnt_type]?.heading || appointment_type_texts?.DEFAULT?.heading}
         back_classes="hidden"
         next_text="OKAY, GOT IT"
         next_fn={handleGotIt}  
@@ -55,14 +72,19 @@ export default function AppointmentConfirmed({set_loading}){
             
             className="w-full h-full flex flex-col justify-center items-center font-theme-cirka text-theme-white"
         >
-            <SVGWrapper svgName="PHONE" classes="w-20 fill-transparent stroke-theme-white stroke-1 mb-2"/>
-            <SubHeader classes="text-xl sm:text-2xl, uppercase">
+            <ImageElm
+                src={
+                    appointment_type_texts[appointment?.appnt_type]?.icon || appointment_type_texts?.DEFAULT?.icon
+                }
+                classes="w-20 mb-2 object-contain h-fit"
+            />
+            <SubHeader classes="text-xl font-semibold sm:text-2xl uppercase font-theme-gilroy ">
                 #{appointment?.identifier}
             </SubHeader>
             <p className="mt-1 text-theme-grey-beta text-base font-theme-gilroy">
-            {appointment_type_texts[appointment?.appnt_type || "DEFAULT"][1]}
+            {appointment_type_texts[appointment?.appnt_type]?.consult_type || appointment_type_texts?.DEFAULT?.consult_type}
             </p>
-            <p className="mt-4 mb-1">{customer_data?.full_name || "---"}, {customer_data?.phone || "---"}</p>
+            <p className="mt-4 mb-1">{customer_data?.full_name || ""}, {customer_data?.phone || ""}</p>
             <p className=""> {city_selected?.name} {city_selected?.state && ","} {city_selected?.state}</p>
 
         </div>

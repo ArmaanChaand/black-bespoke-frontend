@@ -4,6 +4,7 @@ import { SVGWrapper } from "./elements/SVGWrapper";
 import { NavLinkBtn, PrimaryBtnTwo, SecondaryBtn } from "./elements/Buttons";
 import { useContext } from "react";
 import { CommonContext } from "../contexts/CommonContexts";
+import { twMerge } from "tailwind-merge";
 
 // export default function Header(){
 //     const {setShowSidebar} = useContext(CommonContext)
@@ -37,15 +38,15 @@ import { CommonContext } from "../contexts/CommonContexts";
 //         </header>
 //     )
 // }
-export default function Header({btn_text="Build your suit", btn_fun, children}){
+export default function Header({btn_text="Build your suit", btn_fun, btn_class="", children}){
     return (
         <header className="header_gradient fixed top-0 z-50 w-full">
             <ContainerDiv
-            classes="mx-auto flex justify-center items-center pt-8 "
+            classes="mx-auto flex justify-between items-center pt-8 "
             >
                 {children}
                 <PrimaryBtnTwo
-                className="ml-auto hidden sm:inline-flex"
+                className={twMerge("ml-auto hidden sm:inline-flex ",btn_class)}
                 title={btn_text}
                 handleOnClick={btn_fun}
                 >
