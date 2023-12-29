@@ -1,12 +1,11 @@
 import { ParaPrmBeta } from "./elements/Paras";
 import { PrimaryBtnTwo } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FullSVGLogo } from "../assets/Logos";
 import { VideoElm } from "./elements/Videos";
 
 export default function HeroBeta({heading, description, cta_text, cta_fun, video_src}){
-  const navigate = useNavigate()
     return (
         <section className="bg-transparent w-screen h-[500px] sm:h-fit relative">
           <div className="relative after:sm:hidden after:absolute after:w-full after:h-1/2 after:bg-transparent 

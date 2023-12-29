@@ -1,7 +1,4 @@
 import { lazy } from "react";
-import { TheProcessHome } from "../../components/TheProcessHome";
-import { TheStoryHome } from "../../components/TheStoryHome";
-import { TheTestimonials } from "../../components/TheTestimonials";
 import { ContainerDiv } from "../../components/elements/Container";
 import { ParaPrmBeta } from "../../components/elements/Paras";
 import { LinedHeaderBeta } from "../../components/elements/StyledHeaders";
