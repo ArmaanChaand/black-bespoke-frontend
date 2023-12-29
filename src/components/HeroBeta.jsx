@@ -1,21 +1,23 @@
+import { Suspense, lazy } from "react";
 import { ParaPrmBeta } from "./elements/Paras";
 import { PrimaryBtnTwo } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
 import { Link } from "react-router-dom";
 import { FullSVGLogo } from "../assets/Logos";
-import { VideoElm } from "./elements/Videos";
+const VideoElm  = lazy(()=>import("./elements/Videos"))
 
 export default function HeroBeta({heading, description, cta_text, cta_fun, video_src}){
     return (
         <section className="bg-transparent w-screen h-[500px] sm:h-fit relative">
           <div className="relative after:sm:hidden after:absolute after:w-full after:h-1/2 after:bg-transparent 
           after:-bottom-1/4 after: after:bg-gradient-to-t after:from-theme-black/10 after:via-theme-black after:to-theme-black/10 ">
-            
-            <VideoElm
-              src={video_src}
-              className="static h-96 sm:h-auto sm:aspect-[1920/1080] z-0
-              "
-            />
+             <Suspense fallback={<div>Loading ...</div>}>
+                <VideoElm
+                  src={video_src}
+                  className="static h-96 sm:h-auto sm:aspect-[1920/1080] z-0
+                  "
+                />
+              </Suspense>
           </div>
           <div className="absolute z-20 w-full h-full inset-0">
             <ContainerDiv

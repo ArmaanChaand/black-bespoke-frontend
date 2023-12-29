@@ -1,20 +1,22 @@
+import { Suspense, lazy } from "react";
 import { PrimaryBtnTwo } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
 import { ParaPrmBeta } from "./elements/Paras";
 import { SVGWrapper } from "./elements/SVGWrapper";
 import { SubHeaderBeta } from "./elements/StyledHeaders";
-import { VideoElm } from "./elements/Videos";
+const VideoElm  = lazy(()=>import("./elements/Videos"))
 
 export function TheStoryHome() {
     return (
         <section className="w-screen h-fit my-16 2xl:my-20">
             <ContainerDiv classes="relative min-h-screen rounded-xl overflow-hidden">
-
-                <VideoElm
-                    src="/media/discussion.mov" type="video/mov"
-                    className="static h-screen "
-                    // md:aspect-[1920/1080] md:h-auto
-                />
+                <Suspense fallback={<div>Loading ...</div>}>
+                    <VideoElm
+                        src="/media/discussion.mov" type="video/mov"
+                        className="static h-screen "
+                        // md:aspect-[1920/1080] md:h-auto
+                    />
+                </Suspense>
                 <div className="absolute w-full h-full inset-0 z-10 flex flex-col justify-start text-center sm:items-start p-5 sm:p-10 2xl:p-16">
                     <h1
                         className="max-w-2xl text-3xl font-medium md:text-4xl xl:text-5xl 

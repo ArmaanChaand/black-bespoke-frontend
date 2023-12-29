@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { LinkIconTextArrowBtn, SecondaryBtn } from "./elements/Buttons"
-import { ImageElm } from "./elements/Images"
 import { SVGWrapper } from "./elements/SVGWrapper"
 
 

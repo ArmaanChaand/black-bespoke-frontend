@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { ContainerDiv } from "../../components/elements/Container";
 import { ParaPrmBeta } from "../../components/elements/Paras";
 import { LinedHeaderBeta } from "../../components/elements/StyledHeaders";
@@ -8,7 +8,6 @@ const Header = lazy(() => import("../../components/Header"))
 const HeroBeta = lazy(() => import("../../components/HeroBeta"))
 
 export default function Contact() {
-
     return (
         <>
             <Header

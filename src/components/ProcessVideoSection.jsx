@@ -1,7 +1,8 @@
+import { Suspense, lazy } from "react";
 import { twMerge } from "tailwind-merge";
 import { ParaPrmBeta } from "./elements/Paras";
 import { LinedHeaderH4 } from "./elements/StyledHeaders";
-import { VideoElm } from "./elements/Videos";
+const VideoElm  = lazy(()=>import("./elements/Videos"))
 
 export default function ProcessVideoSection({className, serial, title, content, video_src, video_type}){
 
@@ -22,11 +23,13 @@ export default function ProcessVideoSection({className, serial, title, content, 
                     </div>
             </div>
             <div className="aspect-[3/2] w-full flex-1 flex-shrink-0 bg-theme-black/50">
-                <VideoElm
-                    src={video_src}
-                    type={video_type}
-                    className="brightness-75"
-                />
+                <Suspense fallback={<div>Loading ...</div>}>
+                    <VideoElm
+                        src={video_src}
+                        type={video_type}
+                        className="brightness-75"
+                    />
+                </Suspense>
             </div>
         </section>
     )

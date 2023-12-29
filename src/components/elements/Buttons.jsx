@@ -2,7 +2,7 @@ import "../../css/sub_components.css";
 import { Link, NavLink } from "react-router-dom";
 import { SVGWrapper } from "./SVGWrapper";
 import { twMerge } from "tailwind-merge";
-import { ImageElm } from "./Images";
+import  ImageElm  from "./Images";
 
 export function PrimaryBtn({classes="",disabled=false, handleOnClick, title, children}){
     const tw_classes = `primary-btn   `

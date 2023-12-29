@@ -1,17 +1,18 @@
 import { PrimaryBtnTwo, PrimaryLinkBtn } from "./elements/Buttons";
 import { ContainerDiv } from "./elements/Container";
-import { ImageElm } from "./elements/Images";
+import  ImageElm  from "./elements/Images";
 import { ParaPrmBeta } from "./elements/Paras";
 import { LinedHeaderBeta } from "./elements/StyledHeaders";
 
 export function TheProcessHome(){
     return(
         <section className="w-screen h-fit my-16 2xl:my-20 mb-72 sm:mb-16 2xl:mb-20 relative">
-            <ContainerDiv classes="grid sm:grid-cols-2 gap-5">
-                <div className="h-full 2xl:h-96 rounded-lg overflow-hidden 
+            <ContainerDiv classes="grid sm:grid-cols-2 gap-5 sm:h-72 2xl:h-96">
+                <div className="h-full  rounded-lg overflow-hidden 
                 w-auto flex-1 flex-shrink-none">
                     <ImageElm
                         src="/media/the_process.png"
+                        // src="/media/test.jpg"
                         alt="The Process"
                         classes="absolute top-[90%] left-0 sm:static"
                     />
