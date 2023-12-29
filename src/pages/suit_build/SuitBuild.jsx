@@ -1,19 +1,20 @@
-import { useContext, useEffect, useState } from "react";
-import { SelectFabric } from "../../components/SelectFabric";
-import SuitBuildWrapper from "../../components/SuitBuildWrapper";
+import { lazy, useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { SelectBlazerPattern } from "../../components/SelectBlazerPattern";
 import { CommonContext } from "../../contexts/CommonContexts";
-import { SelectWaistcoatPattern } from "../../components/SelectWaistcoatPattern";
-import { SelectWaistcoatLapel } from "../../components/SelectWaistcoatLapel";
-import { SelectPantStyle } from "../../components/SelectPantStyle";
-import { SelectShirtColor } from "../../components/SelectShirtColor";
-import { Monogram } from "../../components/Monogramming";
 import { Spinner } from "../../components/elements/Loaders";
 import { useGetSuitBuildQuery } from "../../queries/getSuitBuildQuery";
 import { useMutation } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
+
+const SuitBuildWrapper = lazy(()=>import("../../components/suit_build/SuitBuildWrapper"));
+const  SelectFabric = lazy(()=>import("../../components/suit_build/SelectFabric"));
+const  Monogram = lazy(()=>import("../../components/suit_build/Monogramming"));
+const  SelectBlazerPattern = lazy(()=>import( "../../components/suit_build/SelectBlazerPattern"));
+const  SelectWaistcoatPattern = lazy(()=>import("../../components/suit_build/SelectWaistcoatPattern"));
+const  SelectWaistcoatLapel = lazy(()=>import("../../components/suit_build/SelectWaistcoatLapel"));
+const  SelectPantStyle = lazy(()=>import("../../components/suit_build/SelectPantStyle")); 
+const  SelectShirtColor = lazy(()=>import("../../components/suit_build/SelectShirtColor")); 
 
 
 
@@ -35,6 +36,12 @@ export default function SuitBuild({}){
             navigate('?consult=info')
         } 
     }, [suitBuildSteps])
+    useEffect(()=>{
+        const appnt_type = appointment?.appnt_type;
+        if(!appnt_type || appnt_type !== 'MESUREMENT'){
+            console.log(appnt_type)
+        }
+    }, [appointment_query?.status])
     const {data, isLoading, isError, isSuccess} = useGetSuitBuildQuery(appointment?.suit)
     const suit_data = isSuccess ? data?.data : {}
     const updateSuitBuild_mutation = useMutation({
@@ -49,7 +56,6 @@ export default function SuitBuild({}){
         }
     })
     const goToNext = () => {
-        console.log(appointment?.appnt_type)
         const current_index = steps.indexOf(select_stage)
         if(current_index !== -1){
             if(current_index != (steps.length -1) ){
@@ -63,8 +69,9 @@ export default function SuitBuild({}){
     }
 
     const handleNext = () => {
-        if(!appointment || !appointment["suit"] || !appointment['appnt_type'] == 'MEASUREMENT'){
+        if(!appointment || !appointment["suit"] || appointment['appnt_type'] != 'MEASUREMENT'){
             navigate('?consult=info')
+            return
         }
         const update_suit_data = transformSuitBuildStepToObject()
         if(select_stage == "shirt_color"){

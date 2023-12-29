@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { SelectBtn } from "./elements/Buttons";
-import { Spinner } from "./elements/Loaders";
-import { ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import { useGetSuitPartQuery } from "../queries/getSuitPartQuery";
-import { CommonContext } from "../contexts/CommonContexts";
+import { SelectBtn } from "../elements/Buttons";
+import { Spinner } from "../elements/Loaders";
+import { ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+import { useGetSuitPartQuery } from "../../queries/getSuitPartQuery";
+import { CommonContext } from "../../contexts/CommonContexts";
 
 const BASE_URL = import.meta.env.VITE_API_HOST
 
-export function SelectFabric({
+export default function SelectFabric({
     set_pictures,set_detail_id,suit
 }){
     const [selectedFabric, set_selectedFabric] = useState(suit?.fabric)

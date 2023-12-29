@@ -12,7 +12,8 @@ export function useCustAppntQuery(){
             return http.get("/api/consult/read/" + customer_id + "/")
     },
     enabled: getCustomerId() != null,
-    retry: 1,
+    retry: 2,
+    staleTime: 5*60*1000,
     })
 
     return QUERY

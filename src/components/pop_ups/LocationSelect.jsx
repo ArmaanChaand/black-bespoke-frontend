@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { PopupFormWrapper } from "./PopupFormWrapper";
+import { lazy, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StyledRadioLoc } from "../elements/Inputs";
 import { CommonContext } from "../../contexts/CommonContexts";
@@ -8,10 +7,11 @@ import { useGetCities } from "../../queries/CityQuery";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { getCustomerId } from "../../assets/js_utils/utils";
+const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 const CDN_HOST = import.meta.env.VITE_CDN_HOST
 
-export function LocationSelect({set_loading}){
+export default function LocationSelect({set_loading}){
     const navigate = useNavigate()
     const http = useApi()
     const queryClient = useQueryClient()
@@ -29,7 +29,6 @@ export function LocationSelect({set_loading}){
     const {data, isLoading, isSuccess, isError, status} = useGetCustAddrsQuery()
     const address_data = data?.data
     useEffect(()=>{
-      console.log(address_data)
       if(status == 'success'){
          set_address(address_data)
          setCitySelected(address_data?.city)

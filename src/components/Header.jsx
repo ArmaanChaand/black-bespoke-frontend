@@ -37,7 +37,7 @@ import { CommonContext } from "../contexts/CommonContexts";
 //         </header>
 //     )
 // }
-export default function Header({btn_text="Build your suit", children}){
+export default function Header({btn_text="Build your suit", btn_fun, children}){
     return (
         <header className="header_gradient fixed top-0 z-50 w-full">
             <ContainerDiv
@@ -47,6 +47,7 @@ export default function Header({btn_text="Build your suit", children}){
                 <PrimaryBtnTwo
                 className="ml-auto hidden sm:inline-flex"
                 title={btn_text}
+                handleOnClick={btn_fun}
                 >
                 {btn_text}
                 </PrimaryBtnTwo>

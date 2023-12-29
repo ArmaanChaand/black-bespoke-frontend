@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { SelectBtn, SelectColorBtn } from "./elements/Buttons";
-import { Spinner } from "./elements/Loaders";
-import { ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import { useGetSuitPartQuery } from "../queries/getSuitPartQuery";
-import { CommonContext } from "../contexts/CommonContexts";
+import { SelectBtn, SelectColorBtn } from "../elements/Buttons";
+import { Spinner } from "../elements/Loaders";
+import { ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+import { useGetSuitPartQuery } from "../../queries/getSuitPartQuery";
+import { CommonContext } from "../../contexts/CommonContexts";
 
 
-export function SelectShirtColor({
+export default function SelectShirtColor({
     set_pictures,set_detail_id,suit
 }){
     const [selectedShirtColor, set_selectedShirtColor] = useState(suit?.shirt_color)

@@ -4,14 +4,13 @@ import { SecondaryBtn, TabBtn } from "../elements/Buttons";
 import { SVGWrapper } from "../elements/SVGWrapper";
 import { SubHeader } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
-import { PopupFormWrapper } from "./PopupFormWrapper";
 import { useNavigate } from "react-router-dom";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
-import { useContext, useEffect } from "react";
+import { lazy, useContext, useEffect } from "react";
 import { CommonContext } from "../../contexts/CommonContexts";
 import { useApi } from "../../assets/axios/useApi";
-
-export function AppointmentSelect({set_loading}){
+const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
+export default function AppointmentSelect({set_loading}){
     const navigate = useNavigate()
     const queryClient = useQueryClient()
     const http = useApi()

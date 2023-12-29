@@ -1,17 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import "../../css/sub_components.css";
+import { lazy, useEffect, useState } from "react";
 import { SecondaryBtn } from "../elements/Buttons";
 import { DatePickerCustom } from "../elements/DatePicker";
-import { PopupFormWrapper } from "./PopupFormWrapper";
 import { useNavigate } from "react-router-dom";
-import "../../css/sub_components.css";
-import { formatDate, formatDatetoYYMMYY, formatTime, getCustomerId } from "../../assets/js_utils/utils";
+import { formatDate, formatDatetoYYMMYY, formatTime } from "../../assets/js_utils/utils";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
-import { CommonContext } from "../../contexts/CommonContexts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
+const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 
-export function DateTimeSelect({set_loading}){
+export default function DateTimeSelect({set_loading}){
     const queryClient = useQueryClient()
     const navigate = useNavigate()
     const http = useApi()

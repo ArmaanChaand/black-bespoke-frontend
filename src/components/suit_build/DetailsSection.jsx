@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { PrimaryBtn, SecondaryBtn } from "../elements/Buttons";
 import { ContainerDiv } from "../elements/Container";
 import { SVGWrapper } from "../elements/SVGWrapper";
-import { DetailOne } from "../elements/SuitPartDetails";
 import { twMerge } from "tailwind-merge";
 import { useGetSuitPartDetailQuery } from "../../queries/getSuitPartDetail";
+const  DetailOne = lazy(()=>import("./SuitPartDetails"));
 
 const currencies = {
     "INR": "₹",

@@ -11,7 +11,8 @@ export function useGetCustomerQuery(){
             if(!customer_id) return Promise.reject("Some error ocurred!")
             return http.get("/api/user/customer/read/" + customer_id + "/")
         },
-        enabled: getCustomerId() != null
+        enabled: getCustomerId() != null,
+        refetchInterval:1000,
     })
 
     return QUERY

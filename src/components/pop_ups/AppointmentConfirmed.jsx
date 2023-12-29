@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { SVGWrapper } from "../elements/SVGWrapper";
 import { SubHeader } from "../elements/StyledHeaders";
-import { PopupFormWrapper } from "./PopupFormWrapper";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetCustomerQuery } from "../../queries/CustomerQuery";
 import { useGetCity } from "../../queries/CityQuery";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 import { useQueryClient } from "@tanstack/react-query";
+const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 const appointment_type_texts = {
     "DEFAULT" : ["We've got you covered.", "---"],
@@ -15,7 +15,7 @@ const appointment_type_texts = {
     "MEASUREMENT" : ["We've got your design, expert will callback to you. ", "Measurement Consultation "],
 }
 
-export function AppointmentConfirmed({set_loading}){
+export default function AppointmentConfirmed({set_loading}){
     const queryClient = useQueryClient()
     const navigate = useNavigate()
     const location = useLocation()

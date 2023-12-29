@@ -1,27 +1,26 @@
 import { useContext, useEffect, useState } from "react";
-import { TabBtn } from "./elements/Buttons";
-import { Spinner } from "./elements/Loaders";
-import { ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import { useGetSuitPartQuery } from "../queries/getSuitPartQuery";
-import { CommonContext } from "../contexts/CommonContexts";
+import { TabBtn } from "../elements/Buttons";
+import { Spinner } from "../elements/Loaders";
+import { ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+import { useGetSuitPartQuery } from "../../queries/getSuitPartQuery";
+import { CommonContext } from "../../contexts/CommonContexts";
 
 const BASE_URL = import.meta.env.VITE_API_HOST
 
-export function SelectWaistcoatPattern({
+export default function SelectWaistcoatLapel({
     set_pictures,set_detail_id, suit
 }){
     const {updateSuitBuildStep} = useContext(CommonContext)
-    const [selectedWaistcoat, set_selectedWaistcoat] = useState(suit?.waistcoat_pattern)
-    const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/waistcoat-pattern/all/", "waistcoat-pattern")
-    const waistcoats = isSuccess ?  data?.data : []
+    const [selectedWaistcoatLapel, set_selectedWaistcoatLapel] = useState(suit?.waistcoat_lapel)
+    const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/waistcoat-lapel/all/", "waistcoat-lapel")
+    const lapels = isSuccess ?  data?.data : []
     
     useEffect(()=>{
-        if(!selectedWaistcoat && status =="success"){
-            set_selectedWaistcoat(waistcoats[0]?.id || {})
+        if(!selectedWaistcoatLapel && status =="success"){
+            set_selectedWaistcoatLapel(lapels[0]?.id || {})
         } 
-        
         const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
             const selected_part = parts_list.find(part => part?.id == selectedPart_id)
             if(selected_part){
@@ -30,8 +29,8 @@ export function SelectWaistcoatPattern({
                 updateSuitBuildStep(step_id, selected_part?.id)
             }
         }
-        update_build_stages("waistcoat_pattern", waistcoats ,selectedWaistcoat)
-    }, [waistcoats, selectedWaistcoat, status])
+        update_build_stages("waistcoat_lapel", lapels, selectedWaistcoatLapel)
+    }, [lapels, selectedWaistcoatLapel, status])
     return(
             <div className="">
                 <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
@@ -53,35 +52,26 @@ export function SelectWaistcoatPattern({
                             isSuccess && !isLoading &&
                             <div className="w-full grid grid-cols-1 gap-5 mt-10">
                                 {
-                                    waistcoats.map(waistcoat => {
+                                    lapels.map(lapel => {
                                         
                                     return   <TabBtn
-                                    handleOnClick={ () => set_selectedWaistcoat(waistcoat?.id)}
-                                    title={waistcoat?.name}
-                                    descr={waistcoat?.description}
-                                    svg_url={BASE_URL + waistcoat?.icon}
+                                    handleOnClick={ () => set_selectedWaistcoatLapel(lapel?.id)}
+                                    title={lapel?.name}
+                                    descr={lapel?.description}
+                                    svg_url={BASE_URL + lapel?.icon}
                                     img_class="w-10 h-auto flex-none"
                                     classes={"w-full " +  
-                                    ( selectedWaistcoat == waistcoat?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                    ( selectedWaistcoatLapel == lapel?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
                                  />
                                     })
                                 }
-                                <TabBtn
-                                    handleOnClick={ () => set_selectedWaistcoat("no-waistcoat")}
-                                    title="No Waistcoat"
-                                    descr="I already have a waistcoat and don't want Black Bespoke to include another waistcoat."
-                                    img_class="hidden"
-                                    text_class="text-center items-center w-10/12 mx-auto"
-                                    classes={"w-full " +  
-                                    ( selectedWaistcoat == "no-waistcoat" ? "bg-theme-gold/5 border-theme-gold" : "")}
-                                 />
 
                             </div>
                         }
                         {
                             isError &&
                             <p className="text-red-600 font-mono text-center text-sm px-5">
-                                Oops! We couldn't fetch <br/> the waistcoats right now. 
+                                Oops! We couldn't fetch <br/> the lapels right now. 
                                 <br/>
                                 Please{" "}
                                 <button 

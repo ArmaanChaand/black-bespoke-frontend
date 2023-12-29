@@ -1,10 +1,12 @@
-import { SuitPartGallery } from "./SuitPartGallery";
-import { ContainerDiv } from "./elements/Container";
-import { ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import DetailsSection from "./sub_components.jsx/DetailsSection";
-import { SuitBuildSteps } from "./sub_components.jsx/SuitBuildSteps";
+import { lazy } from "react";
+import { ContainerDiv } from "../elements/Container";
+import { ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+
+const SuitBuildSteps = lazy(()=>import("./SuitBuildSteps"))
+const SuitPartGallery = lazy(()=>import("./SuitPartGallery"))
+const DetailsSection = lazy(()=>import("./DetailsSection"))
 
 export default function SuitBuildWrapper({
    children, detail_id, pictures, next_fn,back_fn,select_stage

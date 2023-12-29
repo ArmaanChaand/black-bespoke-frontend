@@ -14,7 +14,7 @@ export default function HeroBeta({heading, description, cta_text, cta_fun, video
              <Suspense fallback={<div>Loading ...</div>}>
                 <VideoElm
                   src={video_src}
-                  className="static h-96 sm:h-auto sm:aspect-[1920/1080] z-0
+                  className="static h-96 sm:h-screen z-0
                   "
                 />
               </Suspense>
@@ -39,7 +39,7 @@ export default function HeroBeta({heading, description, cta_text, cta_fun, video
                   {description}
                 </ParaPrmBeta>
                 <PrimaryBtnTwo 
-                  // handleOnClick={cta_fun}
+                  handleOnClick={cta_fun}
                 >
                 {cta_text}
                 </PrimaryBtnTwo>

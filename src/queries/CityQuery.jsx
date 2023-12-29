@@ -24,7 +24,8 @@ export function useGetCity(city_id="undefined"){
                 return http.get("/api/city/read/" + city_id)
             }
     },
-    enabled: city_id != "undefined"
+    enabled: city_id != "undefined",
+    staleTime: 5*60*1000,
     })
 
     return QUERY

@@ -10,7 +10,8 @@ export function useGetSuitPartDetailQuery(detail_id){
             return http.get("/api/suit/suit-part/" + detail_id + "/")
         },
         enabled: detail_id != null,
-        retry: 2
+        retry: 2,
+        staleTime: 5*60*1000,
     })
 
     return QUERY

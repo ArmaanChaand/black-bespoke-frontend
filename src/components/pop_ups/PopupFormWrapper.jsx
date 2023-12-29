@@ -4,7 +4,7 @@ import { SecondaryBtn } from "../elements/Buttons"
 import { SVGWrapper } from "../elements/SVGWrapper" 
 import { PrimaryBtn } from "../elements/Buttons"
 
-export function PopupFormWrapper({
+export default function PopupFormWrapper({
     header_text="Black Bespoke", children, 
     back_fn, back_classes="w-full sm400:w-fit", back_text="BACK", 
     next_fn, next_text="NEXT", next_classes="w-full sm400:w-fit", next_disabled=false,

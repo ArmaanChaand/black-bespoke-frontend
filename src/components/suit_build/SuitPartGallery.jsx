@@ -1,10 +1,10 @@
-import { useEffect } from "react"
-import { useGetPictureQuery } from "../queries/getPictureQuery"
-import { ImageElm } from "./elements/Images"
+import { lazy, useEffect } from "react"
+import { useGetPictureQuery } from "../../queries/getPictureQuery"
+const  ImageElm = lazy(()=> import("../elements/Images"))
 
 const BASE_URL = import.meta.env.VITE_CDN_HOST
 
-export function SuitPartGallery({pictures, select_stage}){
+export default function SuitPartGallery({pictures, select_stage}){
     const {data, isLoading, isError, isSuccess, refetch, status} = useGetPictureQuery(pictures[0])
     useEffect(()=>{
         if(pictures[0]){

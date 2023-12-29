@@ -12,6 +12,7 @@ export function useGetCustAddrsQuery(){
             return http.get("/api/address/read/" + customer_id + '/')
     },
     enabled: getCustomerId() != null,
+    staleTime: 5*60*1000,
     })
 
     return QUERY

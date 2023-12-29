@@ -5,11 +5,10 @@ import React from "react";
 import {register} from "swiper/element/bundle";
 import { useContext } from "react";
 import { CommonContext } from "./contexts/CommonContexts";
-import ApptWalkthrough from "./components/pop_ups/ApptWalkthrough";
 import { PrimaryAnchorBtn } from "./components/elements/Buttons";
 import { SVGWrapper } from "./components/elements/SVGWrapper";
 
-// import Sidebar from "./components/Sidebar";
+const ApptWalkthrough = React.lazy(()=>import("./components/pop_ups/ApptWalkthrough"));
 const Sidebar = React.lazy(()=> import("./components/Sidebar"))
 const OurProcess = React.lazy(()=> import("./pages/process/Process"))
 const SuitBuild = React.lazy(()=> import("./pages/suit_build/SuitBuild"))

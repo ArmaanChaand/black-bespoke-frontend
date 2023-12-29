@@ -1,9 +1,9 @@
-import { SuitBuildStep } from "../elements/Steps";
 import { useContext } from "react";
 import { CommonContext } from "../../contexts/CommonContexts";
 import { useSearchParams } from "react-router-dom";
+import { SuitBuildStep } from "../elements/Steps";
 
-export function SuitBuildSteps(){
+export default function SuitBuildSteps(){
     const {suitBuildSteps} = useContext(CommonContext)
     const [suit_build_params, set_suit_build_stage] = useSearchParams()
     const select_stage = suit_build_params.get("select")

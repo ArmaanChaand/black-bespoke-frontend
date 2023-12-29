@@ -1,16 +1,25 @@
+import { Suspense, lazy,useEffect, useState } from "react"
 import { useLocation, useNavigate, useNavigationType } from "react-router-dom"
 import { FullLogoSlogan } from "../../assets/Logos"
 import {withHiddenVertScrollbar} from "../HOCs/SwitchOffScrolling"
 import { PrimaryBtn } from "../elements/Buttons"
 import { SVGWrapper } from "../elements/SVGWrapper"
-import { CustomerForm } from "../sub_components.jsx/CustForm"
-import { LocationSelect } from "../sub_components.jsx/LocationSelect"
-import { AppointmentSelect } from "../sub_components.jsx/ApptSelect"
-import { AppointmentConfirmed } from "../sub_components.jsx/AppointmentConfirmed"
-import { DateTimeSelect } from "../sub_components.jsx/DateTimeSelect"
 import { Spinner } from "../elements/Loaders"
-import { useEffect, useState } from "react"
-import { AddressForm } from "../sub_components.jsx/AddrsForm"
+const CustomerForm = lazy(()=>import("./CustForm"))
+const LocationSelect = lazy(()=>import("./LocationSelect"))
+const AppointmentSelect = lazy(()=>import("./ApptSelect"))
+const AppointmentConfirmed = lazy(()=>import("./AppointmentConfirmed"))
+const AddressForm = lazy(()=>import("./AddrsForm")) 
+const DateTimeSelect = lazy(()=>import("./DateTimeSelect")) 
+
+function AppntLoader(){
+    return (
+        <div className="w-full h-full flex justify-center items-center 
+            cursor-wait absolute inset-0 bg-black/50 z-10">
+            <Spinner/>
+        </div>
+    )
+}
 
 function ApptWalkthrough({walkthroughStage}){
     const locaton = useLocation()
@@ -53,20 +62,21 @@ function ApptWalkthrough({walkthroughStage}){
                 </div>
                 <div className="bg-theme-gradient-grey w-full h-fit sm:h-full relative">
                 {loading &&
-                    <div className="w-full h-full flex justify-center items-center 
-                    cursor-wait absolute inset-0 bg-black/50 z-10">
-                    <Spinner/>
-                    </div>
+                    <AppntLoader/>
                 }
                     {walkthroughStage == "info" && 
+                    <Suspense fallback={<AppntLoader/>}>
                         <CustomerForm
                         set_loading={set_loading}
                         />
+                    </Suspense>
                     }
                     {walkthroughStage == "loc" && 
-                        <LocationSelect 
+                        <Suspense fallback={<AppntLoader/>}>
+                            <LocationSelect 
                         set_loading={set_loading}
                         />
+                        </Suspense>
                     }
                     {walkthroughStage == "appt_select" && 
                         <AppointmentSelect

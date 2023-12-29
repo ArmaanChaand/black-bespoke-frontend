@@ -1,41 +1,41 @@
 import { useContext, useEffect, useState } from "react";
-import { TabBtn } from "./elements/Buttons";
-import { Spinner } from "./elements/Loaders";
-import { ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import { useGetSuitPartQuery } from "../queries/getSuitPartQuery";
-import { CommonContext } from "../contexts/CommonContexts";
+import { TabBtn } from "../elements/Buttons";
+import { Spinner } from "../elements/Loaders";
+import { ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+import { useGetSuitPartQuery } from "../../queries/getSuitPartQuery";
+import { CommonContext } from "../../contexts/CommonContexts";
 
 const BASE_URL = import.meta.env.VITE_API_HOST
 
-export function SelectWaistcoatLapel({
+export default function SelectBlazerPattern({
     set_pictures,set_detail_id, suit
 }){
     const {updateSuitBuildStep} = useContext(CommonContext)
-    const [selectedWaistcoatLapel, set_selectedWaistcoatLapel] = useState(suit?.waistcoat_lapel)
-    const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/waistcoat-lapel/all/", "waistcoat-lapel")
-    const lapels = isSuccess ?  data?.data : []
+    const [selectedBlazer, set_selectedBlazer] = useState(suit?.blazer_pattern)
+    const {data, isLoading, isSuccess, isError, refetch, status} =  useGetSuitPartQuery("/api/suit/blazer-pattern/all/", "blazer")
+    const blazers = isSuccess ?  data?.data : []
     
     useEffect(()=>{
-        if(!selectedWaistcoatLapel && status =="success"){
-            set_selectedWaistcoatLapel(lapels[0]?.id || {})
+        if(!selectedBlazer && status =="success"){
+            set_selectedBlazer(blazers[0]?.id || {})
         } 
         const update_build_stages = (step_id, parts_list ,selectedPart_id) => {
             const selected_part = parts_list.find(part => part?.id == selectedPart_id)
             if(selected_part){
                 set_pictures(selected_part?.pictures || [])
                 set_detail_id(selected_part?.detail || null)
-                updateSuitBuildStep(step_id, selected_part?.id)
             }
+            updateSuitBuildStep(step_id, selected_part?.id)
         }
-        update_build_stages("waistcoat_lapel", lapels, selectedWaistcoatLapel)
-    }, [lapels, selectedWaistcoatLapel, status])
+        update_build_stages("blazer_pattern",blazers, selectedBlazer)
+    }, [blazers, selectedBlazer, status])
     return(
             <div className="">
                 <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
                         <WalledTexts>
-                        Select Waistcoat pattern.
+                        Select a blazer pattern
                         </WalledTexts>
                     </SubHeader>
                     <ParaSec classes="mt-2 mb-0">
@@ -50,28 +50,36 @@ export function SelectWaistcoatLapel({
                         }
                         {
                             isSuccess && !isLoading &&
-                            <div className="w-full grid grid-cols-1 gap-5 mt-10">
+                            <div className="w-full grid grid-cols-1 gap-5 mt-8">
                                 {
-                                    lapels.map(lapel => {
+                                    blazers.map(blazer => {
                                         
                                     return   <TabBtn
-                                    handleOnClick={ () => set_selectedWaistcoatLapel(lapel?.id)}
-                                    title={lapel?.name}
-                                    descr={lapel?.description}
-                                    svg_url={BASE_URL + lapel?.icon}
+                                    handleOnClick={ () => set_selectedBlazer(blazer?.id)}
+                                    title={blazer?.name}
+                                    descr={blazer?.description}
+                                    svg_url={BASE_URL + blazer?.icon}
                                     img_class="w-10 h-auto flex-none"
                                     classes={"w-full " +  
-                                    ( selectedWaistcoatLapel == lapel?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                    ( selectedBlazer == blazer?.id ? "bg-theme-gold/5 border-theme-gold" : "")}
                                  />
                                     })
                                 }
-
+                                <TabBtn
+                                    handleOnClick={ () => set_selectedBlazer("no-blazer")}
+                                    title="No Blazer"
+                                    descr="I already have a blazer and don't want Black Bespoke to include another blazer."
+                                    img_class="hidden"
+                                    text_class="text-center items-center w-10/12 mx-auto"
+                                    classes={"w-full " +  
+                                    ( selectedBlazer == "no-blazer" ? "bg-theme-gold/5 border-theme-gold" : "")}
+                                 />
                             </div>
                         }
                         {
                             isError &&
                             <p className="text-red-600 font-mono text-center text-sm px-5">
-                                Oops! We couldn't fetch <br/> the lapels right now. 
+                                Oops! We couldn't fetch <br/> the blazers right now. 
                                 <br/>
                                 Please{" "}
                                 <button 

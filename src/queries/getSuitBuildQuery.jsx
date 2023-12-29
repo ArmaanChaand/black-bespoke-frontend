@@ -10,7 +10,8 @@ export function useGetSuitBuildQuery(suit_id){
             return http.get("/api/suit/one/" + suit_id + "/")
     },
     enabled: suit_id != null,
-    retry: 1,
+    retry: 2,
+    staleTime: 5*60*1000,
     })
 
     return QUERY

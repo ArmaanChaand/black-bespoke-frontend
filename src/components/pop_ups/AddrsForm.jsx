@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { PopupFormWrapper } from "./PopupFormWrapper";
+import { lazy, useRef, useState } from "react";
 import { TextInput } from "../elements/Inputs";
 import { useNavigate } from "react-router-dom";
 import { useGetCustomerQuery } from "../../queries/CustomerQuery";
@@ -10,8 +9,9 @@ import { SecondaryBtn } from "../elements/Buttons";
 import { useGetCustAddrsQuery } from "../../queries/AddressQuery";
 import { useGetCities, useGetCity } from "../../queries/CityQuery";
 import axios from "axios";
+const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
-export function AddressForm({set_loading}){
+export default function AddressForm({set_loading}){
     const navigate = useNavigate()
     const queryClient = useQueryClient()
     const [errors, set_errors] = useState({})

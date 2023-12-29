@@ -11,7 +11,10 @@ export default function Home(){
     const navigate = useNavigate();
     return (
         <>
-        <Header/>
+        <Header
+        btn_fun={()=>navigate('/suit-build/?select=fabric')}
+
+        />
         <HeroBeta
             heading="The Art of Personalization"
             description="Bespoke suits built just for you"

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { ParaPrm, ParaSec } from "./elements/Paras";
-import { SubHeader } from "./elements/StyledHeaders";
-import { WalledTexts } from "./elements/WalledTexts";
-import { TextInput } from "./elements/Inputs";
+import { ParaPrm, ParaSec } from "../elements/Paras";
+import { SubHeader } from "../elements/StyledHeaders";
+import { WalledTexts } from "../elements/WalledTexts";
+import { TextInput } from "../elements/Inputs";
 
-export function Monogram({
+export default function Monogram({
     set_pictures,suit, set_monogram_text
 }){
     const [monogram, set_monogram] = useState(suit?.monogram_text || '')
