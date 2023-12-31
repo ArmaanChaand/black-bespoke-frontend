@@ -23,12 +23,15 @@ export default function OurProcess(){
         </Header>
         <div className="min-h-screen flex flex-col justify-start text-center items-center gap-16">
             <ContainerDiv className="w-fit">
-                <LinedHeaderBeta className="text-3xl sm:text-5xl 2xl:text-6xl  w-10/12 pt-44 mx-auto mb-5 ">
-                The Process
-                </LinedHeaderBeta>
-                <ParaPrmBeta className="2xl:text-lg">
-                We’re going to help you find the right fabric, details, and fit for your body type
-                </ParaPrmBeta>
+                <div className="w-fit pt-44 mx-auto">
+                    <LinedHeaderBeta className="text-3xl sm:text-5xl 2xl:text-6xl w-full mx-auto mb-5 sm:px-10"
+                    >
+                    The Process
+                    </LinedHeaderBeta>
+                    <ParaPrmBeta className="2xl:text-lg">
+                    We’re going to help you find the right fabric, details, and fit for your body type
+                    </ParaPrmBeta>
+                </div>
             </ContainerDiv>
             <div className="w-full flex flex-col justify-center items-center">
                 <ProcessVideoSection

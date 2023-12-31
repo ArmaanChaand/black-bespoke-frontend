@@ -21,10 +21,10 @@ export default function CustomerForm({set_loading}){
         const customer_id = getCustomerId()
         if(customer_id){
           const url = "/api/user/customer/update/" + customer_id + "/"
-          console.log("UPDATE CUSTOMER")
+          // console.log("UPDATE CUSTOMER")
           return http.post(url, data)
         } else{
-          console.log("CREATE CUSTOMER")
+          // console.log("CREATE CUSTOMER")
           return http.post("/api/user/customer/create/", data)
         }
       },
@@ -34,6 +34,7 @@ export default function CustomerForm({set_loading}){
       onSuccess: (data) => {
         if(data?.data?.id) setCustomerId(data?.data?.id)
         queryClient.invalidateQueries({ queryKey: ["customer"] })
+        console.log("cust_id: ", getCustomerId())
         navigate('?consult=loc')
       },
       onSettled:() =>{

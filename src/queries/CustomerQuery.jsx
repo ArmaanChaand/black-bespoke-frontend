@@ -12,7 +12,6 @@ export function useGetCustomerQuery(){
             return http.get("/api/user/customer/read/" + customer_id + "/")
         },
         enabled: getCustomerId() != null,
-        refetchInterval:1000,
     })
 
     return QUERY

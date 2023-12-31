@@ -1,17 +1,19 @@
 import {Suspense, lazy} from "react";
 import { twMerge } from "tailwind-merge";
 import { ParaPrmBeta } from "../elements/Paras";
-// import  ImageElm  from "../elements/Images";
 const ImageElm = lazy(()=>import("../elements/Images"))
 
+const BASE_URL = import.meta.env.VITE_CDN_HOST
+
 export function TestimonialBox({className, img_src, name, testimonial}){
+   
     return(
         <div className={twMerge("w-full h-fit grid grid-cols-7 glass_bg rounded-xl gap-5 sm:gap-10 2xl:gap-16 overflow-hidden", className)}>
             <div className="w-full sm:w-full h-full relative overflow-hidden col-span-3 sm:col-span-2">
                 <Suspense fallback={<div>Loading...</div>}>
                     <ImageElm
                         classes="absolute inset-0"
-                        src={img_src}
+                        src={BASE_URL + img_src}
                         alt={name}
                     />
                 </Suspense>

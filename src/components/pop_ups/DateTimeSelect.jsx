@@ -3,7 +3,7 @@ import { lazy, useEffect, useState } from "react";
 import { SecondaryBtn } from "../elements/Buttons";
 import { DatePickerCustom } from "../elements/DatePicker";
 import { useNavigate } from "react-router-dom";
-import { formatDate, formatDatetoYYMMYY, formatTime } from "../../assets/js_utils/utils";
+import { formatDate, formatDatetoYYMMYY, formatTime, getCustomerId } from "../../assets/js_utils/utils";
 import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
@@ -70,10 +70,10 @@ export default function DateTimeSelect({set_loading}){
             const res_data = data?.data
             if(data?.data){
                 queryClient.invalidateQueries({queryKey: ["customer", "appointment"]})
+                console.log("cust_id: ", getCustomerId())
                 if(res_data?.appnt_type == "CALLBACK"){
                     navigate('?consult=booked')
-                }
-                if(res_data?.appnt_type == "CONSULTATION" || res_data?.appnt_type == "MEASUREMENT"){
+                }else{
                     navigate('?consult=address')
                 }
             }
@@ -93,11 +93,15 @@ export default function DateTimeSelect({set_loading}){
 
     const handleSaveNext = () => {
         const load_data = {
-          date: formatDatetoYYMMYY(date),
-          time: time_selected
+            date: formatDatetoYYMMYY(date),
+            time: time_selected,
+            
         }
-        // console.log(load_data)
+        if(appointment?.appnt_type != 'MEASUREMENT'){
+            load_data['appnt_type'] = 'CONSULTATION'
+        }
         book_appointment.mutate(load_data)
+        console.log("appnt_id: ", appointment?.id)
     //   navigate("?consult=address")
     }
     return (

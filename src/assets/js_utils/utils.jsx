@@ -75,14 +75,15 @@ export function decodeString(encodedString) {
 
 export function getCustomerId(){
     const encoded = sessionStorage.getItem('blackbespokecustomer')
-    if(encoded){
-        return decodeString(encoded)
-    }
+    // if(encoded){
+        // return decodeString(encoded)
+    // }
     return encoded
 }
 export function setCustomerId(id){
     if(id){
-        sessionStorage.setItem('blackbespokecustomer', encodeString(id))
+        // sessionStorage.setItem('blackbespokecustomer', encodeString(id))
+        sessionStorage.setItem('blackbespokecustomer', id)
         return true
     }
     

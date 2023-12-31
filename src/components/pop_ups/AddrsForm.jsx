@@ -20,7 +20,7 @@ export default function AddressForm({set_loading}){
     const {data, isSuccess, isError, status} = useGetCustAddrsQuery()
     const appointment_query = useCustAppntQuery()
     const appointment = appointment_query.isSuccess ? appointment_query?.data?.data : {}
-    console.log(appointment)
+    // console.log(appointment)
     
     const address_data = isSuccess ? data?.data : {}
     const selected_city_query = useGetCity(address_data?.city)
@@ -41,7 +41,6 @@ export default function AddressForm({set_loading}){
         set_errors(error?.response?.data)
       },
       onSuccess: (data) => {
-        if(data?.data?.id) setCustomerId(data?.data?.id)
         queryClient.invalidateQueries({ queryKey: ["customer"] })
         navigate('?consult=booked')
       },
@@ -54,8 +53,10 @@ export default function AddressForm({set_loading}){
     function handleSubmission(){
       const formData = Object.fromEntries(new FormData(the_form.current))
       delete formData['city']
-      console.log(formData)
+      // console.log(formData)
       post_req.mutate([address_data?.id,formData])
+      console.log("cust_id: ", getCustomerId())
+      console.log("appnt_id: ", appointment?.id)
     }
     return (
         <PopupFormWrapper

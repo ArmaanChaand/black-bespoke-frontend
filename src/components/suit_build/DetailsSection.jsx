@@ -1,5 +1,5 @@
 import { lazy, useEffect, useState } from "react";
-import { PrimaryBtn, SecondaryBtn } from "../elements/Buttons";
+import { PrimaryBtn, PrimaryBtnTwo, SecondaryBtn } from "../elements/Buttons";
 import { ContainerDiv } from "../elements/Container";
 import { SVGWrapper } from "../elements/SVGWrapper";
 import { twMerge } from "tailwind-merge";
@@ -53,7 +53,7 @@ export default function DetailsSection({
                 >
                         <button 
                             className={`h-full text-ellipsis 
-                            text-theme-white font-theme-gilroy text-sm w-fit text-start relative 
+                            text-theme-white font-theme-mulish text-sm w-fit text-start relative 
                             flex flex-col justify-start items-start
                             `}
                             disabled={window.innerWidth > 768}
@@ -104,17 +104,17 @@ export default function DetailsSection({
                         >
                             <span>{back_texts[select_stage] || "PREVIOUS"}</span>
                         </SecondaryBtn>
-                        <PrimaryBtn
+                        <PrimaryBtnTwo
                             handleOnClick={next_fn}
-                            classes={"text-xs md:text-sm"}
+                            className={"text-xs md:text-sm group"}
                             // disabled={next_disabled}
                         >
                             <span>{next_texts[select_stage] || "NEXT"}</span>
                             <SVGWrapper 
-                                classes="stroke-theme-gold fill-transparent w-4 h-5 ml-2 "
+                                classes="stroke-theme-gold group-hover:stroke-theme-black fill-transparent w-4 h-5 ml-2 "
                                 svgName="ANGLE_RIGHT"
                             />
-                        </PrimaryBtn>
+                        </PrimaryBtnTwo>
                     </div>
                 </ContainerDiv>
             </div>

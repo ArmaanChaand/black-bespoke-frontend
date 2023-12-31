@@ -9,10 +9,11 @@ export default function ProcessVideoSection({className, serial, title, content, 
     return(
         <section className={twMerge("w-full flex flex-col-reverse sm:flex-row mb-10 sm:mb-0", className)}>
             <div className="flex-1 flex-shrink-0 flex justify-center items-center">
-                    <div className="z-10 -mt-10 sm:mt-0 w-11/12 md:w-11/12 md900:w-10/12 lg:w-2/3 h-fit glass_bg rounded-xl p-5 sm:p-10 2xl:-16">
+                    <div className="z-10 -mt-10 sm:mt-0 w-11/12 md:w-11/12 md900:w-10/12 lg:w-2/3 h-fit glass_bg rounded-xl p-5 sm:p-10 2xl:-16 flex flex-col justify-center items-start">
                         <LinedHeaderH4
+                            className="font-medium w-fit mr-auto"
                             rightLineClasses="hidden"
-                            className="font-medium"
+                            leftLineClasses="w-10"
                         >
                         <span className="font-bold text-theme-gold mr-3" >{serial}</span>
                         {title}

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { TabBtn } from "../elements/Buttons";
 import { Spinner } from "../elements/Loaders";
-import { ParaSec } from "../elements/Paras";
-import { SubHeader } from "../elements/StyledHeaders";
+import { ParaPrmBeta, ParaSec } from "../elements/Paras";
+import { SubHeader, SubHeaderBeta } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
 import { useGetSuitPartQuery } from "../../queries/getSuitPartQuery";
 import { CommonContext } from "../../contexts/CommonContexts";
@@ -33,14 +33,14 @@ export default function SelectWaistcoatLapel({
     }, [lapels, selectedWaistcoatLapel, status])
     return(
             <div className="">
-                <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
+                <SubHeaderBeta className="text-lg sm:text-2xl 2xl:text-3xl ml-3">
                         <WalledTexts>
                         Select Waistcoat pattern.
                         </WalledTexts>
-                    </SubHeader>
-                    <ParaSec classes="mt-2 mb-0">
+                    </SubHeaderBeta>
+                    <ParaPrmBeta className="mt-2 mb-7 text-sm 2xl:text-lg">
                     Lorem ipsum dolor sit amet consectetur. Vestibulum tincidunt quam feugiat purus aliquet tellus.
-                    </ParaSec>
+                    </ParaPrmBeta>
                     <div className="w-full h-fit">
                         {
                             isLoading &&

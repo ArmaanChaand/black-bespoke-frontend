@@ -20,7 +20,7 @@ export function TheStoryHome() {
                 <div className="absolute w-full h-full inset-0 z-10 flex flex-col justify-start text-center sm:items-start p-5 sm:p-10 2xl:p-16">
                     <h1
                         className="max-w-2xl text-3xl font-medium md:text-4xl xl:text-5xl 
-                text-theme-white font-theme-petrona leading-none text-center sm:text-start"
+                text-theme-white font-theme-petrona text-center sm:text-start tracking-wider"
                     >
                         Elite Craftsmanship <br /> meets  Cutting-edge <br /> Technology
                     </h1>

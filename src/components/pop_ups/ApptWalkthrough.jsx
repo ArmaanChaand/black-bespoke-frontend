@@ -27,7 +27,7 @@ function ApptWalkthrough({walkthroughStage}){
     const [loading, set_loading] = useState(false)
     const navigation_type = useNavigationType()
     useEffect(()=>{
-        console.log(navigation_type)
+        // console.log(navigation_type)
         if(navigation_type=='POP'){
             navigate("?consult=info")
         }

@@ -75,7 +75,7 @@ export function SubHeader({classes="text-xl sm:text-2xl", children}){
  */
 
 export function SubHeaderBeta({className="", children}){
-    const tw_classes = `text-xl sm:text-2xl text-theme-white font-medium font-theme-cirka` 
+    const tw_classes = `text-xl sm:text-2xl text-theme-white font-medium font-theme-petrona` 
     return (
         <h3 className={twMerge(tw_classes, className)}>
             {children}

@@ -7,6 +7,7 @@ import { useGetCities } from "../../queries/CityQuery";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../../assets/axios/useApi";
 import { getCustomerId } from "../../assets/js_utils/utils";
+import { useCustAppntQuery } from "../../queries/AppointmentQuery";
 const PopupFormWrapper =lazy(()=>import("./PopupFormWrapper"));
 
 const CDN_HOST = import.meta.env.VITE_CDN_HOST
@@ -15,7 +16,7 @@ export default function LocationSelect({set_loading}){
     const navigate = useNavigate()
     const http = useApi()
     const queryClient = useQueryClient()
-    const {address, set_address} = useContext(CommonContext)
+    const {address, set_address, findFirstNullSuitBuildStep} = useContext(CommonContext)
     const [citySelected, setCitySelected] = useState(null)
 
     // LIST ALL CITIES
@@ -38,19 +39,17 @@ export default function LocationSelect({set_loading}){
       set_loading(isLoading)
     }, [isLoading])
 
-
     // UPDATE LOCATION
     const updateLocation = useMutation({
       mutationKey:['customer', 'address'],
       mutationFn: (context) => {
-        console.log(context)
         set_loading(true)
         if(context[0]){
           const url = "/api/address/update/" + context[0] + "/"
-          console.log("UPDATE LOCATION")  
+          // console.log("UPDATE LOCATION")  
           return http.put(url, context[1])
         } else {
-          console.log("CREATE LOCATION")
+          // console.log("CREATE LOCATION")
           return http.post("/api/address/create/", context[1])
         }
       },
@@ -60,7 +59,13 @@ export default function LocationSelect({set_loading}){
       onSuccess: (data) => {
         if(data?.data?.customer){
           queryClient.invalidateQueries({queryKey: ["customer"]})
-          navigate('?consult=appt_select')
+          // console.log("cust_id: ", getCustomerId())
+
+          if(!findFirstNullSuitBuildStep()){
+            navigate('/suit-build/?select=monogram')
+          }else {
+            navigate('?consult=date_time')
+          }
         }
       },
       onSettled: (data) => {
@@ -73,7 +78,7 @@ export default function LocationSelect({set_loading}){
         city: citySelected,
         customer: getCustomerId() || null
       }
-      console.log(formData)
+      // console.log(formData)
       updateLocation.mutate([address?.id, formData])
     }
     return (

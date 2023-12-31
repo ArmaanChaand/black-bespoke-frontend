@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { ContainerDiv } from "../elements/Container";
-import { ParaSec } from "../elements/Paras";
-import { SubHeader } from "../elements/StyledHeaders";
+import { ParaPrmBeta } from "../elements/Paras";
+import { SubHeaderBeta } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
 
 const SuitBuildSteps = lazy(()=>import("./SuitBuildSteps"))
@@ -18,16 +18,16 @@ export default function SuitBuildWrapper({
         <section className="w-screen min-h-screen pt-20 md:pt-24 overflow-x-hidden">
             <ContainerDiv classes="h-full flex flex-col md:flex-row justify-start sm:justify-center items-stretch gap-10  pb-32 md:pr-16 relative ">
                <div className="w-full h-fit sm:h-full">
-                    <SubHeader classes="text-xl sm:text-2xl ml-3">
+                    <SubHeaderBeta className="text-xl sm:text-2xl ml-3">
                         <WalledTexts/>
                             Build Your Suit
-                    </SubHeader>
+                    </SubHeaderBeta>
                     <div className="mt-5 w-fit mx-auto md:hidden">
                         {suit_build_steps}
                     </div>
-                    <ParaSec classes="hidden sm:block mt-2">
+                    <ParaPrmBeta className="hidden sm:block mt-2">
                     Lorem ipsum dolor sit amet consectetur. Vestibulum tincidunt quam feugiat purus aliquet tellus.
-                    </ParaSec>
+                    </ParaPrmBeta>
                     <div className="w-full h-auto aspect-video rounded-sm overflow-hidden mt-7">
                         <SuitPartGallery
                             pictures={pictures}

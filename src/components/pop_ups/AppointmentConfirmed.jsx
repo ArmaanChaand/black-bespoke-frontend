@@ -38,10 +38,11 @@ export default function AppointmentConfirmed({set_loading}){
     const location = useLocation()
     const appointment_query =  useCustAppntQuery()
     const appointment = appointment_query?.data?.data || {}
-    
+    console.log("appnt_id: ", appointment?.id)
     // QUERY CUSTOMER
     const customer_query = useGetCustomerQuery()
     const customer_data = customer_query?.data?.data || {}
+    console.log("cust_id: ", customer_data?.id)
     useEffect(()=>{
         set_loading(customer_query.isLoading)
     }, [customer_query?.isLoading])
@@ -53,7 +54,6 @@ export default function AppointmentConfirmed({set_loading}){
     }, [city_query?.isLoading])
 
     const handleGotIt = () => {
-        console.log(location.pathname != '/suit-build/' ? location.pathname : "/")
       navigate(location.pathname != '/suit-build/' ? location.pathname : "/")
     }
     useEffect(()=>{

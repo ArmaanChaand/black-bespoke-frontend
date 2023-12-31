@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { ParaPrm, ParaSec } from "../elements/Paras";
-import { SubHeader } from "../elements/StyledHeaders";
+import { ParaPrm, ParaPrmBeta, ParaSec } from "../elements/Paras";
+import { SubHeader, SubHeaderBeta } from "../elements/StyledHeaders";
 import { WalledTexts } from "../elements/WalledTexts";
 import { TextInput } from "../elements/Inputs";
 
@@ -29,14 +29,14 @@ export default function Monogram({
     
     return(
             <div className="">
-                <SubHeader classes="text-lg sm:text-xl 2xl:text-2xl ml-3">
+                <SubHeaderBeta className="text-lg sm:text-2xl 2xl:text-3xl ml-3">
                     <WalledTexts>
                     Free Monogramming (Optional)
                     </WalledTexts>
-                </SubHeader>
-                <ParaSec classes="mt-2 mb-7">
+                </SubHeaderBeta>
+                <ParaPrmBeta className="mt-2 mb-7 text-sm 2xl:text-lg">
                 Lorem ipsum dolor sit amet consectetur. Vestibulum tincidunt quam feugiat purus aliquet tellus.
-                </ParaSec>
+                </ParaPrmBeta>
                 <div className="w-full h-fit">
                     <TextInput
                         label="Monogram"
